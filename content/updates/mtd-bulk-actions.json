@@ -1,0 +1,21 @@
+{
+  "id": "mtd-bulk-actions",
+  "imageSrc": "/updates/mtd-bulk-actions.png",
+  "imageAlt": "MTD bulk actions",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "MTD. Done quicker",
+  "summaryBody": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34419697730450-Manage-your-clients-MTD-for-Income-Tax-submissions-in-bulk"
+}

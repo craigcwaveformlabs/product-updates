@@ -1,0 +1,22 @@
+{
+  "id": "ecommerce-equali",
+  "imageSrc": "/updates/ecommerce-equali.png",
+  "imageAlt": "eCommerce Equali",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "Your eCommerce marketplaces connected",
+  "summaryBody": "Automatically reconcile and post sales, fees, refunds and taxes from your e-commerce marketplaces into FreeAgent with our Equali integratio",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Tired of logging into multiple e-commerce platforms and payment portals every month, downloading spreadsheets, and manually reconciling settlements? Equali’s integration with FreeAgent takes the hassle out of the month end. Automatically post a detailed, categorised breakdown of revenue, taxes, refunds and fees directly to FreeAgent - accurately and effortlessly."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/integrations/equali/"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "btc-landlord",
+  "imageSrc": "/updates/btc-landlord.png",
+  "imageAlt": "FreeAgent for Landlords",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Recording rental income made simple",
+  "summaryBody": "Recording rental income made be simple and scalable with FreeAgent for Landlords",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "**Property-specific chart of accounts. **Use bank feeds and AI data extraction alongside a dedicated chart of accounts to create consistent, high-speed workflows. **Automate your property ownership splits. **Allocate income and costs across owners once to set a permanent rhythm. All ledgers flow automatically in relation to the ownership splits. **Multiple owners via one licence. **All the landlords within a property portfolio can file MTD from a single licence. And there are no limits to the number of properties for all landlords."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/freeagent-landlords-mtd-ready/",
+  "pinnedForStories": [
+    "be-tax-confident"
+  ]
+}

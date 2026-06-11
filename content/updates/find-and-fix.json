@@ -1,0 +1,23 @@
+{
+  "id": "find-and-fix",
+  "imageSrc": "/updates/find-and-fix.png",
+  "imageAlt": "Find and Fix",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "A quicker, easier way to correct errors in bulk",
+  "summaryBody": "Bulk editing designed to make error correction faster, easier, and much less of a headache.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Save time (and costs) - Say goodbye to endless hours of repetitive data correction. With Find & Fix, you can search and update multiple transactions in one go - no more hopping between entries or piecing together journals. \n\nIncrease accuracy - Bulk editing doesn’t just save time - it makes it easier to keep your clients’ data squeaky clean. Whether it’s prepping for a VAT return or year-end accounts, correcting errors at scale gives you greater confidence in your numbers.\n\nAvoid costly mistakes - Accurate data is essential for compliance. Bulk edits help you nip errors in the bud, reducing the risk of overpayments, underpayments, and unexpected HMRC headaches."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/introducing-find-and-fix/"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "mtd-automated",
+  "imageSrc": "/updates/mtd-automated.png",
+  "imageAlt": "MTD automated submissions",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Set and forget with automated filing",
+  "summaryBody": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule,",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule, so you can manage high volumes without manual chasing."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34510517681554-Automate-quarterly-MTD-for-Income-Tax-submissions"
+}

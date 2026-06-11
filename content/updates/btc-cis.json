@@ -1,0 +1,24 @@
+{
+  "id": "btc-cis",
+  "imageSrc": "/updates/btc-cis.png",
+  "imageAlt": "A simpler way to manage CIS clients",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "A simpler way to manage CIS",
+  "summaryBody": "Remove the CIS admin overhead with direct categorisation of transactions",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "**Connect a bank feed.** Make bank feed connection the default onboarding milestone for every CIS client, then keep feeds live at scale with bulk reconsent from the dashboard. **CIS taken directly from bank transactions.** Categorise transactions, via automation or bank rules, into CIS treatment. **File quarterly updates at scale.** Bulk file across clients, or opt into auto-filing for the lowest-touch quarterly cadence."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-may-2026/",
+  "pinnedForStories": [
+    "be-tax-confident"
+  ]
+}

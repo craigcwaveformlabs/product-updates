@@ -1,0 +1,32 @@
+{
+  "id": "transformative-intro",
+  "imageSrc": "/updates/transformative.png",
+  "imageAlt": "Transformative accounting",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "A new era for accounting",
+  "summaryBody": "We’re entering a new era for accounting that is reshaping how we stay in control of our finances.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "**The evolution of work. **We moved from paper ledgers to the cloud. Now, intelligent automation is the next leap forward. **Built on trust.** Smart tools create scalable success. Ensure they provide the reliable foundation needed to grow your firm. **Human-centred.** AI should solve real problems effectively, whilst your team stays at the heart of every decision."
+    },
+    {
+      "type": "heading-sm",
+      "text": "Why FreeAgent fits"
+    },
+    {
+      "type": "body",
+      "text": "**Confidence in the data. ** We use secure feeds and smart categorisation. Your team gets reliable data from day one. **Unlock real time advisory. ** We handle the daily admin grind to give you the confidence to reinforce your added value to the client. **Included in our core offering. ** Our AI capability is embedded in our workflows for everyone to benefit from every day."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/",
+  "pinnedForStories": [
+    "transformative-accounting"
+  ]
+}

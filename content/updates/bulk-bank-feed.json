@@ -1,0 +1,23 @@
+{
+  "id": "bulk-bank-feed",
+  "imageSrc": "/updates/bulk-bank-feed.png",
+  "imageAlt": "bulk-bank-feed",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "automation"
+  ],
+  "storyTags": [
+    "be-tax-confident",
+    "transformative-accounting"
+  ],
+  "title": "Keep transactions flowing at the click of a button",
+  "summaryBody": "Re-consent bank feed connections in bulk at the click of a button, ensuring you have accurate data every day.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Lots of accountants and bookkeepers told us that bank feeds are great… for 90 days until the client needs to reconsent. Then you are at the mercy of waiting for clients to get round to it, even with plenty of reminders. So we solved that problem - your clients does the initial connection then after that, you can do the bank reconsent via the Practice Dashboard. And in bulk!"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

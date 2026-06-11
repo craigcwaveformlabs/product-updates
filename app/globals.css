@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f9ff;
+  --foreground: #1a2e44;
+  --surface: #ffffff;
+  --surface-muted: #e8f2fb;
+  --border: #c5d6ea;
+  --primary: #2461b8;
+  --primary-deep: #1a4a96;
+  --ink-subtle: #4e6378;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-title);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #f7faff 0%, var(--background) 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "Segoe UI", "Avenir Next", sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.brand-shell {
+  background:
+    radial-gradient(circle at 8% 8%, rgb(36 97 184 / 10%) 0%, transparent 26%),
+    radial-gradient(circle at 92% 0%, rgb(26 74 150 / 8%) 0%, transparent 22%);
+}
+
+.brand-panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 8px 22px rgb(20 40 80 / 6%);
+}
+
+.brand-hero {
+  border: 1px solid #b8cfea;
+}
+
+.freeagent-subnav {
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.freeagent-subnav a {
+  color: var(--ink-subtle);
+}
+
+.freeagent-subnav a:hover,
+.freeagent-subnav a:focus-visible {
+  color: var(--primary-deep);
+}
+
+.card-title {
+  letter-spacing: -0.01em;
+}
+
+.title-font {
+  font-family: var(--font-title), "Iowan Old Style", "Palatino Linotype", serif;
+  letter-spacing: -0.01em;
+}
+
+.meta-date {
+  color: var(--ink-subtle);
+}
+
+.preview-link {
+  color: var(--primary-deep);
+}
+
+.preview-link:hover {
+  color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "id": "ai-categorisation",
+  "imageSrc": "/updates/ai-categorisation.png",
+  "imageAlt": "Bookkeeping while you sleep",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "automation",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Bookkeeping while you sleep",
+  "summaryBody": "FreeAgent has delivered market leading automation since 2018, available to everyone across every journey.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Bank feeds are the key step to bookkeeping, fulfilling compliance obligations, and completing other tax related tasks. We can now suggest categories automatically with over 80% accuracy, reducing the administrative burden and cognitive load needed to complete this vital step of MTD. And we learn from the categories you or your clients choose so that our model matches yours."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

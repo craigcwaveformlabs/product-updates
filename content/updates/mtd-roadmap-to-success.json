@@ -1,0 +1,86 @@
+{
+  "id": "mtd-roadmap-to-success",
+  "imageSrc": "/updates/mtd-roadmap-to-success.png",
+  "imageAlt": "mtd-roadmap-to-success",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Your roadmap to MTD success",
+  "summaryBody": "Get MTD done with five simple steps to MTD success that your Practice can follow today",
+  "detailBody": [
+    "Follow the simple steps to MTD success",
+    "1. Prepare.\n \nSegment clients, plan your workflow, and build your MTD strategy early.",
+    "- Write down your plan. Create a clear MTD plan that everyone understands. If your staff can’t explain it back to you, it’s likely too complicated.",
+    "- Know your audience. Segment your clients so you know exactly who’s affected and which team in your practice will be looking after them.",
+    "- Assign ownership and stay vocal. Decide who’s running the show and how you’ll chase unresponsive clients. Have a backup plan for when your first round of comms goes ignored.",
+    "2. Pricing.",
+    "Define a clear, profitable pricing model that reflects the value of digital bookkeeping.",
+    "- Value your time. Don’t undersell yourself. Charging what you’re worth now protects your business for the long run.\n- Choose your pricing model. Whether it’s monthly fees or annual payments, pick a structure that’s clear and consistent and works for you.\n- Scale a viable workflow. Avoid quick fixes and sticky plaster solutions. Use Wave 1 to stress test your workflows in preparation for Wave 2.",
+    "3. People.",
+    "Equip your team and clients with the knowledge and confidence to embrace change.",
+    "- Get your team on board. MTD is a big shift, so listen to your staff concerns. If the team isn't behind the plan, your internal processes will struggle.",
+    "- Run a pre-mortem. Don't wait for things to go wrong. Spot potential potholes with your team now so you have a \"Plan B\" ready before you need it.",
+    "- Pick the right partners. Ensure your software vendors offer fast support. Teams waiting days for a response will make the situation worse.",
+    "4. Process.",
+    "Use automation, smart tools, and clear filing routines to reduce admin.",
+    "- Align your plan with reality. Make sure the person doing the work is actually following your strategy. If there’s a gap, it’s time to realign.",
+    "- Choose client-friendly tools. Use software your clients can actually handle. If it’s too complex for them, you’ll end up doing the heavy lifting yourself.",
+    "- Audit and automate your tech. Map out your integrations and automate what you can now. If tools aren't working for you, you're losing time.",
+    "5. Prosper.",
+    "Unlock MTD growth by scaling efficiency and strengthening client relationships.",
+    "- Speak to your clients now. It’s time to switch up the generic emails and reach out directly.",
+    "- Start to sign them up on HMRC. The process takes time so make it part of your weekly workflow.",
+    "- Add all clients to your FreeAgent Dashboard. Access bulk actions and speed up your workflow",
+    "- Book session with your Account Manager. If there are stakeholders and staff that need to know about FreeAgent then do this now!"
+  ],
+  "detailBlocks": [
+    {
+      "type": "heading-sm",
+      "text": "1. Prepare."
+    },
+    {
+      "type": "body",
+      "text": "Segment clients, plan your workflow, and build your MTD strategy early.\n\n**Write down your plan.** Create a clear MTD plan that everyone understands. If your staff can’t explain it back to you, it’s likely too complicated.**Know your audience. **Segment your clients so you know exactly who’s affected and which team in your practice will be looking after them.**Assign ownership and stay vocal.** Decide who’s running the show and how you’ll chase unresponsive clients. Have a backup plan for when your first round of comms goes ignored."
+    },
+    {
+      "type": "heading-sm",
+      "text": "2. Pricing."
+    },
+    {
+      "type": "body",
+      "text": "Define a clear, profitable pricing model that reflects the value of digital bookkeeping.\n\n**Value your time.** Don’t undersell yourself. Charging what you’re worth now protects your business for the long run.**Choose your pricing model.** Whether it’s monthly fees or annual payments, pick a structure that’s clear and consistent and works for you.**Scale a viable workflow.** Avoid quick fixes and sticky plaster solutions. Use Wave 1 to stress test your workflows in preparation for Wave 2."
+    },
+    {
+      "type": "heading-sm",
+      "text": "3. People."
+    },
+    {
+      "type": "body",
+      "text": "Equip your team and clients with the knowledge and confidence to embrace change.\n\n**Get your team on board.** MTD is a big shift, so listen to your staff concerns. If the team isn't behind the plan, your internal processes will struggle. ** Run a pre-mortem.** Don't wait for things to go wrong. Spot potential potholes with your team now so you have a \"Plan B\" ready before you need it. **Pick the right partners.** Ensure your software vendors offer fast support. Teams waiting days for a response will make the situation worse."
+    },
+    {
+      "type": "heading-sm",
+      "text": "4. Process."
+    },
+    {
+      "type": "body",
+      "text": "Use automation, smart tools, and clear filing routines to reduce admin.\n\n**Align your plan with reality.** Make sure the person doing the work is actually following your strategy. If there’s a gap, it’s time to realign. **Choose client-friendly tools.** Use software your clients can actually handle. If it’s too complex for them, you’ll end up doing the heavy lifting yourself. **Audit and automate your tech.** Map out your integrations and automate what you can now. If tools aren't working for you, you're losing time."
+    },
+    {
+      "type": "heading-sm",
+      "text": "5. Prosper."
+    },
+    {
+      "type": "body",
+      "text": "Unlock MTD growth by scaling efficiency and strengthening client relationships.\n\n**Speak to your clients now.** It’s time to switch up the generic emails and reach out directly. **Start to sign them up on HMRC.** The process takes time so make it part of your weekly workflow. **Add all clients to your FreeAgent Dashboard.** Access bulk actions and speed up your workflow. ** Book session with your Account Manager.**If there are stakeholders and staff that need to know about FreeAgent then do this now!"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/",
+  "pinnedForStories": [
+    "be-tax-confident"
+  ]
+}

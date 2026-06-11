@@ -1,0 +1,21 @@
+{
+  "id": "tracking-groups",
+  "imageSrc": "/updates/tracking-groups.png",
+  "imageAlt": "Tracking Groups",
+  "date": "11 Jun 2026",
+  "tags": [
+    "coming-soon"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Track every business movement",
+  "summaryBody": "Keep track of the profit of individual cost centres, sites, regions or product lines with Tracking Groups",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "More sophisticated businesses benefit from reporting in more granular ways, maybe tracking the profit of individual cost centres, sites, regions or product lines."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/timeline/?tab=tab%3Ain-development"
+}

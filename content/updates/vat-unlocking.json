@@ -1,0 +1,22 @@
+{
+  "id": "vat-unlocking",
+  "imageSrc": "/updates/vat-unlocking.png",
+  "imageAlt": "VAT unlocking",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Giving you the key to VAT control",
+  "summaryBody": "Unlock filed VAT returns from your Practice Dashboard",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Senior account managers on a Practice Dashboard can now unlock filed VAT returns without contacting the FreeAgent support team, helping practices make VAT corrections quickly."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35059221261458-Unlock-a-client-s-VAT-return"
+}

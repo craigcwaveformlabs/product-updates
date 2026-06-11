@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "content:generate": "node scripts/generate-updates-content.mjs",
+    "predev": "npm run content:generate",
+    "prebuild": "npm run content:generate",
+    "content:new": "node scripts/new-update-content.mjs"
   },
   "dependencies": {
     "next": "16.2.7",

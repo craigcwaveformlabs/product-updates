@@ -1,0 +1,29 @@
+{
+  "id": "smart-capture",
+  "imageSrc": "/updates/smart-capture.png",
+  "imageAlt": "Smart Capture",
+  "date": "11 Jun 2026",
+  "tags": [
+    "automation"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Elevate expense management with Smart Capture",
+  "summaryBody": "Snap photos of your bills and expenses to extract dates and amounts into FreeAgent automatically.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Smart Capture for bills has arrived\n\nDealing with bills can feel like a chore. We want to take away that pain. Our Smart Capture feature now processes bills as well as receipts.\n\nLast year we launched Smart Capture for receipts. It zaps dates and amounts into your FreeAgent account. It also suggests a category for your expenses. Many of you loved it. You asked if it could do even more.\n\nWe listened to your feedback. You can now use Smart Capture for your regular business outgoings. This includes things like rent, electricity, internet and insurance. The feature helps you save time. It also stops manual data entry errors."
+    },
+    {
+      "type": "heading-sm",
+      "text": "How it works"
+    },
+    {
+      "type": "body",
+      "text": "You can drag and drop bills into the desktop version of FreeAgent. You can also snap a picture using our mobile app. The system handles PDF files and photos in bulk.\n\nOnce uploaded, FreeAgent extracts the key details. It uses smart tech to suggest an accounting category. It even matches the bill to your current account transaction later. All you have to do is check the details and hit approve."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

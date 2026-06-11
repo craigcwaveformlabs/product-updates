@@ -1,0 +1,22 @@
+{
+  "id": "cis-in-banking",
+  "imageSrc": "/updates/cis-in-banking",
+  "imageAlt": "CIS in Banking",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "CIS simplified",
+  "summaryBody": "Record CIS income directly from bank payments",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Record CIS income straight from your bank feed (including the correct gross labour and CIS deduction), so you can stay compliant as a subcontractor without creating invoices."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/33194713648018-Explain-bank-transactions-as-CIS-income"
+}

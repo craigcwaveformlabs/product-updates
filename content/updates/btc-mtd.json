@@ -1,0 +1,29 @@
+{
+  "id": "btc-mtd",
+  "imageSrc": "/updates/btc-mtd.png",
+  "imageAlt": "Managing MTD at scale",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Managing MTD at scale",
+  "summaryBody": "Take control of MTD with FreeAgent's leading solution",
+  "detailBody": [
+    "Automate your data collection. Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one.",
+    "Centralise your MTD oversight. Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place.",
+    "Automate your quarterly workflow. Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
+  ],
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "**Automate your data collection.** Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one. **Centralise your MTD oversight.** Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place. **Automate your quarterly workflow.**Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-april-2026/",
+  "pinnedForStories": [
+    "be-tax-confident"
+  ]
+}

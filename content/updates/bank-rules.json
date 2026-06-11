@@ -1,0 +1,23 @@
+{
+  "id": "bank-rules",
+  "imageSrc": "/updates/bank-rules.png",
+  "imageAlt": "Bank Rules",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "Automated banking your way",
+  "summaryBody": "Create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Practices can create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35031257974034-Create-and-manage-bank-rules-for-clients"
+}

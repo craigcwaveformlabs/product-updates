@@ -1,0 +1,21 @@
+{
+  "id": "mtd-client-table",
+  "imageSrc": "/updates/mtd-client-table.png",
+  "imageAlt": "MTD client table",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Scale MTD across every client",
+  "summaryBody": "Track all MTD IT clients and the progress made on fulfilling their MTD IT obligations from your Practice dashboard.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "The Practice Dashboard now allows you to track all MTD IT clients and the progress made on fulfilling their MTD IT obligations. You can filter and sort the list to help make sure you and your staff can easily manage MTD IT submission deadlines."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/mtd-updates-visibility-control/"
+}

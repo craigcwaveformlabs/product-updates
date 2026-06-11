@@ -1,0 +1,23 @@
+{
+  "id": "vat-checker",
+  "imageSrc": "/updates/vat-checker.png",
+  "imageAlt": "VAT checker",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "Speed run the VAT return",
+  "summaryBody": "Automatically detect and flag potential tax errors, transaction errors and duplicate entries to increase accuracy, save time and avoid costly penalties.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Automatically detect and flag potential tax errors, transaction errors and duplicate entries to increase accuracy, save time and avoid costly penalties."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35615496100498-Use-FreeAgent-s-VAT-checker"
+}

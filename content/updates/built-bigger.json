@@ -1,0 +1,32 @@
+{
+  "id": "built-bigger",
+  "imageSrc": "/updates/built-bigger.png",
+  "imageAlt": "Built for bigger businesses",
+  "date": "11 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Built for bigger businesses",
+  "summaryBody": "Control, without the complexity. Financial confidence for all UK businesses - and the experts who power them.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "**Support limited companies from day one.** Filing of VAT, Payroll, Corporation Tax, and Final accounts, are already included, giving you the core tools you need for incorporated clients. **Provide the features growing businesses rely on.** Tracking groups, benchmarking and management reporting help turn financial data into insight as clients grow. **Keep books clean and accurate from the start.** Tools like Find and Fix and compliance reporting help maintain reliable records without extra systems"
+    },
+    {
+      "type": "heading-sm",
+      "text": "Why FreeAgent fits"
+    },
+    {
+      "type": "body",
+      "text": "**Built in, not bolted on.** Key compliance and reporting tools come included in FreeAgent, so practices can support different client types without extra software. **One platform across your client base.** From sole traders to limited companies, FreeAgent provides a consistent workflow for the whole portfolio. **Tools that grow with your clients.** As clients become more complex, features like tracking groups and reporting help practices deliver deeper insight."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/",
+  "pinnedForStories": [
+    "built-for-every-business"
+  ]
+}
