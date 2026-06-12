@@ -113,6 +113,9 @@ export default function ContentStudioPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [csvFile, setCsvFile] = useState<File | null>(null);
+  const [skipExistingIdsOnImport, setSkipExistingIdsOnImport] = useState(true);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
 
@@ -421,6 +424,163 @@ export default function ContentStudioPage() {
     }
   };
 
+  const importCsv = async () => {
+    if (!csvFile) {
+      setError("Select a CSV file first.");
+      return;
+    }
+
+    setIsImporting(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const csv = await csvFile.text();
+      const response = await fetch("/api/content/import", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ csv, skipExistingIds: skipExistingIdsOnImport }),
+      });
+
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+        importedCount?: number;
+        createdCount?: number;
+        updatedCount?: number;
+        skippedCount?: number;
+      };
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error ?? "Failed to import CSV.");
+      }
+
+      setMessage(
+        `Processed ${payload.importedCount ?? 0} rows (${payload.createdCount ?? 0} created, ${payload.updatedCount ?? 0} updated, ${payload.skippedCount ?? 0} skipped).`,
+      );
+      setCsvFile(null);
+      await loadUpdates();
+    } catch (importError) {
+      setError(importError instanceof Error ? importError.message : "Failed to import CSV.");
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  const downloadCsvTemplate = (includeSampleRow: boolean) => {
+    const headers = [
+      "id",
+      "imageSrc",
+      "imageAlt",
+      "date",
+      "tags",
+      "storyTags",
+      "title",
+      "summaryBody",
+      "readMoreUrl",
+      "detailBody",
+      "pinnedForStories",
+      "detailBlocks",
+    ];
+
+    const sampleRow = [
+      "sample-update-id",
+      "/updates/sample-update.png",
+      "Sample update preview image",
+      "12 Jun 2026",
+      "coming-soon|automation",
+      "built-for-every-business",
+      "Sample feature update",
+      "A short summary for the card preview.",
+      "https://www.freeagent.com/blog/",
+      "First optional detail paragraph|Second optional detail paragraph",
+      "built-for-every-business",
+      '[{"type":"heading-sm","text":"What is new"},{"type":"body","text":"Optional detail blocks as JSON."}]',
+    ];
+
+    const escapeCsvField = (value: string) => {
+      if (/[",\n]/.test(value)) {
+        return `"${value.replace(/"/g, '""')}"`;
+      }
+      return value;
+    };
+
+    const rows = includeSampleRow ? [headers, sampleRow] : [headers];
+    const csv = rows
+      .map((row) => row.map((value) => escapeCsvField(String(value))).join(","))
+      .join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = includeSampleRow ? "content-updates-template.csv" : "content-updates-template-blank.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadExistingContentCsv = () => {
+    if (!updates.length) {
+      setError("No existing updates available to export.");
+      return;
+    }
+
+    setError("");
+
+    const headers = [
+      "id",
+      "imageSrc",
+      "imageAlt",
+      "date",
+      "tags",
+      "storyTags",
+      "title",
+      "summaryBody",
+      "readMoreUrl",
+      "detailBody",
+      "pinnedForStories",
+      "detailBlocks",
+    ];
+
+    const escapeCsvField = (value: string) => {
+      if (/[",\n]/.test(value)) {
+        return `"${value.replace(/"/g, '""')}"`;
+      }
+      return value;
+    };
+
+    const rows = updates.map((update) => [
+      update.id,
+      update.imageSrc,
+      update.imageAlt,
+      update.date,
+      update.tags.join("|"),
+      update.storyTags.join("|"),
+      update.title,
+      update.summaryBody,
+      update.readMoreUrl,
+      (update.detailBody ?? []).join("|"),
+      (update.pinnedForStories ?? []).join("|"),
+      update.detailBlocks?.length ? JSON.stringify(update.detailBlocks) : "",
+    ]);
+
+    const csv = [headers, ...rows]
+      .map((row) => row.map((value) => escapeCsvField(String(value))).join(","))
+      .join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "content-updates-export.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="brand-shell min-h-screen pb-12">
       <div className="mx-auto w-full max-w-[1400px] px-3 pt-6 sm:px-4 lg:px-6">
@@ -429,7 +589,11 @@ export default function ContentStudioPage() {
             <div>
               <h1 className="title-font text-3xl font-extrabold text-zinc-950">Content Studio</h1>
               <p className="mt-1 text-sm text-[#4e6378]">
-                Create and edit product update cards, then regenerate app content.
+                Create and edit product update cards, import updates from CSV, then regenerate app content.
+              </p>
+              <p className="mt-2 text-xs text-[#4e6378]">
+                CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories).
+                Use | as the separator for list fields.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
@@ -439,6 +603,53 @@ export default function ContentStudioPage() {
               >
                 View Site
               </Link>
+              <button
+                type="button"
+                onClick={() => downloadCsvTemplate(true)}
+                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
+              >
+                Download Sample CSV
+              </button>
+              <button
+                type="button"
+                onClick={() => downloadCsvTemplate(false)}
+                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
+              >
+                Download Blank CSV
+              </button>
+              <button
+                type="button"
+                onClick={downloadExistingContentCsv}
+                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
+              >
+                Export Existing CSV
+              </button>
+              <label className="cursor-pointer rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]">
+                {csvFile ? csvFile.name : "Choose CSV"}
+                <input
+                  type="file"
+                  accept=".csv,text/csv"
+                  className="hidden"
+                  onChange={(event) => setCsvFile(event.target.files?.[0] ?? null)}
+                />
+              </label>
+              <label className="flex items-center gap-2 rounded-full border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                <input
+                  type="checkbox"
+                  checked={skipExistingIdsOnImport}
+                  onChange={(event) => setSkipExistingIdsOnImport(event.target.checked)}
+                  className="h-3.5 w-3.5 rounded border-[#c5d5e8]"
+                />
+                Skip existing IDs
+              </label>
+              <button
+                type="button"
+                onClick={importCsv}
+                disabled={isImporting || !csvFile}
+                className="rounded-full border border-[#1a4a96] bg-white px-4 py-2 text-sm font-extrabold text-[#1a4a96] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isImporting ? "Importing..." : "Import CSV"}
+              </button>
               <button
                 type="button"
                 onClick={generateContent}
@@ -466,37 +677,22 @@ export default function ContentStudioPage() {
               </button>
             </div>
             <div className="mb-3">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500">Filter by story</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => setSidebarStoryTagFilter(null)}
-                  className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
-                    sidebarStoryTagFilter === null
-                      ? "border-[#2461b8] bg-[#2461b8] text-white"
-                      : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
-                  }`}
-                >
-                  All
-                </button>
-                {sidebarStoryTagOptions.map((tag) => {
-                  const active = sidebarStoryTagFilter === tag;
-                  return (
-                    <button
-                      key={tag}
-                      type="button"
-                      onClick={() => setSidebarStoryTagFilter(tag)}
-                      className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
-                        active
-                          ? "border-[#2461b8] bg-[#2461b8] text-white"
-                          : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
-                      }`}
-                    >
-                      {storyTagLabel[tag] ?? tag}
-                    </button>
-                  );
-                })}
-              </div>
+              <label className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500" htmlFor="sidebar-story-filter">
+                Filter by story
+              </label>
+              <select
+                id="sidebar-story-filter"
+                value={sidebarStoryTagFilter ?? ""}
+                onChange={(event) => setSidebarStoryTagFilter(event.target.value || null)}
+                className="mt-2 w-full rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-sm font-semibold text-zinc-800"
+              >
+                <option value="">All stories</option>
+                {sidebarStoryTagOptions.map((tag) => (
+                  <option key={tag} value={tag}>
+                    {storyTagLabel[tag] ?? tag}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="max-h-[70vh] space-y-2 overflow-y-auto pr-1">
               {isLoading ? <p className="text-sm text-[#4e6378]">Loading...</p> : null}
