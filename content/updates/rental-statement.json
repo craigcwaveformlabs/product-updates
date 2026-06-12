@@ -1,0 +1,25 @@
+{
+  "id": "rental-statement",
+  "imageSrc": "/updates/rental-statement.png",
+  "imageAlt": "Rental Statement",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers",
+    "automation",
+    "coming-soon"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "Capture, categorise and reconcile rental statements",
+  "summaryBody": "Transform messy rental statements into neat, digital entries in a matter of seconds.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "We heard from our Practice Partners that processing letting agent rental statements was a frustrating bottleneck, and an area where FreeAgent was lacking compared to competitors. Manually breaking down a single net bank payment into separate sales invoices for rent and individual bills for management fees or repairs is a disjointed and confusing workflow.\n\n\nTo solve this, we are leveraging AI to automatically capture, categorise and reconcile rental statements. This new feature transforms messy PDF statements into neat, digital entries in a matter of seconds. \n\n\nWe didn’t just want to build an extraction tool, so we set out to build the leading tool for capturing rental statements on the market. We’ve paired our extraction technology with our AI-driven categorisation engine to not only read the ins and outs of a statement but also to categorise the transactions and match rental income and fee data to the correct properties, closing the compliance loop in the simplest way possible. \n\n\nAll of this capability is included in the price of a landlord licence, enabling every client to benefit from this automated single-step reconciliation process and ensuring accurate and up-to-date accounts."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

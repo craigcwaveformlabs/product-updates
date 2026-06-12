@@ -1,0 +1,22 @@
+{
+  "id": "payroll-benefits",
+  "imageSrc": "/updates/payroll-benefits.png",
+  "imageAlt": "Payroll Benefits",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants",
+    "coming-soon"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Payroll Benefits in Kind",
+  "summaryBody": "Report non-cash Benefits in Kind in real-time via payroll to ensure compliance. Calculating car and non-car benefits directly within the payroll workflow reduces manual work.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Report non-cash Benefits in Kind in real-time via payroll to ensure compliance. Calculating car and non-car benefits directly within the payroll workflow reduces manual work."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

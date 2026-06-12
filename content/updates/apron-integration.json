@@ -1,0 +1,25 @@
+{
+  "id": "apron-integration",
+  "imageSrc": "/updates/apron-integration.png",
+  "imageAlt": "Apron Integration",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants",
+    "automation",
+    "bookkeepers",
+    "coming-soon"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "Apron on the table",
+  "summaryBody": "Capture and pay bills seamless with the new Apron and FreeAgent integration.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "FreeAgent and Apron are building a two-way synchronisation and payment integration. This partnership will allow bill, contact and payment data to flow seamlessly between Apron and FreeAgent. \n\nBy connecting these platforms, users can sync their payables data instantly. They can initiate single or bulk payments directly from the FreeAgent interface, with all activity automatically reconciled back to an Apron bank feed. Alternatively, they can remain in Apron, capture and pay bills, and have the data synced to the rest of their bookkeeping in FreeAgent."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

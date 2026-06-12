@@ -109,6 +109,7 @@ export default function ContentStudioPage() {
   const [newStoryTagInput, setNewStoryTagInput] = useState("");
   const [pinnedForStories, setPinnedForStories] = useState<string[]>([]);
   const [sidebarStoryTagFilter, setSidebarStoryTagFilter] = useState<string | null>(null);
+  const [sidebarIdSearch, setSidebarIdSearch] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -154,12 +155,14 @@ export default function ContentStudioPage() {
   }, [updates]);
 
   const filteredUpdates = useMemo(() => {
-    if (!sidebarStoryTagFilter) {
-      return updates;
-    }
+    const normalizedIdSearch = sidebarIdSearch.trim().toLowerCase();
 
-    return updates.filter((update) => update.storyTags.includes(sidebarStoryTagFilter));
-  }, [sidebarStoryTagFilter, updates]);
+    return updates.filter((update) => {
+      const matchesStory = sidebarStoryTagFilter ? update.storyTags.includes(sidebarStoryTagFilter) : true;
+      const matchesId = normalizedIdSearch ? update.id.toLowerCase().includes(normalizedIdSearch) : true;
+      return matchesStory && matchesId;
+    });
+  }, [sidebarIdSearch, sidebarStoryTagFilter, updates]);
 
   const loadUpdates = async () => {
     setIsLoading(true);
@@ -694,11 +697,23 @@ export default function ContentStudioPage() {
                 ))}
               </select>
             </div>
+            <div className="mb-3">
+              <label className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500" htmlFor="sidebar-id-search">
+                Search by ID
+              </label>
+              <input
+                id="sidebar-id-search"
+                value={sidebarIdSearch}
+                onChange={(event) => setSidebarIdSearch(event.target.value)}
+                placeholder="e.g. mtd, built, coming"
+                className="mt-2 w-full rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-sm text-zinc-800"
+              />
+            </div>
             <div className="max-h-[70vh] space-y-2 overflow-y-auto pr-1">
               {isLoading ? <p className="text-sm text-[#4e6378]">Loading...</p> : null}
               {!isLoading && updates.length === 0 ? <p className="text-sm text-[#4e6378]">No updates found.</p> : null}
               {!isLoading && updates.length > 0 && filteredUpdates.length === 0 ? (
-                <p className="text-sm text-[#4e6378]">No updates match this story filter.</p>
+                <p className="text-sm text-[#4e6378]">No updates match the current filters.</p>
               ) : null}
               {filteredUpdates.map((update) => {
                 const active = !isCreating && selectedId === update.id;

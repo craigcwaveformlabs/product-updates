@@ -1,0 +1,24 @@
+{
+  "id": "mtd-on-mobile",
+  "imageSrc": "/updates/mtd-on-mobile.png",
+  "imageAlt": "MTD on Mobile",
+  "date": "12 Jun 2026",
+  "tags": [
+    "bookkeepers",
+    "coming-soon",
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident",
+    "built-for-every-business"
+  ],
+  "title": "MTD in your hands",
+  "summaryBody": "MTD for Income Tax is going mobile. Stay compliant on the go, handling your quarterly updates wherever and whenever you choose.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "MTD for Income Tax is going mobile. Stay compliant on the go, handling your quarterly updates wherever and whenever you choose."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}
