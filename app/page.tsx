@@ -272,23 +272,25 @@ export default function Page() {
                   {activeHero.title}
                 </h1>
                 <p className={`mt-3 text-base leading-7 ${isDefaultHero ? "text-white/90" : "text-[#2f4a67]"}`}>{activeHero.body}</p>
-                {isExternalUrl(activeHero.readMoreUrl) ? (
-                  <a
-                    href={activeHero.readMoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
-                  >
-                    Read more
-                  </a>
-                ) : (
-                  <Link
-                    href={activeHero.readMoreUrl}
-                    className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
-                  >
-                    Read more
-                  </Link>
-                )}
+                {activeHero.readMoreUrl ? (
+                  isExternalUrl(activeHero.readMoreUrl) ? (
+                    <a
+                      href={activeHero.readMoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
+                    >
+                      Read more
+                    </a>
+                  ) : (
+                    <Link
+                      href={activeHero.readMoreUrl}
+                      className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
+                    >
+                      Read more
+                    </Link>
+                  )
+                ) : null}
               </div>
 
               {activeHero.imageSrc ? (

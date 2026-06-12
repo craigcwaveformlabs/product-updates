@@ -38,7 +38,7 @@ export type HeroSlide = {
   eyebrow: string;
   title: string;
   body: string;
-  readMoreUrl: string;
+  readMoreUrl?: string;
 };
 
 function slugToLabel(slug: string): string {
@@ -108,7 +108,7 @@ export const heroColorByStory: Record<string, string> = {
   "be-tax-confident": "#ffe238",
   "built-for-every-business": "#78b9f9",
   "transformative-accounting": "#06dbba",
-  "the-freeagent-story": "#008cffff",
+  "the-freeagent-story": "#008cff",
 };
 
 const preferredStoryTagOrder: StoryTag[] = [
@@ -143,7 +143,6 @@ export const defaultHeroSlides: HeroSlide[] = [
     eyebrow: "Showcase",
     title: "The FreeAgent Showcase",
     body: "Browse the newest improvements across bookkeeping, compliance, and admin workflows. Join us at our upcoming roadshows to hear about how FreeAgent can help your Practice.",
-    readMoreUrl: "https://www.freeagent.com/blog/",
   },
   {
     imageSrc: "/hero/hero_0b.png",

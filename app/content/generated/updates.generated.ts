@@ -12,7 +12,7 @@ export const updates = [
       "the-freeagent-story"
     ],
     "title": "Accounting for every UK business",
-    "summaryBody": "Whether you’re rapidly growing or just want to get Making Tax Digital done, FreeAgent gives you confidence in your numbers and streamlines your admin so you can make it count.",
+    "summaryBody": "FreeAgent gives you confidence in your numbers and streamlines your admin so you can make it count.",
     "detailBlocks": [
       {
         "type": "body",
@@ -27,7 +27,7 @@ export const updates = [
   },
   {
     "id": "landlord-reporting",
-    "imageSrc": "/updates/landlord-reporting.png",
+    "imageSrc": "/updates/default-5.png",
     "imageAlt": "Landlord Reporting",
     "date": "12 Jun 2026",
     "tags": [
@@ -47,10 +47,289 @@ export const updates = [
     "readMoreUrl": "https://www.freeagent.com/blog/"
   },
   {
+    "id": "partner-zone",
+    "imageSrc": "/updates/default-6.png",
+    "imageAlt": "Partner Zone",
+    "date": "12 Jun 2026",
+    "tags": [
+      "accountants",
+      "bookkeepers"
+    ],
+    "storyTags": [
+      "built-for-every-business"
+    ],
+    "title": "Your home on the dashboard",
+    "summaryBody": "Introducing Partner Zone, your home for all your key Practice information and personalised actions",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Introducing Partner Zone, your home for all your key Practice information and personalised actions"
+      }
+    ],
+    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/28921158561298-An-introduction-to-the-Partner-Zone-in-FreeAgent"
+  },
+  {
+    "id": "radar-insights",
+    "imageSrc": "/updates/radar-insights.png",
+    "imageAlt": "Radar Insights",
+    "date": "12 Jun 2026",
+    "tags": [
+      "automation",
+      "small-business"
+    ],
+    "storyTags": [
+      "transformative-accounting"
+    ],
+    "title": "Data driven decisions",
+    "summaryBody": "Radar is the smartest way to keep an eye on your business, with intelligent insights, tailored trend-spotting and personalised tips all in one place.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Radar is our intelligent insights platform, monitoring account activity and triggering alerts, guidance and deep dive detail at the right time, with the right set of actions to take control. \n\n- Power through quick tasks with your Admin To-Do List\n- Gain unique insights into how your business is performing\n- Be alerted to potential issues, like a cashflow shortfall"
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/features/radar/"
+  },
+  {
+    "id": "who-is-freeagent-for",
+    "imageSrc": "/updates/who-is-freeagent-for.png",
+    "imageAlt": "Who is FreeAgent for",
+    "date": "12 Jun 2026",
+    "tags": [
+      "accountants",
+      "bookkeepers",
+      "small-business"
+    ],
+    "storyTags": [
+      "the-freeagent-story"
+    ],
+    "title": "Who is FreeAgent for?",
+    "summaryBody": "From start-ups to well-oiled machines, from 20 employees to solo riders, FreeAgent is for every business",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "From start-ups to well-oiled machines and whether they have 20 employees or two, FreeAgent scales to every UK business"
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/accountants/who-is-freeagent-for/",
+    "pinnedForStories": [
+      "the-freeagent-story"
+    ]
+  },
+  {
+    "id": "ai-categorisation",
+    "imageSrc": "/updates/ai-categorisation.png",
+    "imageAlt": "Bookkeeping while you sleep",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants",
+      "automation",
+      "bookkeepers"
+    ],
+    "storyTags": [
+      "transformative-accounting"
+    ],
+    "title": "Bookkeeping while you sleep",
+    "summaryBody": "FreeAgent has delivered market leading automation since 2018, available to everyone across every journey.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Bank feeds are the key step to bookkeeping, fulfilling compliance obligations, and completing other tax related tasks. We can now suggest categories automatically with over 80% accuracy, reducing the administrative burden and cognitive load needed to complete this vital step of MTD. And we learn from the categories you or your clients choose so that our model matches yours."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/"
+  },
+  {
+    "id": "btc-mtd",
+    "imageSrc": "/updates/btc-mtd.png",
+    "imageAlt": "Managing MTD at scale",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "be-tax-confident",
+      "the-freeagent-story"
+    ],
+    "title": "Managing MTD at scale",
+    "summaryBody": "Master MTD, with stress-free, HMRC-recognised tax filing that doesn’t compromise on capability.",
+    "detailBody": [
+      "Automate your data collection. Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one.",
+      "Centralise your MTD oversight. Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place.",
+      "Automate your quarterly workflow. Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
+    ],
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "**Automate your data collection.** Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one. **Centralise your MTD oversight.** Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place. **Automate your quarterly workflow.**Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-april-2026/",
+    "pinnedForStories": [
+      "be-tax-confident"
+    ],
+    "pinInDefaultView": true
+  },
+  {
+    "id": "cis-in-banking",
+    "imageSrc": "/updates/cis-in-banking.png",
+    "imageAlt": "CIS in Banking",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants",
+      "bookkeepers"
+    ],
+    "storyTags": [
+      "built-for-every-business"
+    ],
+    "title": "CIS simplified",
+    "summaryBody": "Record CIS income directly from bank payments",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Record CIS income straight from your bank feed (including the correct gross labour and CIS deduction), so you can stay compliant as a subcontractor without creating invoices."
+      }
+    ],
+    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/33194713648018-Explain-bank-transactions-as-CIS-income"
+  },
+  {
+    "id": "find-and-fix",
+    "imageSrc": "/updates/find-and-fix.png",
+    "imageAlt": "Find and Fix",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants",
+      "bookkeepers"
+    ],
+    "storyTags": [
+      "built-for-every-business",
+      "transformative-accounting"
+    ],
+    "title": "A quicker, easier way to correct errors in bulk",
+    "summaryBody": "Bulk editing designed to make error correction faster, easier, and much less of a headache.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Save time (and costs) - Say goodbye to endless hours of repetitive data correction. With Find & Fix, you can search and update multiple transactions in one go - no more hopping between entries or piecing together journals. \n\nIncrease accuracy - Bulk editing doesn’t just save time - it makes it easier to keep your clients’ data squeaky clean. Whether it’s prepping for a VAT return or year-end accounts, correcting errors at scale gives you greater confidence in your numbers.\n\nAvoid costly mistakes - Accurate data is essential for compliance. Bulk edits help you nip errors in the bud, reducing the risk of overpayments, underpayments, and unexpected HMRC headaches."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/introducing-find-and-fix/"
+  },
+  {
+    "id": "mtd-bulk-actions",
+    "imageSrc": "/updates/mtd-bulk-actions.png",
+    "imageAlt": "MTD bulk actions",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "be-tax-confident"
+    ],
+    "title": "Get MTD done in bulk",
+    "summaryBody": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard."
+      }
+    ],
+    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34419697730450-Manage-your-clients-MTD-for-Income-Tax-submissions-in-bulk"
+  },
+  {
+    "id": "mtd-client-table",
+    "imageSrc": "/updates/default-7.png",
+    "imageAlt": "MTD client table",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "be-tax-confident"
+    ],
+    "title": "Scale MTD across every client",
+    "summaryBody": "Track all MTD IT clients and the progress made on fulfilling their MTD IT obligations from your Practice dashboard.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "The Practice Dashboard now allows you to track all MTD IT clients and the progress made on fulfilling their MTD IT obligations. You can filter and sort the list to help make sure you and your staff can easily manage MTD IT submission deadlines."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/mtd-updates-visibility-control/"
+  },
+  {
+    "id": "built-bigger",
+    "imageSrc": "/updates/built-bigger.png",
+    "imageAlt": "Built for bigger businesses",
+    "date": "10 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "built-for-every-business",
+      "the-freeagent-story"
+    ],
+    "title": "Built for bigger businesses",
+    "summaryBody": "Control, without the complexity. Financial confidence for all UK businesses - and the experts who power them.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "**Support limited companies from day one.** Filing of VAT, Payroll, Corporation Tax, and Final accounts, are already included, giving you the core tools you need for incorporated clients. **Provide the features growing businesses rely on.** Tracking groups, benchmarking and management reporting help turn financial data into insight as clients grow. **Keep books clean and accurate from the start.** Tools like Find and Fix and compliance reporting help maintain reliable records without extra systems"
+      },
+      {
+        "type": "heading-sm",
+        "text": "Why FreeAgent fits"
+      },
+      {
+        "type": "body",
+        "text": "**Built in, not bolted on.** Key compliance and reporting tools come included in FreeAgent, so practices can support different client types without extra software. **One platform across your client base.** From sole traders to limited companies, FreeAgent provides a consistent workflow for the whole portfolio. **Tools that grow with your clients.** As clients become more complex, features like tracking groups and reporting help practices deliver deeper insight."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/",
+    "pinnedForStories": [
+      "built-for-every-business"
+    ],
+    "pinInDefaultView": true
+  },
+  {
+    "id": "transformative-intro",
+    "imageSrc": "/updates/transformative.png",
+    "imageAlt": "Transformative accounting",
+    "date": "09 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "transformative-accounting",
+      "the-freeagent-story"
+    ],
+    "title": "A new era for accounting",
+    "summaryBody": "We’re entering a new era for accounting that is reshaping how we stay in control of our finances.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "**The evolution of work. **We moved from paper ledgers to the cloud. Now, intelligent automation is the next leap forward. **Built on trust.** Smart tools create scalable success. Ensure they provide the reliable foundation needed to grow your firm. **Human-centred.** AI should solve real problems effectively, whilst your team stays at the heart of every decision."
+      },
+      {
+        "type": "heading-sm",
+        "text": "Why FreeAgent fits"
+      },
+      {
+        "type": "body",
+        "text": "**Confidence in the data. ** We use secure feeds and smart categorisation. Your team gets reliable data from day one. **Unlock real time advisory. ** We handle the daily admin grind to give you the confidence to reinforce your added value to the client. **Included in our core offering. ** Our AI capability is embedded in our workflows for everyone to benefit from every day."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/",
+    "pinnedForStories": [
+      "transformative-accounting"
+    ],
+    "pinInDefaultView": true
+  },
+  {
     "id": "mtd-roadmap-to-success",
     "imageSrc": "/updates/mtd-roadmap-to-success.png",
     "imageAlt": "mtd-roadmap-to-success",
-    "date": "12 Jun 2026",
+    "date": "08 Jun 2026",
     "tags": [
       "accountants"
     ],
@@ -130,58 +409,14 @@ export const updates = [
     "readMoreUrl": "https://www.freeagent.com/blog/",
     "pinnedForStories": [
       "be-tax-confident"
-    ]
-  },
-  {
-    "id": "partner-zone",
-    "imageSrc": "/updates/partner-zone.png",
-    "imageAlt": "Partner Zone",
-    "date": "12 Jun 2026",
-    "tags": [
-      "accountants",
-      "bookkeepers"
     ],
-    "storyTags": [
-      "built-for-every-business"
-    ],
-    "title": "Your home on the dashboard",
-    "summaryBody": "Introducing Partner Zone, your home for all your key Practice information and personalised actions",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Introducing Partner Zone, your home for all your key Practice information and personalised actions"
-      }
-    ],
-    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/28921158561298-An-introduction-to-the-Partner-Zone-in-FreeAgent"
-  },
-  {
-    "id": "ai-categorisation",
-    "imageSrc": "/updates/ai-categorisation.png",
-    "imageAlt": "Bookkeeping while you sleep",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants",
-      "automation",
-      "bookkeepers"
-    ],
-    "storyTags": [
-      "transformative-accounting"
-    ],
-    "title": "Bookkeeping while you sleep",
-    "summaryBody": "FreeAgent has delivered market leading automation since 2018, available to everyone across every journey.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Bank feeds are the key step to bookkeeping, fulfilling compliance obligations, and completing other tax related tasks. We can now suggest categories automatically with over 80% accuracy, reducing the administrative burden and cognitive load needed to complete this vital step of MTD. And we learn from the categories you or your clients choose so that our model matches yours."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/"
+    "pinInDefaultView": true
   },
   {
     "id": "btc-cis",
     "imageSrc": "/updates/btc-cis.png",
     "imageAlt": "A simpler way to manage CIS clients",
-    "date": "11 Jun 2026",
+    "date": "07 Jun 2026",
     "tags": [
       "accountants"
     ],
@@ -199,13 +434,14 @@ export const updates = [
     "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-may-2026/",
     "pinnedForStories": [
       "be-tax-confident"
-    ]
+    ],
+    "pinInDefaultView": true
   },
   {
     "id": "btc-landlord",
     "imageSrc": "/updates/btc-landlord.png",
     "imageAlt": "FreeAgent for Landlords",
-    "date": "11 Jun 2026",
+    "date": "07 Jun 2026",
     "tags": [
       "accountants"
     ],
@@ -223,226 +459,12 @@ export const updates = [
     "readMoreUrl": "https://www.freeagent.com/blog/freeagent-landlords-mtd-ready/",
     "pinnedForStories": [
       "be-tax-confident"
-    ]
-  },
-  {
-    "id": "btc-mtd",
-    "imageSrc": "/updates/btc-mtd.png",
-    "imageAlt": "Managing MTD at scale",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "be-tax-confident",
-      "the-freeagent-story"
-    ],
-    "title": "Managing MTD at scale",
-    "summaryBody": "Take control of MTD with FreeAgent's leading solution",
-    "detailBody": [
-      "Automate your data collection. Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one.",
-      "Centralise your MTD oversight. Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place.",
-      "Automate your quarterly workflow. Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
-    ],
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "**Automate your data collection.** Secure bank feeds, bulk reconsent, smart capture and AI categorisation provide your team with reliable data from day one. **Centralise your MTD oversight.** Monitor all client submission statuses from one Practice Dashboard. This provides total visibility of every upcoming tax obligation in one place. **Automate your quarterly workflow.**Establish a consistent \"review, approve, and submit\" rhythm. A unified process ensures efficient accuracy across your entire portfolio."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-april-2026/",
-    "pinnedForStories": [
-      "be-tax-confident"
-    ],
-    "pinInDefaultView": true
-  },
-  {
-    "id": "cis-in-banking",
-    "imageSrc": "/updates/cis-in-banking",
-    "imageAlt": "CIS in Banking",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants",
-      "bookkeepers"
-    ],
-    "storyTags": [
-      "built-for-every-business"
-    ],
-    "title": "CIS simplified",
-    "summaryBody": "Record CIS income directly from bank payments",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Record CIS income straight from your bank feed (including the correct gross labour and CIS deduction), so you can stay compliant as a subcontractor without creating invoices."
-      }
-    ],
-    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/33194713648018-Explain-bank-transactions-as-CIS-income"
-  },
-  {
-    "id": "find-and-fix",
-    "imageSrc": "/updates/find-and-fix.png",
-    "imageAlt": "Find and Fix",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants",
-      "bookkeepers"
-    ],
-    "storyTags": [
-      "built-for-every-business",
-      "transformative-accounting"
-    ],
-    "title": "A quicker, easier way to correct errors in bulk",
-    "summaryBody": "Bulk editing designed to make error correction faster, easier, and much less of a headache.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Save time (and costs) - Say goodbye to endless hours of repetitive data correction. With Find & Fix, you can search and update multiple transactions in one go - no more hopping between entries or piecing together journals. \n\nIncrease accuracy - Bulk editing doesn’t just save time - it makes it easier to keep your clients’ data squeaky clean. Whether it’s prepping for a VAT return or year-end accounts, correcting errors at scale gives you greater confidence in your numbers.\n\nAvoid costly mistakes - Accurate data is essential for compliance. Bulk edits help you nip errors in the bud, reducing the risk of overpayments, underpayments, and unexpected HMRC headaches."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/introducing-find-and-fix/"
-  },
-  {
-    "id": "mtd-bulk-actions",
-    "imageSrc": "/updates/mtd-bulk-actions.png",
-    "imageAlt": "MTD bulk actions",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "be-tax-confident"
-    ],
-    "title": "Get MTD done in bulk",
-    "summaryBody": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Send submissions to your clients for approval and then file them in bulk from your Practice Dashboard."
-      }
-    ],
-    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34419697730450-Manage-your-clients-MTD-for-Income-Tax-submissions-in-bulk"
-  },
-  {
-    "id": "mtd-client-table",
-    "imageSrc": "/updates/mtd-client-table.png",
-    "imageAlt": "MTD client table",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "be-tax-confident"
-    ],
-    "title": "Scale MTD across every client",
-    "summaryBody": "Track all MTD IT clients and the progress made on fulfilling their MTD IT obligations from your Practice dashboard.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "The Practice Dashboard now allows you to track all MTD IT clients and the progress made on fulfilling their MTD IT obligations. You can filter and sort the list to help make sure you and your staff can easily manage MTD IT submission deadlines."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/mtd-updates-visibility-control/"
-  },
-  {
-    "id": "smart-capture",
-    "imageSrc": "/updates/smart-capture.png",
-    "imageAlt": "Smart Capture",
-    "date": "11 Jun 2026",
-    "tags": [
-      "automation"
-    ],
-    "storyTags": [
-      "transformative-accounting"
-    ],
-    "title": "Elevate expense management with Smart Capture",
-    "summaryBody": "Snap photos of your bills and expenses to extract dates and amounts into FreeAgent automatically.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Smart Capture for bills has arrived\n\nDealing with bills can feel like a chore. We want to take away that pain. Our Smart Capture feature now processes bills as well as receipts.\n\nLast year we launched Smart Capture for receipts. It zaps dates and amounts into your FreeAgent account. It also suggests a category for your expenses. Many of you loved it. You asked if it could do even more.\n\nWe listened to your feedback. You can now use Smart Capture for your regular business outgoings. This includes things like rent, electricity, internet and insurance. The feature helps you save time. It also stops manual data entry errors."
-      },
-      {
-        "type": "heading-sm",
-        "text": "How it works"
-      },
-      {
-        "type": "body",
-        "text": "You can drag and drop bills into the desktop version of FreeAgent. You can also snap a picture using our mobile app. The system handles PDF files and photos in bulk.\n\nOnce uploaded, FreeAgent extracts the key details. It uses smart tech to suggest an accounting category. It even matches the bill to your current account transaction later. All you have to do is check the details and hit approve."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/"
-  },
-  {
-    "id": "built-bigger",
-    "imageSrc": "/updates/built-bigger.png",
-    "imageAlt": "Built for bigger businesses",
-    "date": "10 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "built-for-every-business",
-      "the-freeagent-story"
-    ],
-    "title": "Built for bigger businesses",
-    "summaryBody": "Control, without the complexity. Financial confidence for all UK businesses - and the experts who power them.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "**Support limited companies from day one.** Filing of VAT, Payroll, Corporation Tax, and Final accounts, are already included, giving you the core tools you need for incorporated clients. **Provide the features growing businesses rely on.** Tracking groups, benchmarking and management reporting help turn financial data into insight as clients grow. **Keep books clean and accurate from the start.** Tools like Find and Fix and compliance reporting help maintain reliable records without extra systems"
-      },
-      {
-        "type": "heading-sm",
-        "text": "Why FreeAgent fits"
-      },
-      {
-        "type": "body",
-        "text": "**Built in, not bolted on.** Key compliance and reporting tools come included in FreeAgent, so practices can support different client types without extra software. **One platform across your client base.** From sole traders to limited companies, FreeAgent provides a consistent workflow for the whole portfolio. **Tools that grow with your clients.** As clients become more complex, features like tracking groups and reporting help practices deliver deeper insight."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/",
-    "pinnedForStories": [
-      "built-for-every-business"
-    ],
-    "pinInDefaultView": true
-  },
-  {
-    "id": "transformative-intro",
-    "imageSrc": "/updates/transformative.png",
-    "imageAlt": "Transformative accounting",
-    "date": "09 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "transformative-accounting",
-      "the-freeagent-story"
-    ],
-    "title": "A new era for accounting",
-    "summaryBody": "We’re entering a new era for accounting that is reshaping how we stay in control of our finances.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "**The evolution of work. **We moved from paper ledgers to the cloud. Now, intelligent automation is the next leap forward. **Built on trust.** Smart tools create scalable success. Ensure they provide the reliable foundation needed to grow your firm. **Human-centred.** AI should solve real problems effectively, whilst your team stays at the heart of every decision."
-      },
-      {
-        "type": "heading-sm",
-        "text": "Why FreeAgent fits"
-      },
-      {
-        "type": "body",
-        "text": "**Confidence in the data. ** We use secure feeds and smart categorisation. Your team gets reliable data from day one. **Unlock real time advisory. ** We handle the daily admin grind to give you the confidence to reinforce your added value to the client. **Included in our core offering. ** Our AI capability is embedded in our workflows for everyone to benefit from every day."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/",
-    "pinnedForStories": [
-      "transformative-accounting"
     ],
     "pinInDefaultView": true
   },
   {
     "id": "practice-insights-report",
-    "imageSrc": "/updates/practice-insights-report.png",
+    "imageSrc": "/updates/default-5.png",
     "imageAlt": "Practice Insight Report",
     "date": "04 Jun 2026",
     "tags": [
@@ -464,7 +486,7 @@ export const updates = [
   },
   {
     "id": "mtd-dashboard-power-moves",
-    "imageSrc": "/updates/mtd-dashboard-power-moves.png",
+    "imageSrc": "/updates/default-2.png",
     "imageAlt": "MTD power moves",
     "date": "03 Jun 2026",
     "tags": [
@@ -508,7 +530,7 @@ export const updates = [
   },
   {
     "id": "smart-capture-action",
-    "imageSrc": "/updates/smart-capture-action.png",
+    "imageSrc": "/updates/default-3.png",
     "imageAlt": "Smart Capture action",
     "date": "28 May 2026",
     "tags": [
@@ -532,7 +554,7 @@ export const updates = [
   },
   {
     "id": "vat-reporting-attachment",
-    "imageSrc": "/updates/vat-reporting-attachment.png",
+    "imageSrc": "/updates/default-7.png",
     "imageAlt": "VAT attachment",
     "date": "26 May 2026",
     "tags": [
@@ -553,7 +575,7 @@ export const updates = [
   },
   {
     "id": "vat-reporting-column",
-    "imageSrc": "/updates/vat-reporting-column.png",
+    "imageSrc": "/updates/default-3.png",
     "imageAlt": "VAT Reporting column",
     "date": "26 May 2026",
     "tags": [
@@ -574,7 +596,7 @@ export const updates = [
   },
   {
     "id": "hide-in-year-estimates",
-    "imageSrc": "/updates/hide-in-year-estimates.png",
+    "imageSrc": "/updates/default-9.png",
     "imageAlt": "Hide in year estimates",
     "date": "12 May 2026",
     "tags": [
@@ -596,7 +618,7 @@ export const updates = [
   },
   {
     "id": "journal-entry-sort",
-    "imageSrc": "/updates/journal-entry-sort.png",
+    "imageSrc": "/updates/default-2.png",
     "imageAlt": "Journal Entry Sort",
     "date": "08 May 2026",
     "tags": [
@@ -617,7 +639,7 @@ export const updates = [
   },
   {
     "id": "book-a-call-dashboard",
-    "imageSrc": "/updates/book-a-call-dashboard.png",
+    "imageSrc": "/updates/default-6.png",
     "imageAlt": "Book a call dashboard",
     "date": "04 May 2026",
     "tags": [
@@ -662,7 +684,7 @@ export const updates = [
   },
   {
     "id": "ecommerce-equali",
-    "imageSrc": "/updates/ecommerce-equali.png",
+    "imageSrc": "/updates/default-1.png",
     "imageAlt": "eCommerce Equali",
     "date": "01 May 2026",
     "tags": [
@@ -684,7 +706,7 @@ export const updates = [
   },
   {
     "id": "preview-attachments",
-    "imageSrc": "/updates/preview-attachments.png",
+    "imageSrc": "/updates/default-4.png",
     "imageAlt": "Preview attachments",
     "date": "01 May 2026",
     "tags": [
@@ -694,7 +716,7 @@ export const updates = [
     "storyTags": [
       "built-for-every-business"
     ],
-    "title": "An easier way to get attached",
+    "title": "Preview attachements",
     "summaryBody": "See previews of attachments and suggested attachments next to your bank transactions.",
     "detailBlocks": [
       {
@@ -706,7 +728,7 @@ export const updates = [
   },
   {
     "id": "api-connections-dashboard",
-    "imageSrc": "/updates/api-connections-dashboard.png",
+    "imageSrc": "/updates/default-2.png",
     "imageAlt": "API Connections",
     "date": "17 Apr 2026",
     "tags": [
@@ -759,7 +781,7 @@ export const updates = [
   },
   {
     "id": "vat-unlocking",
-    "imageSrc": "/updates/vat-unlocking.png",
+    "imageSrc": "/updates/default-10.png",
     "imageAlt": "VAT unlocking",
     "date": "01 Apr 2026",
     "tags": [
@@ -781,7 +803,7 @@ export const updates = [
   },
   {
     "id": "payroll-holiday-pay",
-    "imageSrc": "/updates/payroll-holiday-pay.png",
+    "imageSrc": "/updates/default-5.png",
     "imageAlt": "Payroll holiday pay",
     "date": "21 Mar 2026",
     "tags": [
@@ -798,7 +820,7 @@ export const updates = [
   },
   {
     "id": "compliance-yearly-updates",
-    "imageSrc": "/updates/compliance-yearly-updates.png",
+    "imageSrc": "/updates/default-1.png",
     "imageAlt": "Compliance refreshed for the new tax year",
     "date": "20 Mar 2026",
     "tags": [
@@ -820,7 +842,7 @@ export const updates = [
   },
   {
     "id": "practice-pricing",
-    "imageSrc": "/updates/practice-pricing.png",
+    "imageSrc": "/updates/default-7.png",
     "imageAlt": "Practice client pricing",
     "date": "11 Mar 2026",
     "tags": [
@@ -841,7 +863,7 @@ export const updates = [
   },
   {
     "id": "request-data-from-hmrc",
-    "imageSrc": "/updates/request-data-from-hmrc.png",
+    "imageSrc": "/updates/default-3.png",
     "imageAlt": "Request HMRC data",
     "date": "09 Mar 2026",
     "tags": [
@@ -862,7 +884,7 @@ export const updates = [
   },
   {
     "id": "three-line-accounts",
-    "imageSrc": "/updates/three-line-accounts.png",
+    "imageSrc": "/updates/default-7.png",
     "imageAlt": "Three line accounts",
     "date": "09 Mar 2026",
     "tags": [
@@ -905,7 +927,7 @@ export const updates = [
   },
   {
     "id": "mtd-extended-feb",
-    "imageSrc": "/updates/mtd-extended-feb.png",
+    "imageSrc": "/updates/default-1.png",
     "imageAlt": "MTD Extended - Feb update",
     "date": "27 Feb 2026",
     "tags": [
@@ -1001,7 +1023,7 @@ export const updates = [
   },
   {
     "id": "tap-to-pay",
-    "imageSrc": "/updates/tap-to-pay.png",
+    "imageSrc": "/updates/default-7.png",
     "imageAlt": "Tap to Pay",
     "date": "01 Feb 2026",
     "tags": [
@@ -1044,7 +1066,7 @@ export const updates = [
   },
   {
     "id": "contact-opening-balances",
-    "imageSrc": "/updates/contact-opening-balances.png",
+    "imageSrc": "/updates/default-3.png",
     "imageAlt": "Contact Opening Balances",
     "date": "12 Dec 2025",
     "tags": [
@@ -1066,7 +1088,7 @@ export const updates = [
   },
   {
     "id": "mtd-alert-rule",
-    "imageSrc": "/updates/mtd-alert-rule.png",
+    "imageSrc": "/updates/default-9.png",
     "imageAlt": "MTD Alert Rule",
     "date": "01 Dec 2025",
     "tags": [
@@ -1110,7 +1132,7 @@ export const updates = [
   },
   {
     "id": "login-security",
-    "imageSrc": "/updates/login-security.png",
+    "imageSrc": "/updates/default-10.png",
     "imageAlt": "Login Security",
     "date": "11 Nov 2025",
     "tags": [
@@ -1154,8 +1176,37 @@ export const updates = [
     "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/13001479771922-How-Smart-Capture-works"
   },
   {
+    "id": "smart-capture",
+    "imageSrc": "/updates/smart-capture.png",
+    "imageAlt": "Smart Capture",
+    "date": "09 Sep 2025",
+    "tags": [
+      "automation"
+    ],
+    "storyTags": [
+      "transformative-accounting"
+    ],
+    "title": "Elevate expense management with Smart Capture",
+    "summaryBody": "Snap photos of your bills and expenses to extract dates and amounts into FreeAgent automatically.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Smart Capture for bills has arrived\n\nDealing with bills can feel like a chore. We want to take away that pain. Our Smart Capture feature now processes bills as well as receipts.\n\nLast year we launched Smart Capture for receipts. It zaps dates and amounts into your FreeAgent account. It also suggests a category for your expenses. Many of you loved it. You asked if it could do even more.\n\nWe listened to your feedback. You can now use Smart Capture for your regular business outgoings. This includes things like rent, electricity, internet and insurance. The feature helps you save time. It also stops manual data entry errors."
+      },
+      {
+        "type": "heading-sm",
+        "text": "How it works"
+      },
+      {
+        "type": "body",
+        "text": "You can drag and drop bills into the desktop version of FreeAgent. You can also snap a picture using our mobile app. The system handles PDF files and photos in bulk.\n\nOnce uploaded, FreeAgent extracts the key details. It uses smart tech to suggest an accounting category. It even matches the bill to your current account transaction later. All you have to do is check the details and hit approve."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/"
+  },
+  {
     "id": "invoice-customise-theme",
-    "imageSrc": "/updates/invoice-customise-theme.png",
+    "imageSrc": "/updates/default-6.png",
     "imageAlt": "Invoice Custom Theme",
     "date": "01 Sep 2025",
     "tags": [
@@ -1176,7 +1227,7 @@ export const updates = [
   },
   {
     "id": "invoice-quick-actions",
-    "imageSrc": "/updates/invoice-quick-actions.png",
+    "imageSrc": "/updates/default-7.png",
     "imageAlt": "Invoice quick actions",
     "date": "01 Sep 2025",
     "tags": [
@@ -1469,7 +1520,7 @@ export const updates = [
   },
   {
     "id": "mtd-on-mobile",
-    "imageSrc": "/updates/mtd-on-mobile.png",
+    "imageSrc": "/updates/default-11.png",
     "imageAlt": "MTD on Mobile",
     "date": "01 Jan 1900",
     "tags": [
@@ -1608,7 +1659,7 @@ export const updates = [
   },
   {
     "id": "tax-controls-dashboard",
-    "imageSrc": "/updates/tax-controls-dashboard.png",
+    "imageSrc": "/updates/default-1.png",
     "imageAlt": "Tax Controls in Dashboard",
     "date": "01 Jan 1900",
     "tags": [
@@ -1619,7 +1670,7 @@ export const updates = [
       "built-for-every-business",
       "be-tax-confident"
     ],
-    "title": "Tax controls in your hands",
+    "title": "Tax controls for every client",
     "summaryBody": "Enjoy greater control over client tax workflows from the Practice Dashboard with settings for visibility, filing permissions and approvals, across Income Tax, VAT, End of Year, CIS and the Tax Timeline.",
     "detailBlocks": [
       {

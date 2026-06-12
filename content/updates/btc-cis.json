@@ -2,7 +2,7 @@
   "id": "btc-cis",
   "imageSrc": "/updates/btc-cis.png",
   "imageAlt": "A simpler way to manage CIS clients",
-  "date": "11 Jun 2026",
+  "date": "07 Jun 2026",
   "tags": [
     "accountants"
   ],
@@ -20,5 +20,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-may-2026/",
   "pinnedForStories": [
     "be-tax-confident"
-  ]
+  ],
+  "pinInDefaultView": true
 }

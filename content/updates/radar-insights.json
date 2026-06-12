@@ -1,0 +1,22 @@
+{
+  "id": "radar-insights",
+  "imageSrc": "/updates/radar-insights.png",
+  "imageAlt": "Radar Insights",
+  "date": "12 Jun 2026",
+  "tags": [
+    "automation",
+    "small-business"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Data driven decisions",
+  "summaryBody": "Radar is the smartest way to keep an eye on your business, with intelligent insights, tailored trend-spotting and personalised tips all in one place.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Radar is our intelligent insights platform, monitoring account activity and triggering alerts, guidance and deep dive detail at the right time, with the right set of actions to take control. \n\n- Power through quick tasks with your Admin To-Do List\n- Gain unique insights into how your business is performing\n- Be alerted to potential issues, like a cashflow shortfall"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/features/radar/"
+}

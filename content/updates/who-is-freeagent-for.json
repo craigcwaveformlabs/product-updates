@@ -1,0 +1,26 @@
+{
+  "id": "who-is-freeagent-for",
+  "imageSrc": "/updates/who-is-freeagent-for.png",
+  "imageAlt": "Who is FreeAgent for",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers",
+    "small-business"
+  ],
+  "storyTags": [
+    "the-freeagent-story"
+  ],
+  "title": "Who is FreeAgent for?",
+  "summaryBody": "From start-ups to well-oiled machines, from 20 employees to solo riders, FreeAgent is for every business",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "From start-ups to well-oiled machines and whether they have 20 employees or two, FreeAgent scales to every UK business"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/accountants/who-is-freeagent-for/",
+  "pinnedForStories": [
+    "the-freeagent-story"
+  ]
+}

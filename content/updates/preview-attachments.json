@@ -1,6 +1,6 @@
 {
   "id": "preview-attachments",
-  "imageSrc": "/updates/preview-attachments.png",
+  "imageSrc": "/updates/default-4.png",
   "imageAlt": "Preview attachments",
   "date": "01 May 2026",
   "tags": [
@@ -10,7 +10,7 @@
   "storyTags": [
     "built-for-every-business"
   ],
-  "title": "An easier way to get attached",
+  "title": "Preview attachements",
   "summaryBody": "See previews of attachments and suggested attachments next to your bank transactions.",
   "detailBlocks": [
     {

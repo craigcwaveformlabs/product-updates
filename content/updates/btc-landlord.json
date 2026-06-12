@@ -2,7 +2,7 @@
   "id": "btc-landlord",
   "imageSrc": "/updates/btc-landlord.png",
   "imageAlt": "FreeAgent for Landlords",
-  "date": "11 Jun 2026",
+  "date": "07 Jun 2026",
   "tags": [
     "accountants"
   ],
@@ -20,5 +20,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/freeagent-landlords-mtd-ready/",
   "pinnedForStories": [
     "be-tax-confident"
-  ]
+  ],
+  "pinInDefaultView": true
 }

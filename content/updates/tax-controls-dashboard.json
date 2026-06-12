@@ -1,6 +1,6 @@
 {
   "id": "tax-controls-dashboard",
-  "imageSrc": "/updates/tax-controls-dashboard.png",
+  "imageSrc": "/updates/default-1.png",
   "imageAlt": "Tax Controls in Dashboard",
   "date": "01 Jan 1900",
   "tags": [
@@ -11,7 +11,7 @@
     "built-for-every-business",
     "be-tax-confident"
   ],
-  "title": "Tax controls in your hands",
+  "title": "Tax controls for every client",
   "summaryBody": "Enjoy greater control over client tax workflows from the Practice Dashboard with settings for visibility, filing permissions and approvals, across Income Tax, VAT, End of Year, CIS and the Tax Timeline.",
   "detailBlocks": [
     {
