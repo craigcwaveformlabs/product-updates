@@ -72,7 +72,6 @@ export const heroSlidesByStory: Record<string, HeroSlide[]> = {
       eyebrow: "Story: Be tax confident",
       title: "Compliant books, ready to file",
       body: "Accurate records you can rely on - and HMRC recognised filing built in from day one",
-      readMoreUrl: "https://www.freeagent.com/blog/?s=tax",
     },
   ],
   "built-for-every-business": [
