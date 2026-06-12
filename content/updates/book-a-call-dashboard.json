@@ -1,0 +1,22 @@
+{
+  "id": "book-a-call-dashboard",
+  "imageSrc": "/updates/book-a-call-dashboard.png",
+  "imageAlt": "Book a call dashboard",
+  "date": "04 May 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Speak to your account manager",
+  "summaryBody": "Partners can now book a call with their Account Manager without leaving the Practice Dashboard.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Partners can now book a call with their Account Manager without leaving the Practice Dashboard."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

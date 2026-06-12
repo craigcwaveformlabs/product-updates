@@ -1,0 +1,21 @@
+{
+  "id": "management-reports",
+  "imageSrc": "/updates/management-reports.png",
+  "imageAlt": "Management Reports",
+  "date": "05 May 2025",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Informed decisions with Management Reports",
+  "summaryBody": "You can now prepare Management Reports to spot trends, highlight shifts and make proactive decisions.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "You can now prepare Management Reports to spot trends, highlight shifts and make proactive decisions."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/26524888737170-Management-Reports"
+}

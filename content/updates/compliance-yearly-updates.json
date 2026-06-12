@@ -1,0 +1,22 @@
+{
+  "id": "compliance-yearly-updates",
+  "imageSrc": "/updates/compliance-yearly-updates.png",
+  "imageAlt": "Compliance refreshed for the new tax year",
+  "date": "20 Mar 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident",
+    "built-for-every-business"
+  ],
+  "title": "Compliance refreshed for the new tax year",
+  "summaryBody": "We've reworked all of our tax products to meet HMRCs latest rules",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "We've reworked all of our tax products to meet HMRCs latest rules"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

@@ -29,6 +29,7 @@ export type ProductUpdate = {
   detailBlocks?: DetailBlock[];
   readMoreUrl: string;
   pinnedForStories?: string[];
+  pinInDefaultView?: boolean;
 };
 
 export type HeroSlide = {

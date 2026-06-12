@@ -1,0 +1,22 @@
+{
+  "id": "mtd-cis-keys",
+  "imageSrc": "/updates/mtd-cis-keys.png",
+  "imageAlt": "MTD CIS data",
+  "date": "01 Mar 2026",
+  "tags": [
+    "bookkeepers",
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Source of truth for CIS",
+  "summaryBody": "No more waiting for CIS payment and deduction statements with MTD data sync",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "No more waiting for CIS payment and deduction statements. With MTD and FreeAgent, you have a source of truth to match against the bank account in FreeAgent to check that everything is reconciled correctly"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

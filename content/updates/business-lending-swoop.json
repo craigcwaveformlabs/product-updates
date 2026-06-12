@@ -1,0 +1,22 @@
+{
+  "id": "business-lending-swoop",
+  "imageSrc": "/updates/business-lending-swoop.png",
+  "imageAlt": "Swoop Business Lending",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "small-business"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Business lending with Swoop",
+  "summaryBody": "Helping businesses access better finance with Swoop Lending",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Helping businesses access better finance with Swoop Lending"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

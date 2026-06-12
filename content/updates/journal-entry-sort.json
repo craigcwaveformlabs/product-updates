@@ -1,0 +1,21 @@
+{
+  "id": "journal-entry-sort",
+  "imageSrc": "/updates/journal-entry-sort.png",
+  "imageAlt": "Journal Entry Sort",
+  "date": "08 May 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Sorting out the friction",
+  "summaryBody": "Added a new option in Journals that lets users sort entries by date in either ascending or descending order. We remember each user's preference too.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Added a new option in Journals that lets users sort entries by date in either ascending or descending order. We remember each user's preference too."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

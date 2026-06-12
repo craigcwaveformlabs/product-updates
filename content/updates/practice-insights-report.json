@@ -1,0 +1,22 @@
+{
+  "id": "practice-insights-report",
+  "imageSrc": "/updates/practice-insights-report.png",
+  "imageAlt": "Practice Insight Report",
+  "date": "04 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Insight into Practice performance",
+  "summaryBody": "Dig into client behaviours and Practice performance with our insight reports.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Dig into client behaviours and Practice performance with our insight reports - Onboarding insights, Mobile App usage, Clients bank feed"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

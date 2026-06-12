@@ -1,0 +1,22 @@
+{
+  "id": "contact-opening-balances",
+  "imageSrc": "/updates/contact-opening-balances.png",
+  "imageAlt": "Contact Opening Balances",
+  "date": "12 Dec 2025",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Simple setup for existing businesses",
+  "summaryBody": "Assign your opening trade credit and debit balances to contacts, making it easier to track your money coming in and going out.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Assign your opening trade credit and debit balances to contacts, making it easier to track your money coming in and going out."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/115001223364-Enter-money-owed-at-your-FreeAgent-start-date"
+}

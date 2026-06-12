@@ -1,0 +1,23 @@
+{
+  "id": "client-data-dashboard",
+  "imageSrc": "/updates/client-data-dashboard.png",
+  "imageAlt": "Client Data Dashboard",
+  "date": "01 Jan 1900",
+  "tags": [
+    "accountants",
+    "bookkeepers",
+    "coming-soon"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Prioritise bookkeeping actions.",
+  "summaryBody": "Get an instant view of client bookkeeping health with our new client table on the Dashboard",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Get an instant view of client bookkeeping health with our new client table on the Dashboard"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

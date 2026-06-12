@@ -1,0 +1,23 @@
+{
+  "id": "partner-to-do-actions",
+  "imageSrc": "/updates/partner-to-do-actions.png",
+  "imageAlt": "Partner action plan",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Your personalised learning plan",
+  "summaryBody": "Learn FreeAgent your way with a personalised learning plan tailored to what you want to get out of FreeAgent most.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Learn FreeAgent your way with a personalised learning plan tailored to what you want to get out of FreeAgent most."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

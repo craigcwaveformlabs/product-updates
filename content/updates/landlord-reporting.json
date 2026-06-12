@@ -1,0 +1,21 @@
+{
+  "id": "landlord-reporting",
+  "imageSrc": "/updates/landlord-reporting.png",
+  "imageAlt": "Landlord Reporting",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Dig into rental reporting",
+  "summaryBody": "Show Transactions now gives a more granular view of financial data and the oversight landlords need to manage property portfolios with confidence.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Beyond bookkeeping, you want a clear picture of the property portfolio and to track property performance at a detailed level for faster reviews. \n\n\nWe’ve updated the Show Transactions report in landlord accounts to give a more granular view of financial data and the oversight landlords need to manage property portfolios with confidence."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

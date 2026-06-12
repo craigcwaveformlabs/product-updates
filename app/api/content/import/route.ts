@@ -65,6 +65,17 @@ function splitList(value: string): string[] {
     .filter(Boolean);
 }
 
+function parseBooleanCsvValue(value: string, field: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  if (["true", "1", "yes", "y"].includes(normalized)) {
+    return true;
+  }
+  if (["false", "0", "no", "n"].includes(normalized)) {
+    return false;
+  }
+  throw new Error(`${field} must be true/false, 1/0, or yes/no when provided.`);
+}
+
 function buildUpdatePayload(row: CsvRow): Record<string, unknown> {
   const requiredFields = [
     "id",
@@ -101,6 +112,10 @@ function buildUpdatePayload(row: CsvRow): Record<string, unknown> {
 
   if (row.pinnedForStories?.trim()) {
     payload.pinnedForStories = splitList(row.pinnedForStories);
+  }
+
+  if (row.pinInDefaultView?.trim()) {
+    payload.pinInDefaultView = parseBooleanCsvValue(row.pinInDefaultView, "pinInDefaultView");
   }
 
   if (row.detailBlocks?.trim()) {

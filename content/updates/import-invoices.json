@@ -1,0 +1,22 @@
+{
+  "id": "import-invoices",
+  "imageSrc": "/updates/import-invoices.png",
+  "imageAlt": "Bulk Import Invoices",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Bulk import client invoices",
+  "summaryBody": "Quickly import all client invoices into FreeAgent",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Quickly import all client invoices into FreeAgent with our bulk invoice import tool"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

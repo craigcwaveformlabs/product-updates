@@ -1,0 +1,21 @@
+{
+  "id": "invoice-customise-theme",
+  "imageSrc": "/updates/invoice-customise-theme.png",
+  "imageAlt": "Invoice Custom Theme",
+  "date": "01 Sep 2025",
+  "tags": [
+    "small-business"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Build your brand with custom invoices",
+  "summaryBody": "FreeAgent lets you create a custom theme so your invoices and estimates template reflects your brand and style.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "FreeAgent lets you create a custom theme so your invoices and estimates template reflects your brand and style."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/8171409280402-Customise-a-template-for-invoices-and-estimates"
+}

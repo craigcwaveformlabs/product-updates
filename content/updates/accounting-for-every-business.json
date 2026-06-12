@@ -2,7 +2,7 @@
   "id": "accounting-for-every-business",
   "imageSrc": "/updates/accounting-for-every-business.png",
   "imageAlt": "Accounting for every UK business",
-  "date": "11 Jun 2026",
+  "date": "12 Jun 2026",
   "tags": [
     "accountants"
   ],
@@ -20,5 +20,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-february-2026/",
   "pinnedForStories": [
     "the-freeagent-story"
-  ]
+  ],
+  "pinInDefaultView": true
 }

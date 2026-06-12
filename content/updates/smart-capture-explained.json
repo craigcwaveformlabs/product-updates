@@ -1,0 +1,22 @@
+{
+  "id": "smart-capture-explained",
+  "imageSrc": "/updates/smart-capture-explained.png",
+  "imageAlt": "Smart Capture Explained",
+  "date": "01 Feb 2026",
+  "tags": [
+    "automation",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Smart Capture matches explained",
+  "summaryBody": "Your Smart Captures will now be matched to transactions that are awaiting approval or have already been explained.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Your Smart Captures will now be matched to transactions that are awaiting approval or have already been explained."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

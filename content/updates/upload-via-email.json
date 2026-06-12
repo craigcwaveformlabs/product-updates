@@ -1,0 +1,23 @@
+{
+  "id": "upload-via-email",
+  "imageSrc": "/updates/upload-via-email.png",
+  "imageAlt": "Upload via email",
+  "date": "01 Jan 1900",
+  "tags": [
+    "accountants",
+    "bookkeepers",
+    "coming-soon"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Upload files via email",
+  "summaryBody": "Make it easier to upload receipts and bills into smart capture by issuing an email address they can forward them to.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Make it easier to upload receipts and bills into smart capture by issuing an email address they can forward them to."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "three-line-accounts",
+  "imageSrc": "/updates/three-line-accounts.png",
+  "imageAlt": "Three line accounts",
+  "date": "09 Mar 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Submit consolidated expenses",
+  "summaryBody": "You can submit consolidated (three line) expenses if all reported income sources are under £90,000.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "You can submit consolidated (three line) expenses if all reported income sources are under £90,000."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "login-security",
+  "imageSrc": "/updates/login-security.png",
+  "imageAlt": "Login Security",
+  "date": "11 Nov 2025",
+  "tags": [
+    "bookkeepers",
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "be-tax-confident"
+  ],
+  "title": "Protect your data by default",
+  "summaryBody": "An easy way to protect your account and your clients’ data when a new or unrecognised login is detected.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "An easy way to protect your account and your clients’ data when a new or unrecognised login is detected."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/30273980343058-Enable-a-new-login-check-for-your-Practice-Dashboard"
+}

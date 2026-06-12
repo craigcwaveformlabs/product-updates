@@ -1,0 +1,23 @@
+{
+  "id": "apron-payments",
+  "imageSrc": "/updates/apron-payments.png",
+  "imageAlt": "Apron Payments",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "small-business",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Pay bills directly",
+  "summaryBody": "Pay bills directly in FreeAgent with embedded Apron",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Pay bills directly in FreeAgent with embedded Apron"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

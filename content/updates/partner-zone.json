@@ -1,0 +1,22 @@
+{
+  "id": "partner-zone",
+  "imageSrc": "/updates/partner-zone.png",
+  "imageAlt": "Partner Zone",
+  "date": "12 Jun 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Your home on the dashboard",
+  "summaryBody": "Introducing Partner Zone, your home for all your key Practice information and personalised actions",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Introducing Partner Zone, your home for all your key Practice information and personalised actions"
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/28921158561298-An-introduction-to-the-Partner-Zone-in-FreeAgent"
+}

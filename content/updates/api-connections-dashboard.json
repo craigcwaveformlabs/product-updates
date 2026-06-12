@@ -1,0 +1,22 @@
+{
+  "id": "api-connections-dashboard",
+  "imageSrc": "/updates/api-connections-dashboard.png",
+  "imageAlt": "API Connections",
+  "date": "17 Apr 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Manage your Practice connections",
+  "summaryBody": "A simple way for our Practice partners to view connected practice level third party APIs, and revoke access if they wish.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "A simple way for our Practice partners to view connected practice level third party APIs, and revoke access if they wish."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34801368583698-Manage-your-practice-s-connections#:~:text=Third%20party%20applications"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "smart-capture-action",
+  "imageSrc": "/updates/smart-capture-action.png",
+  "imageAlt": "Smart Capture action",
+  "date": "28 May 2026",
+  "tags": [
+    "bookkeepers",
+    "automation",
+    "small-business"
+  ],
+  "storyTags": [
+    "transformative-accounting",
+    "built-for-every-business"
+  ],
+  "title": "Smart Capture made simple",
+  "summaryBody": "Upload a file to Smart Capture within the 'create bill' form and we'll live-populate the form contents for them with the extracted data",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Upload a file to Smart Capture within the 'create bill' form and we'll live-populate the form contents for them with the extracted data"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

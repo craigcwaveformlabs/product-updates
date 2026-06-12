@@ -1,0 +1,22 @@
+{
+  "id": "mtd-alert-rule",
+  "imageSrc": "/updates/mtd-alert-rule.png",
+  "imageAlt": "MTD Alert Rule",
+  "date": "01 Dec 2025",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business",
+    "transformative-accounting"
+  ],
+  "title": "MTD on alert",
+  "summaryBody": "Set alerts for your clients’ MTD for Income Tax filing deadlines, including how many days’ notice you’d like.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Set alerts for your clients’ MTD for Income Tax filing deadlines, including how many days’ notice you’d like."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/115001218310-Create-alert-rules"
+}

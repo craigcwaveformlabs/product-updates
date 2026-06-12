@@ -1,0 +1,22 @@
+{
+  "id": "integration-pleo",
+  "imageSrc": "/updates/integration-pleo.png",
+  "imageAlt": "Pleo Integration",
+  "date": "11 Nov 2025",
+  "tags": [
+    "automation",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Control business spending with Pleo",
+  "summaryBody": "Connect FreeAgent to Pleo to help manage, track, control and optimise business spending.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Pleo helps FreeAgent users save time by eliminating the hassle of chasing receipts through smart company cards, out-of-pocket reimbursements and real-time receipt capture.\n\nPleo can simplify your accounts payable by allowing you to approve, pay, manage and track all supplier invoices in one place. It also keeps you in control of business spending with customisable limits, approval workflows, budget tracking and real-time analytics allowing you to speed up expense reconciliation.\n\nThrough automatic capture, categorisation, tags and cost centre configuration, Pleo seamlessly integrates all your non-payroll data into FreeAgent for a smoother financial workflow."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/integrations/pleo/"
+}

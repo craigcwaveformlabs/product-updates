@@ -1,0 +1,22 @@
+{
+  "id": "faster-smart-capture",
+  "imageSrc": "/updates/faster-smart-capture.png",
+  "imageAlt": "Faster Smart Capture",
+  "date": "10 Oct 2025",
+  "tags": [
+    "bookkeepers",
+    "automation"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Faster. Smarter. Stronger.",
+  "summaryBody": "Our mobile app cameras are now better at detecting long receipts and we’ve sped up Smart Capture processing.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Our mobile app cameras are now better at detecting long receipts and we’ve sped up Smart Capture processing."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/13001479771922-How-Smart-Capture-works"
+}

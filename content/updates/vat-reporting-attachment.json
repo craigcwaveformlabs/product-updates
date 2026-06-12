@@ -1,0 +1,21 @@
+{
+  "id": "vat-reporting-attachment",
+  "imageSrc": "/updates/vat-reporting-attachment.png",
+  "imageAlt": "VAT attachment",
+  "date": "26 May 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Get attached to VAT",
+  "summaryBody": "Easily see which transactions have files attached and which don’t.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Our new Attachment column is now live in the Show transactions report. By highlighting which transactions have files and which don’t, this provides immediate clarity, simplifies client compliance, and streamlines the process of following up on missing documentation."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

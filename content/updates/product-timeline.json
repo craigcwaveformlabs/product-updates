@@ -1,0 +1,23 @@
+{
+  "id": "product-timeline",
+  "imageSrc": "/updates/product-timeline.png",
+  "imageAlt": "Product Timeline",
+  "date": "16 Feb 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers",
+    "small-business"
+  ],
+  "storyTags": [
+    "the-freeagent-story"
+  ],
+  "title": "The FreeAgent Product timeline",
+  "summaryBody": "Explore what’s in development or travel back in time charting the evolution of FreeAgent since 2007.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Explore what’s in development or travel back in time charting the evolution of FreeAgent since 2007."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/timeline/"
+}

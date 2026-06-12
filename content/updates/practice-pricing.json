@@ -1,0 +1,21 @@
+{
+  "id": "practice-pricing",
+  "imageSrc": "/updates/practice-pricing.png",
+  "imageAlt": "Practice client pricing",
+  "date": "11 Mar 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Client pricing",
+  "summaryBody": "Know exactly how much it will cost to add a new client to FreeAgent with pricing in your dashboard.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Know exactly how much it will cost to add a new client to FreeAgent with pricing in your dashboard.\n\n*currently available only for a subset of Practices"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "integration-fathom",
+  "imageSrc": "/updates/integration-fathom.png",
+  "imageAlt": "Fathom Integration",
+  "date": "01 Jan 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Get closer to your numbers with Fathom",
+  "summaryBody": "Get closer to your numbers, share business results and plan for what’s next with our Fathom integration.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Get closer to your numbers, share business results and plan for what’s next with our Fathom integration."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/integrations/fathom/"
+}

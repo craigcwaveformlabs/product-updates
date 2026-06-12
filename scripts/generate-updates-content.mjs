@@ -90,6 +90,10 @@ function validateUpdate(raw, fileName) {
     assertKebabCaseArray(raw, "pinnedForStories", fileName);
   }
 
+  if (raw.pinInDefaultView !== undefined && typeof raw.pinInDefaultView !== "boolean") {
+    fail(`${fileName}: pinInDefaultView must be a boolean when provided.`);
+  }
+
   const parsedDate = Date.parse(raw.date);
   if (Number.isNaN(parsedDate)) {
     fail(`${fileName}: date \"${raw.date}\" is not parseable.`);
@@ -108,6 +112,7 @@ function validateUpdate(raw, fileName) {
     detailBlocks: raw.detailBlocks,
     readMoreUrl: raw.readMoreUrl,
     pinnedForStories: raw.pinnedForStories,
+    pinInDefaultView: raw.pinInDefaultView,
     _sortDate: parsedDate,
   };
 }

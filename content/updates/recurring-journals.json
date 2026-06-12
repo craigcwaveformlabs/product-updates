@@ -1,0 +1,21 @@
+{
+  "id": "recurring-journals",
+  "imageSrc": "/updates/recurring-journals.png",
+  "imageAlt": "Recurring journals",
+  "date": "01 Sep 2025",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Recurring journal entries",
+  "summaryBody": "You can now create recurring journal profiles to automatically post journals on your chosen frequency.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "You can now create recurring journal profiles to automatically post journals on your chosen frequency."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/28922384690962-Create-recurring-journal-entries"
+}

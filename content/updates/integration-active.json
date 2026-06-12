@@ -1,0 +1,29 @@
+{
+  "id": "integration-active",
+  "imageSrc": "/updates/integration-active.png",
+  "imageAlt": "Active Integration",
+  "date": "01 Feb 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Eliminate manual data transfer",
+  "summaryBody": "Connecting Active to FreeAgent will eliminate the manual data transfer process and empower you to achieve greater efficiency and accuracy.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Active is the cloud-first workpapers and accounts platform that removes manual work and accelerates every stage of compliance and reporting. It integrates with core accounting systems to increase accuracy, standardise workflows and turn routine work into a competitive advantage."
+    },
+    {
+      "type": "heading-sm",
+      "text": "Benefits of integrating Active"
+    },
+    {
+      "type": "body",
+      "text": "Connecting Active to FreeAgent will eliminate the manual data transfer process and empower you to achieve greater efficiency and accuracy.\n\nAutomatically import trial balances and ledger data from FreeAgent into Active Workpapers, reducing errors and speeding up compliance workflows.\n\nPre-populated lead schedules and templates mean less manual entry and more time for high-value work.\n\nEnable your team to work on accurate, up-to-date data across platforms without duplication."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/integrations/active/"
+}

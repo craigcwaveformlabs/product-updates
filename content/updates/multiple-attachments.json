@@ -1,0 +1,23 @@
+{
+  "id": "multiple-attachments",
+  "imageSrc": "/updates/multiple-attachments.png",
+  "imageAlt": "Multiple attachments",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "small-business",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Add multiple attachments",
+  "summaryBody": "Add every detail to the transaction with the option to add multiple attachments",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Add every detail to the transaction with the option to add multiple attachments"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

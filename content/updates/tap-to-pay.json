@@ -1,0 +1,22 @@
+{
+  "id": "tap-to-pay",
+  "imageSrc": "/updates/tap-to-pay.png",
+  "imageAlt": "Tap to Pay",
+  "date": "01 Feb 2026",
+  "tags": [
+    "automation",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Tap to Pay",
+  "summaryBody": "Get paid in person with Tap to Pay. No extra hardware needed.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Take an in-person payment using Tap to Pay."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/27957152679442-Take-an-in-person-payment-using-Tap-to-Pay"
+}

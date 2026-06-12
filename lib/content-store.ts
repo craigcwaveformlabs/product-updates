@@ -21,6 +21,7 @@ export type ContentUpdate = {
   detailBlocks?: DetailBlock[];
   readMoreUrl: string;
   pinnedForStories?: string[];
+  pinInDefaultView?: boolean;
 };
 
 const updatesDir = path.join(process.cwd(), "content", "updates");
@@ -51,6 +52,14 @@ function assertKebabCaseArray(value: unknown, field: string): string[] {
   }
   return parsed;
 }
+
+function assertBoolean(value: unknown, field: string): boolean {
+  if (typeof value !== "boolean") {
+    throw new Error(`Expected boolean for ${field}.`);
+  }
+  return value;
+}
+
 
 function assertDetailBlocks(value: unknown): DetailBlock[] {
   if (!Array.isArray(value)) {
@@ -123,6 +132,11 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
     pinnedForStories = parsed.length ? parsed : undefined;
   }
 
+  const pinInDefaultViewRaw = payload.pinInDefaultView;
+  let pinInDefaultView: boolean | undefined;
+  if (pinInDefaultViewRaw !== undefined) {
+    pinInDefaultView = assertBoolean(pinInDefaultViewRaw, "pinInDefaultView");
+  }
 
   return {
     id,
@@ -137,6 +151,7 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
     detailBlocks,
     readMoreUrl,
     pinnedForStories,
+    pinInDefaultView,
   };
 }
 

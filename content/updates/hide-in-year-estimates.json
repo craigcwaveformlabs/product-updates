@@ -1,0 +1,22 @@
+{
+  "id": "hide-in-year-estimates",
+  "imageSrc": "/updates/hide-in-year-estimates.png",
+  "imageAlt": "Hide in year estimates",
+  "date": "12 May 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident",
+    "built-for-every-business"
+  ],
+  "title": "Hide HMRC in-year estimates",
+  "summaryBody": "Giving your the control to have MTD pages visible, but hide the HMRC-provided in-year tax estimate on these pages from clients.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "We already have the most granular MTD for Income Tax permissions in the UK software market. Practices can choose to turn on approvals for each submission (and whether to automate them), turn off the ability for clients to make submissions, and turn off the whole income tax area altogether.\n\n\nToday, we've taken this a step further. Practices now have a new dashboard control that allows them to leave the MTD pages visible, but hide the HMRC-provided in-year tax estimate on these pages from clients. All other MTD for Income Tax information remains visible to clients, and we've added this into Sudo for Support and Sales to be clear on what clients can see.\n\n\nWe've heard from a few practices that they're concerned clients treat the estimates as definitive after each quarterly update, when it may be based on partial or outdated HMRC data."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

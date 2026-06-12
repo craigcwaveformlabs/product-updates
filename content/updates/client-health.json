@@ -1,0 +1,23 @@
+{
+  "id": "client-health",
+  "imageSrc": "/updates/client-health.png",
+  "imageAlt": "Client Health",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Measure bookkeeping health",
+  "summaryBody": "The Client Health Score gives you an overview of a client's bookkeeping health with a customised set of actions to keep it healthy",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "The Client Health Score gives you an overview of a client's bookkeeping health with a customised set of actions to keep it healthy"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

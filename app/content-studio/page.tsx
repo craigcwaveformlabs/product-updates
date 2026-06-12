@@ -24,6 +24,7 @@ type ContentUpdate = {
   detailBlocks?: DetailBlock[];
   readMoreUrl: string;
   pinnedForStories?: string[];
+  pinInDefaultView?: boolean;
 };
 
 const createEmptyDraft = (): ContentUpdate => ({
@@ -108,6 +109,7 @@ export default function ContentStudioPage() {
   const [newTagInput, setNewTagInput] = useState("");
   const [newStoryTagInput, setNewStoryTagInput] = useState("");
   const [pinnedForStories, setPinnedForStories] = useState<string[]>([]);
+  const [pinInDefaultView, setPinInDefaultView] = useState(false);
   const [sidebarStoryTagFilter, setSidebarStoryTagFilter] = useState<string | null>(null);
   const [sidebarIdSearch, setSidebarIdSearch] = useState("");
   const [isCreating, setIsCreating] = useState(false);
@@ -155,12 +157,15 @@ export default function ContentStudioPage() {
   }, [updates]);
 
   const filteredUpdates = useMemo(() => {
-    const normalizedIdSearch = sidebarIdSearch.trim().toLowerCase();
+    const normalizedSearch = sidebarIdSearch.trim().toLowerCase();
 
     return updates.filter((update) => {
       const matchesStory = sidebarStoryTagFilter ? update.storyTags.includes(sidebarStoryTagFilter) : true;
-      const matchesId = normalizedIdSearch ? update.id.toLowerCase().includes(normalizedIdSearch) : true;
-      return matchesStory && matchesId;
+      const matchesIdOrTag = normalizedSearch
+        ? update.id.toLowerCase().includes(normalizedSearch) ||
+          update.tags.some((tag) => tag.toLowerCase().includes(normalizedSearch))
+        : true;
+      return matchesStory && matchesIdOrTag;
     });
   }, [sidebarIdSearch, sidebarStoryTagFilter, updates]);
 
@@ -204,6 +209,7 @@ export default function ContentStudioPage() {
     setDetailBodyText(detailBodyToText(selectedUpdate.detailBody));
     setDetailBlocks(normalizeDetailBlocks(selectedUpdate));
     setPinnedForStories(selectedUpdate.pinnedForStories ?? []);
+    setPinInDefaultView(selectedUpdate.pinInDefaultView ?? false);
   }, [isCreating, selectedUpdate]);
 
   useEffect(() => {
@@ -222,6 +228,7 @@ export default function ContentStudioPage() {
     setNewTagInput("");
     setNewStoryTagInput("");
     setPinnedForStories([]);
+    setPinInDefaultView(false);
     setMessage("");
     setError("");
   };
@@ -234,7 +241,8 @@ export default function ContentStudioPage() {
     setDetailBlocks(normalizeDetailBlocks(update));
     setNewTagInput("");
     setNewStoryTagInput("");
-    setPinnedForStories([]);
+    setPinnedForStories(update.pinnedForStories ?? []);
+    setPinInDefaultView(update.pinInDefaultView ?? false);
     setMessage("");
     setError("");
   };
@@ -333,6 +341,7 @@ export default function ContentStudioPage() {
       detailBody: textToDetailBody(detailBodyText),
       detailBlocks: cleanedBlocks.length ? cleanedBlocks : undefined,
       pinnedForStories: pinnedForStories.length ? pinnedForStories : undefined,
+      pinInDefaultView: pinInDefaultView || undefined,
     };
 
     if (!payload.id) {
@@ -361,6 +370,8 @@ export default function ContentStudioPage() {
       setDraft(result.update);
       setDetailBodyText(detailBodyToText(result.update.detailBody));
       setDetailBlocks(normalizeDetailBlocks(result.update));
+      setPinnedForStories(result.update.pinnedForStories ?? []);
+      setPinInDefaultView(result.update.pinInDefaultView ?? false);
       setMessage(`Saved ${result.update.id}.`);
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : "Failed to save update.");
@@ -483,6 +494,7 @@ export default function ContentStudioPage() {
       "readMoreUrl",
       "detailBody",
       "pinnedForStories",
+      "pinInDefaultView",
       "detailBlocks",
     ];
 
@@ -498,6 +510,7 @@ export default function ContentStudioPage() {
       "https://www.freeagent.com/blog/",
       "First optional detail paragraph|Second optional detail paragraph",
       "built-for-every-business",
+      "true",
       '[{"type":"heading-sm","text":"What is new"},{"type":"body","text":"Optional detail blocks as JSON."}]',
     ];
 
@@ -544,6 +557,7 @@ export default function ContentStudioPage() {
       "readMoreUrl",
       "detailBody",
       "pinnedForStories",
+      "pinInDefaultView",
       "detailBlocks",
     ];
 
@@ -566,6 +580,7 @@ export default function ContentStudioPage() {
       update.readMoreUrl,
       (update.detailBody ?? []).join("|"),
       (update.pinnedForStories ?? []).join("|"),
+      update.pinInDefaultView ? "true" : "false",
       update.detailBlocks?.length ? JSON.stringify(update.detailBlocks) : "",
     ]);
 
@@ -595,7 +610,7 @@ export default function ContentStudioPage() {
                 Create and edit product update cards, import updates from CSV, then regenerate app content.
               </p>
               <p className="mt-2 text-xs text-[#4e6378]">
-                CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories).
+                CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories,pinInDefaultView).
                 Use | as the separator for list fields.
               </p>
             </div>
@@ -699,13 +714,13 @@ export default function ContentStudioPage() {
             </div>
             <div className="mb-3">
               <label className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500" htmlFor="sidebar-id-search">
-                Search by ID
+                Search by ID or Tag
               </label>
               <input
                 id="sidebar-id-search"
                 value={sidebarIdSearch}
                 onChange={(event) => setSidebarIdSearch(event.target.value)}
-                placeholder="e.g. mtd, built, coming"
+                placeholder="e.g. mtd, built-for-every-business, coming-soon"
                 className="mt-2 w-full rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-sm text-zinc-800"
               />
             </div>
@@ -717,6 +732,8 @@ export default function ContentStudioPage() {
               ) : null}
               {filteredUpdates.map((update) => {
                 const active = !isCreating && selectedId === update.id;
+                const hasDefaultPin = update.pinInDefaultView === true;
+                const storyPinCount = update.pinnedForStories?.length ?? 0;
                 return (
                   <button
                     key={update.id}
@@ -730,6 +747,32 @@ export default function ContentStudioPage() {
                   >
                     <p className="text-sm font-bold">{update.title}</p>
                     <p className={`mt-1 text-xs ${active ? "text-white/85" : "text-[#4e6378]"}`}>{update.id}</p>
+                    {hasDefaultPin || storyPinCount > 0 ? (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {hasDefaultPin ? (
+                          <span
+                            className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] ${
+                              active
+                                ? "border-white/60 bg-white/15 text-white"
+                                : "border-[#9cbce0] bg-[#e8f2ff] text-[#1b4f9a]"
+                            }`}
+                          >
+                            Pinned: Default
+                          </span>
+                        ) : null}
+                        {storyPinCount > 0 ? (
+                          <span
+                            className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] ${
+                              active
+                                ? "border-white/60 bg-white/15 text-white"
+                                : "border-[#b4bf90] bg-[#f0f7d8] text-[#4f5f1f]"
+                            }`}
+                          >
+                            {storyPinCount === 1 ? "Pinned: 1 Story" : `Pinned: ${storyPinCount} Stories`}
+                          </span>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </button>
                 );
               })}
@@ -990,13 +1033,26 @@ export default function ContentStudioPage() {
                     );
                   })}
                 </div>
+              </div>
 
-              <div>
-                <p className="text-sm font-semibold text-zinc-800">Pinned For Stories</p>
+              <div className="sm:col-span-2 rounded-xl border border-[#c5d5e8] bg-[#f8fbff] p-3">
+                <p className="text-sm font-semibold text-zinc-800">Pinned Views</p>
                 <p className="mt-1 text-xs text-[#4e6378]">
-                  Select story tags to pin this update to the top of their feeds.
+                  Pin this update to the top of selected views. Default view applies when no story tag is selected.
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPinInDefaultView((current) => !current)}
+                    className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                      pinInDefaultView
+                        ? "border-[#2461b8] bg-[#2461b8] text-white"
+                        : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                    }`}
+                    title={pinInDefaultView ? "Pinned to default view" : "Pin to default view"}
+                  >
+                    {pinInDefaultView ? "Pinned: " : ""}default view
+                  </button>
                   {storyTagOptions.map((tag) => {
                     const isPinned = pinnedForStories.includes(tag);
                     return (
@@ -1017,12 +1073,11 @@ export default function ContentStudioPage() {
                         }`}
                         title={isPinned ? `Pinned to ${tag}` : `Pin to ${tag}`}
                       >
-                        {isPinned ? "📌 " : ""}{tag}
+                        {isPinned ? "Pinned: " : ""}{tag}
                       </button>
                     );
                   })}
                 </div>
-              </div>
               </div>
             </div>
           </section>

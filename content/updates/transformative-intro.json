@@ -2,7 +2,7 @@
   "id": "transformative-intro",
   "imageSrc": "/updates/transformative.png",
   "imageAlt": "Transformative accounting",
-  "date": "11 Jun 2026",
+  "date": "09 Jun 2026",
   "tags": [
     "accountants"
   ],
@@ -29,5 +29,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/",
   "pinnedForStories": [
     "transformative-accounting"
-  ]
+  ],
+  "pinInDefaultView": true
 }

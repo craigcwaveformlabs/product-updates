@@ -1,0 +1,23 @@
+{
+  "id": "dashboard-security-centre",
+  "imageSrc": "/updates/dashboard-security-centre.png",
+  "imageAlt": "Security Centre",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Security centre",
+  "summaryBody": "Raise your security score with guided actions on keeping your dashboard secure for all users.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Raise your security score with guided actions on keeping your dashboard secure for all users."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34803845970066-Practice-Dashboard-security-changes"
+}

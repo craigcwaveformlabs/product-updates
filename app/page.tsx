@@ -104,6 +104,10 @@ function detailBlocksForPreview(update: ProductUpdate): DetailBlock[] {
   ];
 }
 
+function isExternalUrl(url: string): boolean {
+  return /^https?:\/\//i.test(url);
+}
+
 export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
@@ -117,12 +121,16 @@ export default function Page() {
       return hasStory && hasTags;
     });
 
-    // Sort: pinned updates first (for selected story), then by date
+    // Sort: pinned updates first (story-specific when selected, default pins otherwise), then by date
     return filtered.sort((a, b) => {
       if (selectedStoryTag) {
         const aPinned = a.pinnedForStories?.includes(selectedStoryTag) ?? false;
         const bPinned = b.pinnedForStories?.includes(selectedStoryTag) ?? false;
         if (aPinned !== bPinned) return bPinned ? 1 : -1;
+      } else {
+        const aPinnedDefault = a.pinInDefaultView ?? false;
+        const bPinnedDefault = b.pinInDefaultView ?? false;
+        if (aPinnedDefault !== bPinnedDefault) return bPinnedDefault ? 1 : -1;
       }
       return Date.parse(b.date) - Date.parse(a.date);
     });
@@ -264,14 +272,23 @@ export default function Page() {
                   {activeHero.title}
                 </h1>
                 <p className={`mt-3 text-base leading-7 ${isDefaultHero ? "text-white/90" : "text-[#2f4a67]"}`}>{activeHero.body}</p>
-                <a
-                  href={activeHero.readMoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
-                >
-                  Read more
-                </a>
+                {isExternalUrl(activeHero.readMoreUrl) ? (
+                  <a
+                    href={activeHero.readMoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
+                  >
+                    Read more
+                  </a>
+                ) : (
+                  <Link
+                    href={activeHero.readMoreUrl}
+                    className="mt-4 inline-flex rounded-full bg-[#1a2e44] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#102338]"
+                  >
+                    Read more
+                  </Link>
+                )}
               </div>
 
               {activeHero.imageSrc ? (

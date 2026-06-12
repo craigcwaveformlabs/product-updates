@@ -1,0 +1,23 @@
+{
+  "id": "floating-clients",
+  "imageSrc": "/updates/floating-clients.png",
+  "imageAlt": "Add every client",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "bookkeepers",
+    "accountants"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Quickly add every client",
+  "summaryBody": "We'll find and show connected clients so that you quickly add them to your dashboard .",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "We'll find and show connected clients so that you quickly add them to your dashboard ."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

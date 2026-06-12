@@ -1,0 +1,22 @@
+{
+  "id": "recreate-invoice",
+  "imageSrc": "/updates/recreate-invoice.png",
+  "imageAlt": "Recreate invoice",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "small-business"
+  ],
+  "storyTags": [
+    "transformative-accounting"
+  ],
+  "title": "Recreate your last invoice",
+  "summaryBody": "Automate the highly repetitive task of creating an invoice by surfacing our invoice duplicator in the create invoice flow.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Automate the highly repetitive task of creating an invoice by surfacing our invoice duplicator in the create invoice flow."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

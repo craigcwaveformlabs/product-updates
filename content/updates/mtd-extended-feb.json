@@ -1,0 +1,22 @@
+{
+  "id": "mtd-extended-feb",
+  "imageSrc": "/updates/mtd-extended-feb.png",
+  "imageAlt": "MTD Extended - Feb update",
+  "date": "27 Feb 2026",
+  "tags": [
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Extending our MTD support",
+  "summaryBody": "We've added another wave of MTD values, moving toward full end-to-end support.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "We've added another wave of MTD values, moving toward full end-to-end support. Added support for: Pension Charges, High Income Child Benefit Charge (HICBC), Employment Expenses, and Other Expenses which all now appear under the relevant tabs within the MTD area and feed into each taxpayers quarterly updates and final declaration if applicable to them."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

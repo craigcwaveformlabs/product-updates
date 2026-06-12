@@ -1,0 +1,21 @@
+{
+  "id": "invoice-quick-actions",
+  "imageSrc": "/updates/invoice-quick-actions.png",
+  "imageAlt": "Invoice quick actions",
+  "date": "01 Sep 2025",
+  "tags": [
+    "small-business"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Invoice quick actions",
+  "summaryBody": "Invoice management just got faster. You can now perform key actions like downloading invoice pdfs and sending reminders, directly from the invoice table.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Invoice management just got faster. You can now perform key actions like downloading invoice pdfs and sending reminders, directly from the invoice table."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/6259993781394-Save-an-invoice-as-a-PDF"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "request-data-from-hmrc",
+  "imageSrc": "/updates/request-data-from-hmrc.png",
+  "imageAlt": "Request HMRC data",
+  "date": "09 Mar 2026",
+  "tags": [
+    "accountants"
+  ],
+  "storyTags": [
+    "be-tax-confident"
+  ],
+  "title": "Request data from HMRC",
+  "summaryBody": "Easily request the latest MTD figures from HMRC",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Easily request the latest MTD figures from HMRC"
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/"
+}

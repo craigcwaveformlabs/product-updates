@@ -1,0 +1,31 @@
+{
+  "id": "mtd-automated-updates",
+  "imageSrc": "/updates/mtd-automated-updates.png",
+  "imageAlt": "MTD Automated",
+  "date": "01 Apr 2026",
+  "tags": [
+    "accountants",
+    "automation"
+  ],
+  "storyTags": [
+    "be-tax-confident",
+    "transformative-accounting"
+  ],
+  "title": "Automate quarterly compliance",
+  "summaryBody": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule, so you can manage high volumes without manual chasing.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Making Tax Digital (MTD) for Income Tax is now in effect – but our mission to help practices adapt to the biggest change to UK tax in a generation is far from over. Our latest updates are designed to help practices move away from manual, client-by-client processes and towards a more automated, scalable and controlled way of managing quarterly compliance. \n\nWhether you’re managing a handful of clients or a large portfolio, these changes are built to reduce admin and give you the confidence that nothing slips through the cracks."
+    },
+    {
+      "type": "heading-sm",
+      "text": "Automate quarterly compliance"
+    },
+    {
+      "type": "body",
+      "text": "FreeAgent can now prepare and submit MTD quarterly updates to HMRC automatically.\n\nThese automations help to create a more consistent MTD workflow, making it easier for practices to scale their support while maintaining accuracy and control.\n\nClients who manage their own quarterly updates can also use this feature to ‘set and forget’ and keep their MTD compliance tasks on track."
+    }
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/new-features-mtd/"
+}

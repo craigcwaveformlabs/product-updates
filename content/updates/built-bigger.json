@@ -2,7 +2,7 @@
   "id": "built-bigger",
   "imageSrc": "/updates/built-bigger.png",
   "imageAlt": "Built for bigger businesses",
-  "date": "11 Jun 2026",
+  "date": "10 Jun 2026",
   "tags": [
     "accountants"
   ],
@@ -29,5 +29,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/",
   "pinnedForStories": [
     "built-for-every-business"
-  ]
+  ],
+  "pinInDefaultView": true
 }

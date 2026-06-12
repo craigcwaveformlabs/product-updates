@@ -1,0 +1,23 @@
+{
+  "id": "dashboard-roles",
+  "imageSrc": "/updates/dashboard-roles.png",
+  "imageAlt": "Dashboard roles",
+  "date": "01 Jan 1900",
+  "tags": [
+    "coming-soon",
+    "accountants",
+    "bookkeepers"
+  ],
+  "storyTags": [
+    "built-for-every-business"
+  ],
+  "title": "Assign roles to your team",
+  "summaryBody": "Set dashboard user roles to mitigate risks related to identity and access management.",
+  "detailBlocks": [
+    {
+      "type": "body",
+      "text": "Set dashboard user roles to mitigate risks related to identity and access management."
+    }
+  ],
+  "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34803845970066-Practice-Dashboard-security-changes"
+}

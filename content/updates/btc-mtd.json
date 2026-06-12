@@ -26,5 +26,6 @@
   "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-april-2026/",
   "pinnedForStories": [
     "be-tax-confident"
-  ]
+  ],
+  "pinInDefaultView": true
 }
