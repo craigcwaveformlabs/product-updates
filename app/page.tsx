@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import {
   allTags,
-  defaultHero,
+  defaultHeroSlides,
   heroColorByStory,
   heroSlidesByStory,
   storyTagLabel,
@@ -129,12 +129,12 @@ export default function Page() {
   }, [selectedStoryTag, selectedTags]);
 
   const previewUpdate = selectedUpdate;
-  const activeHeroSlides = selectedStoryTag ? (heroSlidesByStory[selectedStoryTag] ?? []) : [];
+  const activeHeroSlides = selectedStoryTag ? (heroSlidesByStory[selectedStoryTag] ?? []) : defaultHeroSlides;
   const normalizedHeroImageIndex = activeHeroSlides.length
     ? ((heroImageIndex % activeHeroSlides.length) + activeHeroSlides.length) % activeHeroSlides.length
     : 0;
   const activeHeroSlide = activeHeroSlides.length ? activeHeroSlides[normalizedHeroImageIndex] : null;
-  const activeHero = activeHeroSlide ?? defaultHero;
+  const activeHero = activeHeroSlide || defaultHeroSlides[0];
   const hasHeroCarousel = activeHeroSlides.length > 1;
   const activeHeroBackgroundColor = selectedStoryTag
     ? (heroColorByStory[selectedStoryTag] ?? "#008cff")
@@ -291,7 +291,7 @@ export default function Page() {
             </section>
 
             {hasHeroCarousel ? (
-              <div className="mt-4 flex justify-center gap-2">
+              <div className="mt-4 flex items-center justify-center gap-2">
                 <button
                   type="button"
                   aria-label="Previous hero slide"
@@ -300,7 +300,7 @@ export default function Page() {
                 >
                   Prev
                 </button>
-                <span className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1 text-xs font-extrabold text-[#1a2e44]">
+                <span className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1.5 text-xs font-extrabold text-[#1a2e44]">
                   {normalizedHeroImageIndex + 1}/{activeHeroSlides.length}
                 </span>
                 <button
@@ -399,7 +399,9 @@ export default function Page() {
                 unoptimized
                 className="mt-4 w-full rounded-xl object-contain"
               />
-              <p className="meta-date mt-3 text-sm font-semibold">{previewUpdate.date}</p>
+              {!previewUpdate.tags.includes("coming-soon") ? (
+                <p className="meta-date mt-3 text-sm font-semibold">{previewUpdate.date}</p>
+              ) : null}
 
               <div className="mt-3 flex flex-wrap gap-2">
                 {previewUpdate.storyTags.map((storyTag) => (

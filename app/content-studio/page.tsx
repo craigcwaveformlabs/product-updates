@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { storyTagLabel, storyTags as sharedStoryTags } from "../content/updates";
 
 type DetailBlockType = "body" | "heading-lg" | "heading-sm";
 
@@ -107,6 +108,7 @@ export default function ContentStudioPage() {
   const [newTagInput, setNewTagInput] = useState("");
   const [newStoryTagInput, setNewStoryTagInput] = useState("");
   const [pinnedForStories, setPinnedForStories] = useState<string[]>([]);
+  const [sidebarStoryTagFilter, setSidebarStoryTagFilter] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -124,8 +126,37 @@ export default function ContentStudioPage() {
   }, [draft.tags, updates]);
 
   const storyTagOptions = useMemo(() => {
-    return Array.from(new Set([...updates.flatMap((update) => update.storyTags), ...draft.storyTags])).sort();
-  }, [draft.storyTags, updates]);
+    const discoveredStoryTags = Array.from(
+      new Set([
+        ...sharedStoryTags,
+        ...updates.flatMap((update) => update.storyTags),
+        ...draft.storyTags,
+        ...pinnedForStories,
+      ]),
+    );
+
+    return [
+      ...sharedStoryTags.filter((tag) => discoveredStoryTags.includes(tag)),
+      ...discoveredStoryTags.filter((tag) => !sharedStoryTags.includes(tag)).sort(),
+    ];
+  }, [draft.storyTags, pinnedForStories, updates]);
+
+  const sidebarStoryTagOptions = useMemo(() => {
+    const discoveredStoryTags = Array.from(new Set(updates.flatMap((update) => update.storyTags)));
+
+    return [
+      ...sharedStoryTags.filter((tag) => discoveredStoryTags.includes(tag)),
+      ...discoveredStoryTags.filter((tag) => !sharedStoryTags.includes(tag)).sort(),
+    ];
+  }, [updates]);
+
+  const filteredUpdates = useMemo(() => {
+    if (!sidebarStoryTagFilter) {
+      return updates;
+    }
+
+    return updates.filter((update) => update.storyTags.includes(sidebarStoryTagFilter));
+  }, [sidebarStoryTagFilter, updates]);
 
   const loadUpdates = async () => {
     setIsLoading(true);
@@ -168,6 +199,12 @@ export default function ContentStudioPage() {
     setDetailBlocks(normalizeDetailBlocks(selectedUpdate));
     setPinnedForStories(selectedUpdate.pinnedForStories ?? []);
   }, [isCreating, selectedUpdate]);
+
+  useEffect(() => {
+    if (sidebarStoryTagFilter && !sidebarStoryTagOptions.includes(sidebarStoryTagFilter)) {
+      setSidebarStoryTagFilter(null);
+    }
+  }, [sidebarStoryTagFilter, sidebarStoryTagOptions]);
 
   const startCreate = () => {
     setIsCreating(true);
@@ -428,10 +465,46 @@ export default function ContentStudioPage() {
                 New
               </button>
             </div>
+            <div className="mb-3">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-500">Filter by story</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => setSidebarStoryTagFilter(null)}
+                  className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                    sidebarStoryTagFilter === null
+                      ? "border-[#2461b8] bg-[#2461b8] text-white"
+                      : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                  }`}
+                >
+                  All
+                </button>
+                {sidebarStoryTagOptions.map((tag) => {
+                  const active = sidebarStoryTagFilter === tag;
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setSidebarStoryTagFilter(tag)}
+                      className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                        active
+                          ? "border-[#2461b8] bg-[#2461b8] text-white"
+                          : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                      }`}
+                    >
+                      {storyTagLabel[tag] ?? tag}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             <div className="max-h-[70vh] space-y-2 overflow-y-auto pr-1">
               {isLoading ? <p className="text-sm text-[#4e6378]">Loading...</p> : null}
               {!isLoading && updates.length === 0 ? <p className="text-sm text-[#4e6378]">No updates found.</p> : null}
-              {updates.map((update) => {
+              {!isLoading && updates.length > 0 && filteredUpdates.length === 0 ? (
+                <p className="text-sm text-[#4e6378]">No updates match this story filter.</p>
+              ) : null}
+              {filteredUpdates.map((update) => {
                 const active = !isCreating && selectedId === update.id;
                 return (
                   <button

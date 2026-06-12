@@ -87,6 +87,30 @@ export const updates = [
     ]
   },
   {
+    "id": "accounting-for-every-business",
+    "imageSrc": "/updates/accounting-for-every-business.png",
+    "imageAlt": "Accounting for every UK business",
+    "date": "11 Jun 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "the-freeagent-story"
+    ],
+    "title": "Accounting for every UK business",
+    "summaryBody": "Whether you’re rapidly growing or just want to get Making Tax Digital done, FreeAgent gives you confidence in your numbers and streamlines your admin so you can make it count.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Whether you’re rapidly growing or just want to get Making Tax Digital done, FreeAgent gives you confidence in your numbers and streamlines your admin so you can make it count."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/product-spotlight-february-2026/",
+    "pinnedForStories": [
+      "the-freeagent-story"
+    ]
+  },
+  {
     "id": "ai-categorisation",
     "imageSrc": "/updates/ai-categorisation.png",
     "imageAlt": "Bookkeeping while you sleep",
@@ -108,29 +132,6 @@ export const updates = [
       }
     ],
     "readMoreUrl": "https://www.freeagent.com/blog/"
-  },
-  {
-    "id": "bank-rules",
-    "imageSrc": "/updates/bank-rules.png",
-    "imageAlt": "Bank Rules",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants",
-      "bookkeepers"
-    ],
-    "storyTags": [
-      "built-for-every-business",
-      "transformative-accounting"
-    ],
-    "title": "Automated banking your way",
-    "summaryBody": "Create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Practices can create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping."
-      }
-    ],
-    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35031257974034-Create-and-manage-bank-rules-for-clients"
   },
   {
     "id": "btc-cis",
@@ -189,7 +190,8 @@ export const updates = [
       "accountants"
     ],
     "storyTags": [
-      "be-tax-confident"
+      "be-tax-confident",
+      "the-freeagent-story"
     ],
     "title": "Managing MTD at scale",
     "summaryBody": "Take control of MTD with FreeAgent's leading solution",
@@ -218,7 +220,8 @@ export const updates = [
       "accountants"
     ],
     "storyTags": [
-      "built-for-every-business"
+      "built-for-every-business",
+      "the-freeagent-story"
     ],
     "title": "Built for bigger businesses",
     "summaryBody": "Control, without the complexity. Financial confidence for all UK businesses - and the experts who power them.",
@@ -240,29 +243,6 @@ export const updates = [
     "pinnedForStories": [
       "built-for-every-business"
     ]
-  },
-  {
-    "id": "bulk-bank-feed",
-    "imageSrc": "/updates/bulk-bank-feed.png",
-    "imageAlt": "bulk-bank-feed",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants",
-      "automation"
-    ],
-    "storyTags": [
-      "be-tax-confident",
-      "transformative-accounting"
-    ],
-    "title": "Keep transactions flowing at the click of a button",
-    "summaryBody": "Re-consent bank feed connections in bulk at the click of a button, ensuring you have accurate data every day.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Lots of accountants and bookkeepers told us that bank feeds are great… for 90 days until the client needs to reconsent. Then you are at the mercy of waiting for clients to get round to it, even with plenty of reminders. So we solved that problem - your clients does the initial connection then after that, you can do the bank reconsent via the Practice Dashboard. And in bulk!"
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/"
   },
   {
     "id": "cis-in-banking",
@@ -287,28 +267,6 @@ export const updates = [
     "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/33194713648018-Explain-bank-transactions-as-CIS-income"
   },
   {
-    "id": "ecommerce-equali",
-    "imageSrc": "/updates/ecommerce-equali.png",
-    "imageAlt": "eCommerce Equali",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "built-for-every-business",
-      "transformative-accounting"
-    ],
-    "title": "Your eCommerce marketplaces connected",
-    "summaryBody": "Automatically reconcile and post sales, fees, refunds and taxes from your e-commerce marketplaces into FreeAgent with our Equali integratio",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Tired of logging into multiple e-commerce platforms and payment portals every month, downloading spreadsheets, and manually reconciling settlements? Equali’s integration with FreeAgent takes the hassle out of the month end. Automatically post a detailed, categorised breakdown of revenue, taxes, refunds and fees directly to FreeAgent - accurately and effortlessly."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/integrations/equali/"
-  },
-  {
     "id": "find-and-fix",
     "imageSrc": "/updates/find-and-fix.png",
     "imageAlt": "Find and Fix",
@@ -330,27 +288,6 @@ export const updates = [
       }
     ],
     "readMoreUrl": "https://www.freeagent.com/blog/introducing-find-and-fix/"
-  },
-  {
-    "id": "mtd-automated",
-    "imageSrc": "/updates/mtd-automated.png",
-    "imageAlt": "MTD automated submissions",
-    "date": "11 Jun 2026",
-    "tags": [
-      "accountants"
-    ],
-    "storyTags": [
-      "be-tax-confident"
-    ],
-    "title": "Set and forget with automated filing",
-    "summaryBody": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule,",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule, so you can manage high volumes without manual chasing."
-      }
-    ],
-    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34510517681554-Automate-quarterly-MTD-for-Income-Tax-submissions"
   },
   {
     "id": "mtd-bulk-actions",
@@ -393,28 +330,6 @@ export const updates = [
       }
     ],
     "readMoreUrl": "https://www.freeagent.com/blog/mtd-updates-visibility-control/"
-  },
-  {
-    "id": "preview-attachments",
-    "imageSrc": "/updates/preview-attachments.png",
-    "imageAlt": "Preview attachments",
-    "date": "11 Jun 2026",
-    "tags": [
-      "bookkeepers",
-      "accountants"
-    ],
-    "storyTags": [
-      "built-for-every-business"
-    ],
-    "title": "An easier way to get attached",
-    "summaryBody": "See previews of attachments and suggested attachments next to your bank transactions.",
-    "detailBlocks": [
-      {
-        "type": "body",
-        "text": "You can now see previews of attachments and suggested attachments next to your bank transactions."
-      }
-    ],
-    "readMoreUrl": "https://www.freeagent.com/blog/"
   },
   {
     "id": "smart-capture",
@@ -475,7 +390,8 @@ export const updates = [
       "accountants"
     ],
     "storyTags": [
-      "transformative-accounting"
+      "transformative-accounting",
+      "the-freeagent-story"
     ],
     "title": "A new era for accounting",
     "summaryBody": "We’re entering a new era for accounting that is reshaping how we stay in control of our finances.",
@@ -502,7 +418,7 @@ export const updates = [
     "id": "vat-checker",
     "imageSrc": "/updates/vat-checker.png",
     "imageAlt": "VAT checker",
-    "date": "11 Jun 2026",
+    "date": "01 Jun 2026",
     "tags": [
       "accountants",
       "bookkeepers"
@@ -522,10 +438,98 @@ export const updates = [
     "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35615496100498-Use-FreeAgent-s-VAT-checker"
   },
   {
+    "id": "bank-rules",
+    "imageSrc": "/updates/bank-rules.png",
+    "imageAlt": "Bank Rules",
+    "date": "01 May 2026",
+    "tags": [
+      "accountants",
+      "bookkeepers"
+    ],
+    "storyTags": [
+      "built-for-every-business",
+      "transformative-accounting"
+    ],
+    "title": "Automated banking your way",
+    "summaryBody": "Create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Practices can create and manage their own bank rules for categorising transactions, resulting in less manual work and increased accuracy from clients' bookkeeping."
+      }
+    ],
+    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35031257974034-Create-and-manage-bank-rules-for-clients"
+  },
+  {
+    "id": "ecommerce-equali",
+    "imageSrc": "/updates/ecommerce-equali.png",
+    "imageAlt": "eCommerce Equali",
+    "date": "01 May 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "built-for-every-business",
+      "transformative-accounting"
+    ],
+    "title": "Your eCommerce marketplaces connected",
+    "summaryBody": "Automatically reconcile and post sales, fees, refunds and taxes from your e-commerce marketplaces into FreeAgent with our Equali integratio",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Tired of logging into multiple e-commerce platforms and payment portals every month, downloading spreadsheets, and manually reconciling settlements? Equali’s integration with FreeAgent takes the hassle out of the month end. Automatically post a detailed, categorised breakdown of revenue, taxes, refunds and fees directly to FreeAgent - accurately and effortlessly."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/integrations/equali/"
+  },
+  {
+    "id": "preview-attachments",
+    "imageSrc": "/updates/preview-attachments.png",
+    "imageAlt": "Preview attachments",
+    "date": "01 May 2026",
+    "tags": [
+      "bookkeepers",
+      "accountants"
+    ],
+    "storyTags": [
+      "built-for-every-business"
+    ],
+    "title": "An easier way to get attached",
+    "summaryBody": "See previews of attachments and suggested attachments next to your bank transactions.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "You can now see previews of attachments and suggested attachments next to your bank transactions."
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/"
+  },
+  {
+    "id": "mtd-automated",
+    "imageSrc": "/updates/mtd-automated.png",
+    "imageAlt": "MTD automated submissions",
+    "date": "01 Apr 2026",
+    "tags": [
+      "accountants"
+    ],
+    "storyTags": [
+      "be-tax-confident"
+    ],
+    "title": "Set and forget with automated filing",
+    "summaryBody": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule,",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Automatically prepare quarterly MTD for Income Tax updates, request client approval and submit to HMRC on schedule, so you can manage high volumes without manual chasing."
+      }
+    ],
+    "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/34510517681554-Automate-quarterly-MTD-for-Income-Tax-submissions"
+  },
+  {
     "id": "vat-unlocking",
     "imageSrc": "/updates/vat-unlocking.png",
     "imageAlt": "VAT unlocking",
-    "date": "11 Jun 2026",
+    "date": "01 Apr 2026",
     "tags": [
       "accountants",
       "bookkeepers"
@@ -542,5 +546,28 @@ export const updates = [
       }
     ],
     "readMoreUrl": "https://support.freeagent.com/hc/en-gb/articles/35059221261458-Unlock-a-client-s-VAT-return"
+  },
+  {
+    "id": "bulk-bank-feed",
+    "imageSrc": "/updates/bulk-bank-feed.png",
+    "imageAlt": "bulk-bank-feed",
+    "date": "24 Jul 2024",
+    "tags": [
+      "accountants",
+      "automation"
+    ],
+    "storyTags": [
+      "be-tax-confident",
+      "transformative-accounting"
+    ],
+    "title": "Keep transactions flowing at the click of a button",
+    "summaryBody": "Re-consent bank feed connections in bulk at the click of a button, ensuring you have accurate data every day.",
+    "detailBlocks": [
+      {
+        "type": "body",
+        "text": "Lots of accountants and bookkeepers told us that bank feeds are great… for 90 days until the client needs to reconsent. Then you are at the mercy of waiting for clients to get round to it, even with plenty of reminders. So we solved that problem - your clients does the initial connection then after that, you can do the bank reconsent via the Practice Dashboard. And in bulk!"
+      }
+    ],
+    "readMoreUrl": "https://www.freeagent.com/blog/"
   }
 ];
