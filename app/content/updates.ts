@@ -159,6 +159,6 @@ export const defaultHeroSlides: HeroSlide[] = [
     eyebrow: "Showcase",
     title: "The FreeAgent Story",
     body: "We've come a long long way together. Find out where FreeAgent are today and how we are helping every UK business stay in control of their finances",
-    readMoreUrl: "https://www.freeagent.com/blog/product-spotlight-april-2026/",
+    readMoreUrl: "/updates/accounting-for-every-business",
   },
 ];

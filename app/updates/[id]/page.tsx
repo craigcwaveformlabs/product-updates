@@ -65,7 +65,7 @@ export default async function UpdatePreviewPage({ params }: UpdatePageProps) {
               {update.tags.map((tag) => (
                 <span
                   key={`tag-${tag}`}
-                  className="rounded-full border border-[#b9d7ff] bg-[#edf5ff] px-3 py-1 text-xs font-bold text-[#1e4e95]"
+                  className={`rounded-full px-3 py-1 text-xs font-bold ${tag === "coming-soon" ? "bg-[#008cffff] text-white" : "border border-[#b9d7ff] bg-[#edf5ff] text-[#1e4e95]"}`}
                 >
                   {tag}
                 </span>

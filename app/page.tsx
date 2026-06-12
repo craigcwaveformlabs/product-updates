@@ -358,7 +358,7 @@ export default function Page() {
                   {update.tags.map((tag) => (
                     <span
                       key={`${update.id}-${tag}`}
-                      className="rounded-full bg-[#dceeff] px-2.5 py-1 text-xs font-bold text-[#1a4896]"
+                      className={`rounded-full px-2.5 py-1 text-xs font-bold ${tag === "coming-soon" ? "bg-[#008cffff] text-white" : "bg-[#dceeff] text-[#1a4896]"}`}
                     >
                       {tagLabel[tag]}
                     </span>
@@ -432,7 +432,7 @@ export default function Page() {
                 {previewUpdate.tags.map((tag) => (
                   <span
                     key={`drawer-topic-${previewUpdate.id}-${tag}`}
-                    className="rounded-full bg-[#dceeff] px-2.5 py-1 text-xs font-bold text-[#1a4896]"
+                    className={`rounded-full px-2.5 py-1 text-xs font-bold ${tag === "coming-soon" ? "bg-[#008cffff] text-white" : "bg-[#dceeff] text-[#1a4896]"}`}
                   >
                     {tagLabel[tag]}
                   </span>
