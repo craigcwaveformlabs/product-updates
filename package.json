@@ -10,7 +10,9 @@
     "content:generate": "node scripts/generate-updates-content.mjs",
     "predev": "npm run content:generate",
     "prebuild": "npm run content:generate",
-    "content:new": "node scripts/new-update-content.mjs"
+    "content:new": "node scripts/new-update-content.mjs",
+    "prebuild:static": "npm run content:generate",
+    "build:static": "node scripts/build-static-viewer.mjs"
   },
   "dependencies": {
     "next": "16.2.7",

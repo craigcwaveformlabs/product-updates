@@ -121,6 +121,7 @@ export default function ContentStudioPage() {
   const [skipExistingIdsOnImport, setSkipExistingIdsOnImport] = useState(true);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const isViewerOnly = process.env.NEXT_PUBLIC_VIEWER_ONLY === "true";
 
   const selectedUpdate = useMemo(
     () => (selectedId ? updates.find((update) => update.id === selectedId) ?? null : null),
@@ -197,9 +198,14 @@ export default function ContentStudioPage() {
   };
 
   useEffect(() => {
+    if (isViewerOnly) {
+      setIsLoading(false);
+      return;
+    }
+
     void loadUpdates();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isViewerOnly]);
 
   useEffect(() => {
     if (!selectedUpdate || isCreating) {
@@ -598,6 +604,25 @@ export default function ContentStudioPage() {
     link.remove();
     URL.revokeObjectURL(url);
   };
+
+  if (isViewerOnly) {
+    return (
+      <div className="brand-shell min-h-screen p-6">
+        <div className="mx-auto mt-10 w-full max-w-2xl rounded-2xl border border-[#c5d5e8] bg-white p-6 text-center">
+          <h1 className="title-font text-2xl font-extrabold text-zinc-950">Content Studio unavailable</h1>
+          <p className="mt-3 text-sm text-[#4e6378]">
+            Content Studio is not available in the viewer-only static build.
+          </p>
+          <Link
+            href="/"
+            className="mt-5 inline-flex rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-bold text-zinc-800 hover:border-[#2461b8]"
+          >
+            Back to updates
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="brand-shell min-h-screen pb-12">

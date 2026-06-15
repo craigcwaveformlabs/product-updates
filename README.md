@@ -34,6 +34,37 @@ CONTENT_STUDIO_PASSWORD=your-strong-password
 
 When those variables are set, visiting `/content-studio` will prompt for the username and password.
 
+## Viewer-only Static Build (GitHub Pages)
+
+This repository includes a viewer-only static mode suitable for GitHub Pages.
+
+### Build locally
+
+```bash
+npm run build:static
+```
+
+Static output is generated in `out/`.
+
+The static build script temporarily excludes server-only routes (`app/api/*`) and proxy auth (`proxy.ts`) during export, then restores them automatically.
+
+### What is included
+
+- public updates viewer pages
+- static update detail pages (`/updates/[id]`)
+
+### What is excluded
+
+- Content Studio editing functionality
+- API route functionality (`/api/content/*`)
+
+### Deploy from GitHub Actions
+
+A workflow is provided at `.github/workflows/deploy-static-viewer.yml`.
+
+1. In GitHub repo settings, enable Pages and set source to GitHub Actions.
+2. Push to `main` (or run the workflow manually) to publish the static viewer.
+
 ## Editing Content
 
 You can start editing the main experience by modifying `app/page.tsx`. The page auto-updates as you edit the file.
