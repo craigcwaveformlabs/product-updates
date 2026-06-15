@@ -2,21 +2,41 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content Studio Access
+
+The Content Studio is available at `/content-studio`.
+
+In local development:
+
+- the Content Studio link is visible on the homepage
+- the studio is accessible without credentials by default
+
+In production:
+
+- the homepage link is hidden
+- `/content-studio` and `/api/content/*` are protected with HTTP Basic Auth
+- if credentials are not configured, those routes return `404`
+
+Set these environment variables in your deployment to enable access:
+
+```env
+CONTENT_STUDIO_USERNAME=your-username
+CONTENT_STUDIO_PASSWORD=your-strong-password
+```
+
+When those variables are set, visiting `/content-studio` will prompt for the username and password.
+
+## Editing Content
+
+You can start editing the main experience by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
@@ -33,7 +53,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out [the Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Project Docs
 

@@ -111,14 +111,30 @@ function isExternalUrl(url: string): boolean {
 export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedUpdate, setSelectedUpdate] = useState<ProductUpdate | null>(null);
   const [heroImageIndex, setHeroImageIndex] = useState(0);
 
   const filteredUpdates = useMemo(() => {
+    const normalizedSearch = searchQuery.trim().toLowerCase();
+
     const filtered = updates.filter((update) => {
       const hasStory = selectedStoryTag ? update.storyTags.includes(selectedStoryTag) : true;
       const hasTags = selectedTags.length ? selectedTags.every((tag) => update.tags.includes(tag)) : true;
-      return hasStory && hasTags;
+      const searchableText = [
+        update.id,
+        update.title,
+        update.summaryBody,
+        update.date,
+        ...update.tags,
+        ...update.storyTags,
+        ...(update.detailBody ?? []),
+        ...(update.detailBlocks?.map((block) => block.text) ?? []),
+      ]
+        .join(" ")
+        .toLowerCase();
+      const matchesSearch = normalizedSearch ? searchableText.includes(normalizedSearch) : true;
+      return hasStory && hasTags && matchesSearch;
     });
 
     // Sort: pinned updates first (story-specific when selected, default pins otherwise), then by date
@@ -134,7 +150,7 @@ export default function Page() {
       }
       return Date.parse(b.date) - Date.parse(a.date);
     });
-  }, [selectedStoryTag, selectedTags]);
+  }, [searchQuery, selectedStoryTag, selectedTags]);
 
   const previewUpdate = selectedUpdate;
   const activeHeroSlides = selectedStoryTag ? (heroSlidesByStory[selectedStoryTag] ?? []) : defaultHeroSlides;
@@ -172,6 +188,7 @@ export default function Page() {
   const clearFilters = () => {
     setSelectedTags([]);
     setSelectedStoryTag(null);
+    setSearchQuery("");
   };
 
   return (
@@ -246,15 +263,39 @@ export default function Page() {
           </aside>
 
           <section className="brand-panel mt-4 rounded-2xl p-4">
-            <h3 className="text-sm font-extrabold uppercase tracking-[0.08em] text-zinc-700">Content tools</h3>
-            <p className="mt-1 text-sm text-[#4e6378]">Create and edit update content from the studio.</p>
-            <Link
-              href="/content-studio"
-              className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-[#c5d5e8] bg-white px-3.5 py-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[#1a2e44] transition hover:border-[#2461b8]"
-            >
-              Open content studio
-            </Link>
+            <h3 className="text-sm font-extrabold uppercase tracking-[0.08em] text-zinc-700">Search updates</h3>
+            <p className="mt-1 text-sm text-[#4e6378]">Search across titles, summaries, IDs, tags, story tags, dates, and detail content.</p>
+            <div className="relative mt-3">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#6c8198]"
+              >
+                <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4" stroke="currentColor" strokeWidth="1.8">
+                  <circle cx="8.5" cy="8.5" r="5.25" />
+                  <path d="M12.5 12.5L16.25 16.25" strokeLinecap="round" />
+                </svg>
+              </span>
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Search any term"
+                className="w-full rounded-lg border border-[#c5d5e8] bg-white py-2 pl-10 pr-3 text-sm text-zinc-800"
+              />
+            </div>
           </section>
+
+          {process.env.NODE_ENV === "development" ? (
+            <section className="brand-panel mt-4 rounded-2xl p-4">
+              <h3 className="text-sm font-extrabold uppercase tracking-[0.08em] text-zinc-700">Content tools</h3>
+              <p className="mt-1 text-sm text-[#4e6378]">Create and edit update content from the studio.</p>
+              <Link
+                href="/content-studio"
+                className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-[#c5d5e8] bg-white px-3.5 py-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[#1a2e44] transition hover:border-[#2461b8]"
+              >
+                Open content studio
+              </Link>
+            </section>
+          ) : null}
         </div>
 
         <main className="w-full space-y-5">
