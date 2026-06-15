@@ -108,6 +108,20 @@ function isExternalUrl(url: string): boolean {
   return /^https?:\/\//i.test(url);
 }
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function withPublicBasePath(src: string): string {
+  if (!src.startsWith("/")) {
+    return src;
+  }
+
+  if (!publicBasePath) {
+    return src;
+  }
+
+  return `${publicBasePath}${src}`;
+}
+
 export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
@@ -337,7 +351,7 @@ export default function Page() {
               {activeHero.imageSrc ? (
                 <div className="relative h-[240px] w-[380px] max-w-full shrink-0 overflow-hidden rounded-xl bg-white/35">
                   <Image
-                    src={activeHero.imageSrc}
+                    src={withPublicBasePath(activeHero.imageSrc)}
                     alt={activeHero.imageAlt}
                     fill
                     unoptimized
@@ -379,7 +393,7 @@ export default function Page() {
             {filteredUpdates.map((update) => (
               <article key={update.id} className="brand-panel flex w-full flex-col overflow-hidden rounded-2xl p-4 sm:w-[360px]">
                 <Image
-                  src={update.imageSrc}
+                  src={withPublicBasePath(update.imageSrc)}
                   alt={update.imageAlt}
                   width={800}
                   height={420}
@@ -452,7 +466,7 @@ export default function Page() {
                 </button>
               </div>
               <Image
-                src={previewUpdate.imageSrc}
+                src={withPublicBasePath(previewUpdate.imageSrc)}
                 alt={previewUpdate.imageAlt}
                 width={1200}
                 height={630}

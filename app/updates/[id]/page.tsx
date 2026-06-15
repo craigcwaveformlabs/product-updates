@@ -8,6 +8,20 @@ type UpdatePageProps = {
   params: Promise<{ id: string }>;
 };
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function withPublicBasePath(src: string): string {
+  if (!src.startsWith("/")) {
+    return src;
+  }
+
+  if (!publicBasePath) {
+    return src;
+  }
+
+  return `${publicBasePath}${src}`;
+}
+
 export function generateStaticParams() {
   return updates.map((update) => ({ id: update.id }));
 }
@@ -39,7 +53,7 @@ export default async function UpdatePreviewPage({ params }: UpdatePageProps) {
         <article className="brand-panel overflow-hidden rounded-2xl">
           <div className="relative h-[280px] w-full bg-[#eaf2fb] sm:h-[360px]">
             <Image
-              src={update.imageSrc}
+              src={withPublicBasePath(update.imageSrc)}
               alt={update.imageAlt}
               fill
               className="object-cover"

@@ -4,6 +4,8 @@ import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
 const tempRoot = path.join(root, ".tmp-static-viewer");
+const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (process.env.GITHUB_ACTIONS === "true" && repoName ? `/${repoName}` : "");
 
 const moves = [
   { from: path.join(root, "app", "api"), to: path.join(tempRoot, "app-api") },
