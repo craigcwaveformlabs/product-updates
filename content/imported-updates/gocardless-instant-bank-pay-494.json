@@ -1,0 +1,16 @@
+{
+  "id": "gocardless-instant-bank-pay-494",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "GoCardless - Instant bank pay roadmap item preview image",
+  "date": "2025-06-01",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "GoCardless - Instant bank pay",
+  "summaryBody": "- Take instant payments (as well as direct debits) using GoCardless\n- Uses open banking functionality which avoids card transaction fees\n- Payee verifies payment via their banking app or online banking, rather than needing to enter card details",
+  "detailBody": [
+    "- Take instant payments (as well as direct debits) using GoCardless\n- Uses open banking functionality which avoids card transaction fees\n- Payee verifies payment via their banking app or online banking, rather than needing to enter card details"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=GoCardless%20-%20Instant%20bank%20pay"
+}

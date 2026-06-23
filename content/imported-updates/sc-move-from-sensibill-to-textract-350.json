@@ -1,0 +1,16 @@
+{
+  "id": "sc-move-from-sensibill-to-textract-350",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "SC: Move from Sensibill to Textract roadmap item preview image",
+  "date": "2025-10-15",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "SC: Move from Sensibill to Textract",
+  "summaryBody": "Moving away from Sensibill to a self-run service will save significant cost (estimated $75,000 → $10,00 per year), and increase the value proposition of SC by allowing faster extraction and extracting additional data.",
+  "detailBody": [
+    "Moving away from Sensibill to a self-run service will save significant cost (estimated $75,000 → $10,00 per year), and increase the value proposition of SC by allowing faster extraction and extracting additional data."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=SC%3A%20Move%20from%20Sensibill%20to%20Textract"
+}

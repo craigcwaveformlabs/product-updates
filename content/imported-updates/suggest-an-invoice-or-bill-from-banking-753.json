@@ -1,0 +1,17 @@
+{
+  "id": "suggest-an-invoice-or-bill-from-banking-753",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Suggest an Invoice or Bill from Banking roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Suggest an Invoice or Bill from Banking",
+  "summaryBody": "When transactions can’t be categorised because an invoice or bill doesn’t yet exist, suggest an invoice or bill and allow the users to create the bill or invoice and explain the transaction in minimal clicks.",
+  "detailBody": [
+    "When transactions can’t be categorised because an invoice or bill doesn’t yet exist, suggest an invoice or bill and allow the users to create the bill or invoice and explain the transaction in minimal clicks."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Suggest%20an%20Invoice%20or%20Bill%20from%20Banking"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "proforma-invoices-estimate-type-640",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Proforma invoices (estimate type) roadmap item preview image",
+  "date": "2025-07-25",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Proforma invoices (estimate type)",
+  "summaryBody": "Workflow-led project. Looking to deliver in C4 (TBD). This would likely be a small change for us and so we likely could accommodate it, with the biggest issue being that the new estimate type breaking the estimate list for those who don’t update to the new app version. We could make this less likely be releasing early behind a feature flag and letting Support know how to handle any issues. We would then capture all users when we do our force update in late-Oct/early-Nov.",
+  "detailBody": [
+    "Workflow-led project. Looking to deliver in C4 (TBD). This would likely be a small change for us and so we likely could accommodate it, with the biggest issue being that the new estimate type breaking the estimate list for those who don’t update to the new app version. We could make this less likely be releasing early behind a feature flag and letting Support know how to handle any issues. We would then capture all users when we do our force update in late-Oct/early-Nov."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Proforma%20invoices%20(estimate%20type)"
+}

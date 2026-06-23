@@ -1,0 +1,16 @@
+{
+  "id": "gocardless-instant-pay-446",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "GoCardless Instant Pay roadmap item preview image",
+  "date": "2025-06-01",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "GoCardless Instant Pay",
+  "summaryBody": "Workflow-led project. This is tied up in our Revenue Share agreement with GC. Instant Bank Pay will allow GC customers to request one off bank payments from their clients for whom they dn’t have DD mandates set up.",
+  "detailBody": [
+    "Workflow-led project. This is tied up in our Revenue Share agreement with GC. Instant Bank Pay will allow GC customers to request one off bank payments from their clients for whom they dn’t have DD mandates set up."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=GoCardless%20Instant%20Pay"
+}

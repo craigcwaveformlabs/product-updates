@@ -1,0 +1,16 @@
+{
+  "id": "data-importer-sales-implementation-793",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Data importer (Sales Implementation) roadmap item preview image",
+  "date": "2026-03-07",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Data importer (Sales Implementation)",
+  "summaryBody": "Enhance FreeAgent's data import capabilities, addressing significant friction points for high-volume users and the Sales Implementation team.",
+  "detailBody": [
+    "Enhance FreeAgent's data import capabilities, addressing significant friction points for high-volume users and the Sales Implementation team."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Data%20importer%20(Sales%20Implementation)"
+}

@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const updatesDir = path.join(root, "content", "updates");
+const manualUpdatesDir = path.join(root, "content", "updates");
+const importedUpdatesDir = path.join(root, "content", "imported-updates");
 const outputFile = path.join(root, "app", "content", "generated", "updates.generated.ts");
 
 function fail(message) {
@@ -13,14 +14,14 @@ function fail(message) {
 function assertString(obj, key, fileName) {
   const value = obj[key];
   if (typeof value !== "string" || !value.trim()) {
-    fail(`${fileName}: expected non-empty string field \"${key}\".`);
+    fail(`${fileName}: expected non-empty string field "${key}".`);
   }
 }
 
 function assertStringArray(obj, key, fileName) {
   const value = obj[key];
   if (!Array.isArray(value) || value.some((entry) => typeof entry !== "string" || !entry.trim())) {
-    fail(`${fileName}: expected string[] field \"${key}\".`);
+    fail(`${fileName}: expected string[] field "${key}".`);
   }
 }
 
@@ -96,7 +97,7 @@ function validateUpdate(raw, fileName) {
 
   const parsedDate = Date.parse(raw.date);
   if (Number.isNaN(parsedDate)) {
-    fail(`${fileName}: date \"${raw.date}\" is not parseable.`);
+    fail(`${fileName}: date "${raw.date}" is not parseable.`);
   }
 
   return {
@@ -117,34 +118,45 @@ function validateUpdate(raw, fileName) {
   };
 }
 
-if (!fs.existsSync(updatesDir)) {
-  fail(`Missing directory: ${updatesDir}`);
-}
-
-const files = fs
-  .readdirSync(updatesDir)
-  .filter((name) => name.endsWith(".json"))
-  .sort((a, b) => a.localeCompare(b));
-
-if (!files.length) {
-  fail("No update content files found in content/updates.");
-}
-
-const updates = files.map((fileName) => {
-  const fullPath = path.join(updatesDir, fileName);
-  let parsed;
-  try {
-    parsed = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-  } catch (error) {
-    fail(`${fileName}: invalid JSON. ${error instanceof Error ? error.message : String(error)}`);
+function readUpdateFilesFromDir(dirPath, label) {
+  if (!fs.existsSync(dirPath)) {
+    return [];
   }
-  return validateUpdate(parsed, fileName);
-});
+
+  const files = fs
+    .readdirSync(dirPath)
+    .filter((name) => name.endsWith(".json"))
+    .sort((a, b) => a.localeCompare(b));
+
+  return files.map((fileName) => {
+    const fullPath = path.join(dirPath, fileName);
+    let parsed;
+    try {
+      parsed = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+    } catch (error) {
+      fail(`${label}/${fileName}: invalid JSON. ${error instanceof Error ? error.message : String(error)}`);
+    }
+    return validateUpdate(parsed, `${label}/${fileName}`);
+  });
+}
+
+if (!fs.existsSync(manualUpdatesDir)) {
+  fail(`Missing directory: ${manualUpdatesDir}`);
+}
+
+const updates = [
+  ...readUpdateFilesFromDir(manualUpdatesDir, "content/updates"),
+  ...readUpdateFilesFromDir(importedUpdatesDir, "content/imported-updates"),
+];
+
+if (!updates.length) {
+  fail("No update content files found in content/updates or content/imported-updates.");
+}
 
 const idSet = new Set();
 for (const update of updates) {
   if (idSet.has(update.id)) {
-    fail(`Duplicate id detected: \"${update.id}\".`);
+    fail(`Duplicate id detected: "${update.id}".`);
   }
   idSet.add(update.id);
 }

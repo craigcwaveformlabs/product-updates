@@ -1,0 +1,17 @@
+{
+  "id": "gestures-on-lists-785",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Gestures on lists roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Gestures on lists",
+  "summaryBody": "Enable customers to perform popular actions quickly on items like invoices and expenses. Need to have migrated the list before we can implement gestures",
+  "detailBody": [
+    "Enable customers to perform popular actions quickly on items like invoices and expenses. Need to have migrated the list before we can implement gestures"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Gestures%20on%20lists"
+}

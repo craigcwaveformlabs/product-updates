@@ -1,0 +1,19 @@
+{
+  "id": "amazon-financial-api-endpoint-update-764",
+  "imageSrc": "/updates/connections-and-add-ons.png",
+  "imageAlt": "Amazon Financial API Endpoint Update roadmap item preview image",
+  "date": "2026-04-09",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-built-for-every-business",
+    "roadmap-drive-adoption-of-add-ons"
+  ],
+  "storyTags": [],
+  "title": "Amazon Financial API Endpoint Update",
+  "summaryBody": "Amazon are deprecating an api endpoint that is currently used to access transaction data. If we continue to provide Amazon as an add-on, then this api will need to be updated before Aug 2026",
+  "detailBody": [
+    "Amazon are deprecating an api endpoint that is currently used to access transaction data. If we continue to provide Amazon as an add-on, then this api will need to be updated before Aug 2026"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Amazon%20Financial%20API%20Endpoint%20Update"
+}

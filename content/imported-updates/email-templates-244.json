@@ -1,0 +1,17 @@
+{
+  "id": "email-templates-244",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Email templates roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Email templates",
+  "summaryBody": "Should we allow users to set up and edit email templates on mobile? We know that adjusting copy is annoying for them and that awareness is low of email templates. Could we build in a point in the mobile invoicing flow to get them to set up a template which is then used for that invoice email potentially?",
+  "detailBody": [
+    "Should we allow users to set up and edit email templates on mobile? We know that adjusting copy is annoying for them and that awareness is low of email templates. Could we build in a point in the mobile invoicing flow to get them to set up a template which is then used for that invoice email potentially?"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Email%20templates"
+}

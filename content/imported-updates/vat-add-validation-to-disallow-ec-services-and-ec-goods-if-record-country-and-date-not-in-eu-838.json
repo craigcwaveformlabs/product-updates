@@ -1,0 +1,14 @@
+{
+  "id": "vat-add-validation-to-disallow-ec-services-and-ec-goods-if-record-country-and-date-not-in-eu-838",
+  "imageSrc": "/updates/tax-engineering.png",
+  "imageAlt": "VAT - Add validation to disallow EC Services and EC Goods if record country and date not in EU. roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "VAT - Add validation to disallow EC Services and EC Goods if record country and date not in EU.",
+  "summaryBody": "VAT - Add validation to disallow EC Services and EC Goods if record country and date not in EU.",
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=VAT%20-%20Add%20validation%20to%20disallow%20EC%20Services%20and%20EC%20Goods%20if%20record%20country%20and%20date%20not%20in%20EU."
+}

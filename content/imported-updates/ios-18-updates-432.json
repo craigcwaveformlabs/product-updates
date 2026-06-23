@@ -1,0 +1,16 @@
+{
+  "id": "ios-18-updates-432",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "iOS 18 updates roadmap item preview image",
+  "date": "2025-05-14",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "iOS 18 updates",
+  "summaryBody": "We need to update iPad UX due to changes that will be enforced by Apple by April 2025. Otherwise our iPad version will break. Foundational work progressing & majority to be done involving full team (to some extent at least) in C1 and C2.",
+  "detailBody": [
+    "We need to update iPad UX due to changes that will be enforced by Apple by April 2025. Otherwise our iPad version will break. Foundational work progressing & majority to be done involving full team (to some extent at least) in C1 and C2."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=iOS%2018%20updates"
+}

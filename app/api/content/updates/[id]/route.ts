@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   assertValidId,
   deleteContentUpdate,
+  getContentUpdateSource,
   parseAndValidateUpdate,
   updateExists,
   writeContentUpdate,
@@ -14,8 +15,9 @@ export async function PUT(
   try {
     const { id } = await context.params;
     const normalizedId = assertValidId(id);
-    if (!(await updateExists(normalizedId))) {
-      return NextResponse.json({ error: `Update \"${normalizedId}\" was not found.` }, { status: 404 });
+    const source = await getContentUpdateSource(normalizedId);
+    if (!source || !(await updateExists(normalizedId))) {
+      return NextResponse.json({ error: `Update "${normalizedId}" was not found.` }, { status: 404 });
     }
 
     const payload = await request.json();
@@ -24,7 +26,7 @@ export async function PUT(
       return NextResponse.json({ error: "Id in URL must match id in payload." }, { status: 400 });
     }
 
-    await writeContentUpdate(parsed);
+    await writeContentUpdate(parsed, source);
     return NextResponse.json({ update: parsed });
   } catch (error) {
     return NextResponse.json(
@@ -42,7 +44,7 @@ export async function DELETE(
     const { id } = await context.params;
     const normalizedId = assertValidId(id);
     if (!(await updateExists(normalizedId))) {
-      return NextResponse.json({ error: `Update \"${normalizedId}\" was not found.` }, { status: 404 });
+      return NextResponse.json({ error: `Update "${normalizedId}" was not found.` }, { status: 404 });
     }
 
     await deleteContentUpdate(normalizedId);

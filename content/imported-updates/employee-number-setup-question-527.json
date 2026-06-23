@@ -1,0 +1,16 @@
+{
+  "id": "employee-number-setup-question-527",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Employee number setup question roadmap item preview image",
+  "date": "2025-07-03",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Employee number setup question",
+  "summaryBody": "We want to be able to track how many employees a company has during setup so we can measure our onboarding for micro plus and small business vs our traditional cohort.",
+  "detailBody": [
+    "We want to be able to track how many employees a company has during setup so we can measure our onboarding for micro plus and small business vs our traditional cohort."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Employee%20number%20setup%20question"
+}

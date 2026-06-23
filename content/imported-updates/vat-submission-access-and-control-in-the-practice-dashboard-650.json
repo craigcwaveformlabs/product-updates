@@ -1,0 +1,17 @@
+{
+  "id": "vat-submission-access-and-control-in-the-practice-dashboard-650",
+  "imageSrc": "/updates/tax-engineering.png",
+  "imageAlt": "VAT - Submission access & control in the practice dashboard roadmap item preview image",
+  "date": "2026-06-22",
+  "tags": [
+    "roadmap",
+    "roadmap-built-for-every-business"
+  ],
+  "storyTags": [],
+  "title": "VAT - Submission access & control in the practice dashboard",
+  "summaryBody": "As FreeAgent continues to grow within the accountancy practice market, we’re increasingly supporting experienced accountants and bookkeepers who need greater control over how they manage client submissions. Today, submission permissions in FreeAgent are largely fixed, offering limited flexibility around who can view, approve, or make submissions on behalf of a client. After introducing granular permissions for MTD for Income Tax, we’re rolling this out to VAT also.",
+  "detailBody": [
+    "As FreeAgent continues to grow within the accountancy practice market, we’re increasingly supporting experienced accountants and bookkeepers who need greater control over how they manage client submissions. Today, submission permissions in FreeAgent are largely fixed, offering limited flexibility around who can view, approve, or make submissions on behalf of a client. After introducing granular permissions for MTD for Income Tax, we’re rolling this out to VAT also."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=VAT%20-%20Submission%20access%20%26%20control%20in%20the%20practice%20dashboard"
+}

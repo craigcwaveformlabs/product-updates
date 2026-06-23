@@ -24,7 +24,15 @@ export type ContentUpdate = {
   pinInDefaultView?: boolean;
 };
 
-const updatesDir = path.join(process.cwd(), "content", "updates");
+export type ContentUpdateSource = "manual" | "imported";
+
+const manualUpdatesDir = path.join(process.cwd(), "content", "updates");
+const importedUpdatesDir = path.join(process.cwd(), "content", "imported-updates");
+
+const updatesDirs: Record<ContentUpdateSource, string> = {
+  manual: manualUpdatesDir,
+  imported: importedUpdatesDir,
+};
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -60,7 +68,6 @@ function assertBoolean(value: unknown, field: string): boolean {
   return value;
 }
 
-
 function assertDetailBlocks(value: unknown): DetailBlock[] {
   if (!Array.isArray(value)) {
     throw new Error("Expected detailBlocks to be an array.");
@@ -83,6 +90,45 @@ function assertDetailBlocks(value: unknown): DetailBlock[] {
       text,
     } as DetailBlock;
   });
+}
+
+async function ensureUpdatesDir(source: ContentUpdateSource): Promise<void> {
+  await fs.mkdir(updatesDirs[source], { recursive: true });
+}
+
+function toUpdateFilePath(id: string, source: ContentUpdateSource): string {
+  return path.join(updatesDirs[source], `${id}.json`);
+}
+
+async function findUpdateSource(id: string): Promise<ContentUpdateSource | null> {
+  for (const source of ["manual", "imported"] as const) {
+    try {
+      await fs.access(toUpdateFilePath(id, source));
+      return source;
+    } catch {
+      // Keep searching.
+    }
+  }
+  return null;
+}
+
+async function listContentUpdatesFromDir(source: ContentUpdateSource): Promise<ContentUpdate[]> {
+  try {
+    const files = (await fs.readdir(updatesDirs[source])).filter((name) => name.endsWith(".json")).sort();
+    return await Promise.all(
+      files.map(async (fileName) => {
+        const fullPath = path.join(updatesDirs[source], fileName);
+        const raw = await fs.readFile(fullPath, "utf8");
+        const parsed = JSON.parse(raw) as unknown;
+        return parseAndValidateUpdate(parsed);
+      }),
+    );
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
 }
 
 export function assertValidId(id: string): string {
@@ -109,7 +155,7 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
   const storyTags = assertKebabCaseArray(payload.storyTags, "storyTags");
 
   if (Number.isNaN(Date.parse(date))) {
-    throw new Error(`Date \"${date}\" is not parseable.`);
+    throw new Error(`Date "${date}" is not parseable.`);
   }
 
   const detailBodyRaw = payload.detailBody;
@@ -125,6 +171,7 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
     const parsed = assertDetailBlocks(detailBlocksRaw);
     detailBlocks = parsed.length ? parsed : undefined;
   }
+
   const pinnedForStoriesRaw = payload.pinnedForStories;
   let pinnedForStories: string[] | undefined;
   if (pinnedForStoriesRaw !== undefined) {
@@ -156,38 +203,59 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
 }
 
 export async function listContentUpdates(): Promise<ContentUpdate[]> {
-  const files = (await fs.readdir(updatesDir)).filter((name) => name.endsWith(".json")).sort();
-  const updates = await Promise.all(
-    files.map(async (fileName) => {
-      const fullPath = path.join(updatesDir, fileName);
-      const raw = await fs.readFile(fullPath, "utf8");
-      const parsed = JSON.parse(raw) as unknown;
-      const validated = parseAndValidateUpdate(parsed);
-      return validated;
-    }),
-  );
+  const manualUpdates = await listContentUpdatesFromDir("manual");
+  const importedUpdates = await listContentUpdatesFromDir("imported");
+  const updates = [...manualUpdates, ...importedUpdates];
+
+  const seenIds = new Set<string>();
+  for (const update of updates) {
+    if (seenIds.has(update.id)) {
+      throw new Error(`Duplicate id "${update.id}" exists across manual and imported content.`);
+    }
+    seenIds.add(update.id);
+  }
 
   updates.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   return updates;
 }
 
-export async function updateExists(id: string): Promise<boolean> {
-  const filePath = path.join(updatesDir, `${id}.json`);
-  try {
-    await fs.access(filePath);
-    return true;
-  } catch {
-    return false;
-  }
+export async function getContentUpdateSource(id: string): Promise<ContentUpdateSource | null> {
+  const normalizedId = assertValidId(id);
+  return findUpdateSource(normalizedId);
 }
 
-export async function writeContentUpdate(update: ContentUpdate): Promise<void> {
-  const filePath = path.join(updatesDir, `${update.id}.json`);
+export async function updateExists(id: string): Promise<boolean> {
+  const normalizedId = assertValidId(id);
+  return (await findUpdateSource(normalizedId)) !== null;
+}
+
+export async function writeContentUpdate(
+  update: ContentUpdate,
+  source: ContentUpdateSource = "manual",
+): Promise<void> {
+  await ensureUpdatesDir(source);
+  const filePath = toUpdateFilePath(update.id, source);
   await fs.writeFile(filePath, `${JSON.stringify(update, null, 2)}\n`, "utf8");
 }
 
 export async function deleteContentUpdate(id: string): Promise<void> {
   const normalized = assertValidId(id);
-  const filePath = path.join(updatesDir, `${normalized}.json`);
-  await fs.unlink(filePath);
+  const source = await findUpdateSource(normalized);
+  if (!source) {
+    throw new Error(`Update "${normalized}" was not found.`);
+  }
+  await fs.unlink(toUpdateFilePath(normalized, source));
+}
+
+export async function deleteImportedContentUpdates(): Promise<number> {
+  try {
+    const files = (await fs.readdir(importedUpdatesDir)).filter((name) => name.endsWith(".json"));
+    await Promise.all(files.map((fileName) => fs.unlink(path.join(importedUpdatesDir, fileName))));
+    return files.length;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return 0;
+    }
+    throw error;
+  }
 }

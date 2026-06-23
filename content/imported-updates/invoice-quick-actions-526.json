@@ -1,0 +1,16 @@
+{
+  "id": "invoice-quick-actions-526",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Invoice quick actions roadmap item preview image",
+  "date": "2025-10-06",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Invoice quick actions",
+  "summaryBody": "We’ll add key “Quick actions” to the Invoice table to help speed up the key journeys (eg view, mark as draft/sent, download PDF, delete draft, resend, email reminder). This is the first step towards adding bulk actions to the Invoice table.",
+  "detailBody": [
+    "We’ll add key “Quick actions” to the Invoice table to help speed up the key journeys (eg view, mark as draft/sent, download PDF, delete draft, resend, email reminder). This is the first step towards adding bulk actions to the Invoice table."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Invoice%20quick%20actions"
+}

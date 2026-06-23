@@ -1,0 +1,18 @@
+{
+  "id": "import-invoice-data-practice-tool-756",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Import Invoice data (practice tool) roadmap item preview image",
+  "date": "2026-07-14",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-built-for-every-business"
+  ],
+  "storyTags": [],
+  "title": "Import Invoice data (practice tool)",
+  "summaryBody": "Extend our internal invoice import tool to allow practices to migrate clients’ invoices",
+  "detailBody": [
+    "Extend our internal invoice import tool to allow practices to migrate clients’ invoices"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Import%20Invoice%20data%20(practice%20tool)"
+}

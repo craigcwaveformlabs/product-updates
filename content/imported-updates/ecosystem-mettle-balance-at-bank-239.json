@@ -1,0 +1,18 @@
+{
+  "id": "ecosystem-mettle-balance-at-bank-239",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Ecosystem - Mettle - Balance at Bank roadmap item preview image",
+  "date": "2026-12-31",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-get-mtd-done"
+  ],
+  "storyTags": [],
+  "title": "Ecosystem - Mettle - Balance at Bank",
+  "summaryBody": "Help customers reconcile Mettle accounts by surfacing their current Mettle balance in FreeAgent",
+  "detailBody": [
+    "Help customers reconcile Mettle accounts by surfacing their current Mettle balance in FreeAgent"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Ecosystem%20-%20Mettle%20-%20Balance%20at%20Bank"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sentry-error-reduction-940",
+  "imageSrc": "/updates/marketing-platform.png",
+  "imageAlt": "Sentry error reduction roadmap item preview image",
+  "date": "2026-09-07",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Sentry error reduction",
+  "summaryBody": "Reduce the number of Sentry errors reported on the website by leveraging on AI tools",
+  "detailBody": [
+    "Reduce the number of Sentry errors reported on the website by leveraging on AI tools"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Sentry%20error%20reduction"
+}

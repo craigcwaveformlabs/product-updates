@@ -1,0 +1,17 @@
+{
+  "id": "suggest-an-invoice-based-on-contact-history-755",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Suggest an Invoice based on Contact history roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Suggest an Invoice based on Contact history",
+  "summaryBody": "When a user selects a contact when creating an invoice, if we see a pattern in the contact history, suggest an invoice based on the previous invoice",
+  "detailBody": [
+    "When a user selects a contact when creating an invoice, if we see a pattern in the contact history, suggest an invoice based on the previous invoice"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Suggest%20an%20Invoice%20based%20on%20Contact%20history"
+}

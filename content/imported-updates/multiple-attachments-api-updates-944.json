@@ -1,0 +1,17 @@
+{
+  "id": "multiple-attachments-api-updates-944",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Multiple attachments - API updates roadmap item preview image",
+  "date": "2026-08-30",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Multiple attachments - API updates",
+  "summaryBody": "Allows our API to mirror our web app functionality for multiple attachments, to enable Mobile and any others using it to enable that functionality",
+  "detailBody": [
+    "Allows our API to mirror our web app functionality for multiple attachments, to enable Mobile and any others using it to enable that functionality"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Multiple%20attachments%20-%20API%20updates"
+}

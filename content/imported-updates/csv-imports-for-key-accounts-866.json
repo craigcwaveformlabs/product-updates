@@ -1,0 +1,16 @@
+{
+  "id": "csv-imports-for-key-accounts-866",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "CSV imports for Key Accounts roadmap item preview image",
+  "date": "2026-04-30",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "CSV imports for Key Accounts",
+  "summaryBody": "Selected practices can import transactions and explanations with a single CSV file",
+  "detailBody": [
+    "Selected practices can import transactions and explanations with a single CSV file"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=CSV%20imports%20for%20Key%20Accounts"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "move-monzo-to-api-bank-feeds-645",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Move Monzo to API Bank Feeds roadmap item preview image",
+  "date": "2026-02-27",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Move Monzo to API Bank Feeds",
+  "summaryBody": "Customers have a more solid integration, and we open the door to a wider integration with Monzo",
+  "detailBody": [
+    "Customers have a more solid integration, and we open the door to a wider integration with Monzo"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Move%20Monzo%20to%20API%20Bank%20Feeds"
+}

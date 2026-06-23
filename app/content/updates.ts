@@ -1,7 +1,7 @@
 import { updates as generatedUpdates } from "./generated/updates.generated";
 
 // Content editing checklist:
-// 1) Product card content: edit files in content/updates/*.json.
+// 1) Product card content: manual files live in content/updates/*.json and imported files live in content/imported-updates/*.json.
 // 2) Regenerate content: run `npm run content:generate`.
 // 3) Hero slides/copy/images by story: edit `heroSlidesByStory`.
 // 4) Hero solid background colors by story: edit `heroColorByStory`.
@@ -54,8 +54,20 @@ export const updates: ProductUpdate[] = generatedUpdates as ProductUpdate[];
 
 export const allTags = Array.from(new Set(updates.flatMap((update) => update.tags))).sort();
 
+function tagToLabel(tag: UpdateTag): string {
+  if (tag === "roadmap") {
+    return "Roadmap";
+  }
+
+  if (tag.startsWith("roadmap-")) {
+    return slugToLabel(tag.slice("roadmap-".length));
+  }
+
+  return slugToLabel(tag);
+}
+
 export const tagLabel: Record<UpdateTag, string> = Object.fromEntries(
-  allTags.map((tag) => [tag, slugToLabel(tag)]),
+  allTags.map((tag) => [tag, tagToLabel(tag)]),
 );
 
 // Hero carousel content per story tag.

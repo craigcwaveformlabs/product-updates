@@ -1,0 +1,16 @@
+{
+  "id": "stripe-payments-reconciliation-200",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Stripe payments reconciliation roadmap item preview image",
+  "date": "2025-04-10",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Stripe payments reconciliation",
+  "summaryBody": "Reconciling Stripe payments within FreeAgent will lead to a premium experience for our customers, whilst also increasing the number of customers who opt to use Stripe as a payment method, and therefore our revenue share.",
+  "detailBody": [
+    "Reconciling Stripe payments within FreeAgent will lead to a premium experience for our customers, whilst also increasing the number of customers who opt to use Stripe as a payment method, and therefore our revenue share."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Stripe%20payments%20reconciliation"
+}

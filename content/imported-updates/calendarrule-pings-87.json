@@ -1,0 +1,16 @@
+{
+  "id": "calendarrule-pings-87",
+  "imageSrc": "/updates/default-3.png",
+  "imageAlt": "CalendarRule pings roadmap item preview image",
+  "date": "2024-05-09",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "CalendarRule pings",
+  "summaryBody": "Update the CalendarRule SQL logic and refactor it to join the new accounting changes tables",
+  "detailBody": [
+    "Update the CalendarRule SQL logic and refactor it to join the new accounting changes tables"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=CalendarRule%20pings"
+}

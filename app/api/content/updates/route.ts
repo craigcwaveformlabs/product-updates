@@ -23,10 +23,10 @@ export async function POST(request: Request) {
     const payload = await request.json();
     const update = parseAndValidateUpdate(payload);
     if (await updateExists(update.id)) {
-      return NextResponse.json({ error: `Update \"${update.id}\" already exists.` }, { status: 409 });
+      return NextResponse.json({ error: `Update "${update.id}" already exists.` }, { status: 409 });
     }
 
-    await writeContentUpdate(update);
+    await writeContentUpdate(update, "manual");
     return NextResponse.json({ update }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

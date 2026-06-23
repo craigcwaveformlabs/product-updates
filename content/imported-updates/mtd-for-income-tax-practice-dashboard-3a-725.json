@@ -1,0 +1,16 @@
+{
+  "id": "mtd-for-income-tax-practice-dashboard-3a-725",
+  "imageSrc": "/updates/practice-experience.png",
+  "imageAlt": "MTD for Income Tax | practice dashboard #3a roadmap item preview image",
+  "date": "2026-04-05",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "MTD for Income Tax | practice dashboard #3a",
+  "summaryBody": "How might we provide accountants/bookkeepers with a consolidated view of their clients' MTD IT obligations, so that compliance can be managed efficiently and they provide clients with timely, informed advice?\n\nPhase #1 - show upcoming submissions\nPhase #2 - show filed submissions, show client approval status, Alert rule - submission due in less than xx days\nPhase #3a - bulk actions (file, mark as filed, sent to client for approval)\nPhase #3b - denote automated submissions, implicit/explicit submissions, move from Reports > Primary nav",
+  "detailBody": [
+    "How might we provide accountants/bookkeepers with a consolidated view of their clients' MTD IT obligations, so that compliance can be managed efficiently and they provide clients with timely, informed advice?\n\nPhase #1 - show upcoming submissions\nPhase #2 - show filed submissions, show client approval status, Alert rule - submission due in less than xx days\nPhase #3a - bulk actions (file, mark as filed, sent to client for approval)\nPhase #3b - denote automated submissions, implicit/explicit submissions, move from Reports > Primary nav"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=MTD%20for%20Income%20Tax%20%7C%20practice%20dashboard%20%233a"
+}

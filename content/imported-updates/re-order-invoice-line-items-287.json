@@ -1,0 +1,17 @@
+{
+  "id": "re-order-invoice-line-items-287",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Re-order invoice line items roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Re-order invoice line items",
+  "summaryBody": "From ‘remove friction from invoicing journey’ proposal. Blocked by SwiftUI migration for iOS, which is likely a Large project. There also would be performance issues we’d need to revisit/tackle for both platforms (i.e. when re-order items would then ‘save’ the invoice again which would ultimately be resource-intensive for those with many line items).",
+  "detailBody": [
+    "From ‘remove friction from invoicing journey’ proposal. Blocked by SwiftUI migration for iOS, which is likely a Large project. There also would be performance issues we’d need to revisit/tackle for both platforms (i.e. when re-order items would then ‘save’ the invoice again which would ultimately be resource-intensive for those with many line items)."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Re-order%20invoice%20line%20items"
+}

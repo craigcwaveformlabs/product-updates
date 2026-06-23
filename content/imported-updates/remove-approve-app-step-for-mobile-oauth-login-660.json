@@ -1,0 +1,17 @@
+{
+  "id": "remove-approve-app-step-for-mobile-oauth-login-660",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Remove ‘approve app’ step for mobile OAuth login roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Remove ‘approve app’ step for mobile OAuth login",
+  "summaryBody": "We’re initially releasing OAuth login with an ‘approve app’ step, but we could remove this for the mobile app specifically by implementing app attestation. Estimated at about 1-2 sprints of work, and would require some time from Core Services",
+  "detailBody": [
+    "We’re initially releasing OAuth login with an ‘approve app’ step, but we could remove this for the mobile app specifically by implementing app attestation. Estimated at about 1-2 sprints of work, and would require some time from Core Services"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Remove%20%E2%80%98approve%20app%E2%80%99%20step%20for%20mobile%20OAuth%20login"
+}

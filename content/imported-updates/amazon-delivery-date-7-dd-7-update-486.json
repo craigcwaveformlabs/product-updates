@@ -1,0 +1,19 @@
+{
+  "id": "amazon-delivery-date-7-dd-7-update-486",
+  "imageSrc": "/updates/connections-and-add-ons.png",
+  "imageAlt": "Amazon Delivery Date + 7 (DD+7) Update roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-built-for-every-business",
+    "roadmap-drive-adoption-of-add-ons"
+  ],
+  "storyTags": [],
+  "title": "Amazon Delivery Date + 7 (DD+7) Update",
+  "summaryBody": "Based on output from the linked RFD below, we will update our KB articles to communicate out stance on the current issue identified by all 3rd party integrators in the UK who pull Amazon data, thus unblocking our marketing push. \nThis project does not provide any material change to the functionality offered by the integration.",
+  "detailBody": [
+    "Based on output from the linked RFD below, we will update our KB articles to communicate out stance on the current issue identified by all 3rd party integrators in the UK who pull Amazon data, thus unblocking our marketing push. \nThis project does not provide any material change to the functionality offered by the integration."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Amazon%20Delivery%20Date%20%2B%207%20(DD%2B7)%20Update"
+}

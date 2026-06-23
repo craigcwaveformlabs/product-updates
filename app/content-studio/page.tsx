@@ -11,6 +11,10 @@ type DetailBlock = {
   text: string;
 };
 
+type ImportFormat = "default" | "notion-roadmap";
+type ImportPreviewActionFilter = "all" | "create" | "update" | "skip";
+type ImportJobStatus = "idle" | "in-progress" | "success" | "error";
+
 type ContentUpdate = {
   id: string;
   imageSrc: string;
@@ -25,6 +29,27 @@ type ContentUpdate = {
   readMoreUrl: string;
   pinnedForStories?: string[];
   pinInDefaultView?: boolean;
+};
+
+type ImportPreviewRow = {
+  rowNumber: number;
+  id: string;
+  title: string;
+  imageSrc: string;
+  readMoreUrl: string;
+  tags: string[];
+  storyTags: string[];
+  exists: boolean;
+  action: "create" | "update" | "skip";
+};
+
+type NotionImportFilterOptions = {
+  excludeInternalProject: boolean;
+  requireDates: boolean;
+  dateScope: "future-window" | "all-time";
+  futureYears: number;
+  allowedStatuses: string[];
+  allowedTeams: string[];
 };
 
 const createEmptyDraft = (): ContentUpdate => ({
@@ -100,6 +125,13 @@ function blockTypeLabel(type: DetailBlockType): string {
   return "Body";
 }
 
+function parseFilterListInput(value: string): string[] {
+  return value
+    .split(/[\n,]/)
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
 export default function ContentStudioPage() {
   const [updates, setUpdates] = useState<ContentUpdate[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -117,8 +149,22 @@ export default function ContentStudioPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
+  const [isPreviewingImport, setIsPreviewingImport] = useState(false);
+  const [isDeletingImported, setIsDeletingImported] = useState(false);
+  const [importJobStatus, setImportJobStatus] = useState<ImportJobStatus>("idle");
+  const [importJobDetail, setImportJobDetail] = useState("No import run yet.");
   const [csvFile, setCsvFile] = useState<File | null>(null);
+  const [importFormat, setImportFormat] = useState<ImportFormat>("default");
   const [skipExistingIdsOnImport, setSkipExistingIdsOnImport] = useState(true);
+  const [importPreviewRows, setImportPreviewRows] = useState<ImportPreviewRow[]>([]);
+  const [importPreviewFilter, setImportPreviewFilter] = useState<ImportPreviewActionFilter>("all");
+  const [notionStatusFilterText, setNotionStatusFilterText] = useState("Proposal - In Progress\nProposal - For Review\nBacklog\nDefine\nBuild");
+  const [notionTeamFilterText, setNotionTeamFilterText] = useState("Connections & Add-ons\nWorkflow\nBanking Integrations\nPractice Experience\nTax Engineering\nMobile\nMarketing Platform\nPractice Growth");
+  const [notionDateScope, setNotionDateScope] = useState<"future-window" | "all-time">("future-window");
+  const [notionFutureYears, setNotionFutureYears] = useState("4");
+  const [notionExcludeInternalProject, setNotionExcludeInternalProject] = useState(true);
+  const [notionRequireDates, setNotionRequireDates] = useState(true);
+  const [activeNotionFilters, setActiveNotionFilters] = useState<NotionImportFilterOptions | null>(null);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const isViewerOnly = process.env.NEXT_PUBLIC_VIEWER_ONLY === "true";
@@ -169,6 +215,65 @@ export default function ContentStudioPage() {
       return matchesStory && matchesIdOrTag;
     });
   }, [sidebarIdSearch, sidebarStoryTagFilter, updates]);
+
+
+  const importPreviewCounts = useMemo(() => {
+    return importPreviewRows.reduce(
+      (acc, row) => {
+        acc[row.action] += 1;
+        return acc;
+      },
+      { create: 0, update: 0, skip: 0 },
+    );
+  }, [importPreviewRows]);
+
+  const visibleImportPreviewRows = useMemo(() => {
+    if (importPreviewFilter === "all") {
+      return importPreviewRows;
+    }
+
+    return importPreviewRows.filter((row) => row.action === importPreviewFilter);
+  }, [importPreviewFilter, importPreviewRows]);
+
+
+  const notionFilterOptions = useMemo<NotionImportFilterOptions>(() => {
+    const parsedYears = Number.parseInt(notionFutureYears, 10);
+    return {
+      excludeInternalProject: notionExcludeInternalProject,
+      requireDates: notionRequireDates,
+      dateScope: notionDateScope,
+      futureYears: Number.isFinite(parsedYears) && parsedYears >= 0 ? parsedYears : 4,
+      allowedStatuses: parseFilterListInput(notionStatusFilterText),
+      allowedTeams: parseFilterListInput(notionTeamFilterText),
+    };
+  }, [
+    notionDateScope,
+    notionExcludeInternalProject,
+    notionFutureYears,
+    notionRequireDates,
+    notionStatusFilterText,
+    notionTeamFilterText,
+  ]);
+
+  const notionFilterSummaryLines = useMemo(() => {
+    return [
+      notionFilterOptions.excludeInternalProject
+        ? "Exclude rows where Team / Internal project is ticked"
+        : "Allow internal project rows",
+      notionFilterOptions.requireDates ? "Require Dates value" : "Dates value optional",
+      notionFilterOptions.dateScope === "all-time"
+        ? "Date scope: All time"
+        : `Date scope: Within next ${notionFilterOptions.futureYears} year(s)`,
+      `Allowed statuses: ${
+        notionFilterOptions.allowedStatuses.length
+          ? notionFilterOptions.allowedStatuses.join(", ")
+          : "(none)"
+      }`,
+      `Allowed teams: ${
+        notionFilterOptions.allowedTeams.length ? notionFilterOptions.allowedTeams.join(", ") : "(none)"
+      }`,
+    ];
+  }, [notionFilterOptions]);
 
   const loadUpdates = async () => {
     setIsLoading(true);
@@ -444,13 +549,13 @@ export default function ContentStudioPage() {
     }
   };
 
-  const importCsv = async () => {
+  const previewImport = async () => {
     if (!csvFile) {
       setError("Select a CSV file first.");
       return;
     }
 
-    setIsImporting(true);
+    setIsPreviewingImport(true);
     setError("");
     setMessage("");
 
@@ -459,7 +564,13 @@ export default function ContentStudioPage() {
       const response = await fetch("/api/content/import", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ csv, skipExistingIds: skipExistingIdsOnImport }),
+        body: JSON.stringify({
+          csv,
+          skipExistingIds: skipExistingIdsOnImport,
+          importFormat,
+          previewOnly: true,
+          notionFilterOptions: importFormat === "notion-roadmap" ? notionFilterOptions : undefined,
+        }),
       });
 
       const payload = (await response.json()) as {
@@ -469,21 +580,120 @@ export default function ContentStudioPage() {
         createdCount?: number;
         updatedCount?: number;
         skippedCount?: number;
+        filteredCount?: number;
+        previewRows?: ImportPreviewRow[];
+        activeNotionFilters?: NotionImportFilterOptions | null;
+      };
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error ?? "Failed to preview CSV import.");
+      }
+
+      setImportPreviewRows(payload.previewRows ?? []);
+      setImportPreviewFilter("all");
+      setActiveNotionFilters(payload.activeNotionFilters ?? null);
+      setMessage(
+        `Previewed ${payload.importedCount ?? 0} rows (${payload.createdCount ?? 0} create, ${payload.updatedCount ?? 0} update, ${payload.skippedCount ?? 0} skip, ${payload.filteredCount ?? 0} filtered).`,
+      );
+    } catch (previewError) {
+      setError(previewError instanceof Error ? previewError.message : "Failed to preview CSV import.");
+    } finally {
+      setIsPreviewingImport(false);
+    }
+  };
+
+  const importCsv = async () => {
+    if (!csvFile) {
+      setError("Select a CSV file first.");
+      return;
+    }
+
+    setIsImporting(true);
+    setError("");
+    setMessage("");
+    setImportJobStatus("in-progress");
+    setImportJobDetail("Import in progress...");
+
+    try {
+      const csv = await csvFile.text();
+      const response = await fetch("/api/content/import", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          csv,
+          skipExistingIds: skipExistingIdsOnImport,
+          importFormat,
+          notionFilterOptions: importFormat === "notion-roadmap" ? notionFilterOptions : undefined,
+        }),
+      });
+
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+        importedCount?: number;
+        createdCount?: number;
+        updatedCount?: number;
+        skippedCount?: number;
+        filteredCount?: number;
+        activeNotionFilters?: NotionImportFilterOptions | null;
       };
 
       if (!response.ok || !payload.ok) {
         throw new Error(payload.error ?? "Failed to import CSV.");
       }
 
-      setMessage(
-        `Processed ${payload.importedCount ?? 0} rows (${payload.createdCount ?? 0} created, ${payload.updatedCount ?? 0} updated, ${payload.skippedCount ?? 0} skipped).`,
-      );
+      const importSummary = `${importFormat === "notion-roadmap" ? "Imported Notion export" : "Processed CSV"} ${payload.importedCount ?? 0} rows (${payload.createdCount ?? 0} created, ${payload.updatedCount ?? 0} updated, ${payload.skippedCount ?? 0} skipped, ${payload.filteredCount ?? 0} filtered).`;
+      setMessage(importSummary);
+      setImportJobStatus("success");
+      setImportJobDetail(importSummary);
+      setActiveNotionFilters(payload.activeNotionFilters ?? null);
+      setImportPreviewRows([]);
+      setImportPreviewFilter("all");
       setCsvFile(null);
       await loadUpdates();
     } catch (importError) {
-      setError(importError instanceof Error ? importError.message : "Failed to import CSV.");
+      const importErrorMessage = importError instanceof Error ? importError.message : "Failed to import CSV.";
+      setError(importErrorMessage);
+      setImportJobStatus("error");
+      setImportJobDetail(importErrorMessage);
     } finally {
       setIsImporting(false);
+    }
+  };
+
+
+  const deleteImportedUpdates = async () => {
+    const confirmed = window.confirm(
+      "Delete all imported updates? This only removes files from content/imported-updates and keeps your manual updates in content/updates.",
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    setIsDeletingImported(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/content/imported", { method: "DELETE" });
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+        deletedCount?: number;
+      };
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error ?? "Failed to delete imported updates.");
+      }
+
+      setImportPreviewRows([]);
+      setImportPreviewFilter("all");
+      setMessage(`Deleted ${payload.deletedCount ?? 0} imported update(s).`);
+      await loadUpdates();
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : "Failed to delete imported updates.");
+    } finally {
+      setIsDeletingImported(false);
     }
   };
 
@@ -537,6 +747,49 @@ export default function ContentStudioPage() {
     const link = document.createElement("a");
     link.href = url;
     link.download = includeSampleRow ? "content-updates-template.csv" : "content-updates-template-blank.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadNotionRoadmapTemplate = () => {
+    const headers = [
+      "Project name",
+      "Status",
+      "Impact",
+      "Product Story",
+      "Dates",
+      "End month",
+      "ID",
+    ];
+
+    const sampleRow = [
+      "Smarter bank feed matching",
+      "In Progress",
+      "Improve matching logic for recurring feed transactions.",
+      "transformative-accounting",
+      "2026-07-01",
+      "",
+      "smarter-bank-feed-matching",
+    ];
+
+    const escapeCsvField = (value: string) => {
+      if (/[",\n]/.test(value)) {
+        return `"${value.replace(/"/g, '""')}"`;
+      }
+      return value;
+    };
+
+    const csv = [headers, sampleRow]
+      .map((row) => row.map((value) => escapeCsvField(String(value))).join(","))
+      .join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "notion-roadmap-import-template.csv";
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -628,83 +881,199 @@ export default function ContentStudioPage() {
     <div className="brand-shell min-h-screen pb-12">
       <div className="mx-auto w-full max-w-[1400px] px-3 pt-6 sm:px-4 lg:px-6">
         <header className="brand-panel rounded-2xl p-5">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="space-y-4">
             <div>
               <h1 className="title-font text-3xl font-extrabold text-zinc-950">Content Studio</h1>
               <p className="mt-1 text-sm text-[#4e6378]">
                 Create and edit product update cards, import updates from CSV, then regenerate app content.
               </p>
               <p className="mt-2 text-xs text-[#4e6378]">
-                CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories,pinInDefaultView).
-                Use | as the separator for list fields.
+                Default CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories,pinInDefaultView).
+                Notion roadmap schema: Project name, Status, Impact, Product Story, Dates, End month, ID.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Link
-                href="/"
-                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
-              >
-                View Site
-              </Link>
-              <button
-                type="button"
-                onClick={() => downloadCsvTemplate(true)}
-                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
-              >
-                Download Sample CSV
-              </button>
-              <button
-                type="button"
-                onClick={() => downloadCsvTemplate(false)}
-                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
-              >
-                Download Blank CSV
-              </button>
-              <button
-                type="button"
-                onClick={downloadExistingContentCsv}
-                className="rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]"
-              >
-                Export Existing CSV
-              </button>
-              <label className="cursor-pointer rounded-full border border-[#c5d5e8] bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]">
-                {csvFile ? csvFile.name : "Choose CSV"}
-                <input
-                  type="file"
-                  accept=".csv,text/csv"
-                  className="hidden"
-                  onChange={(event) => setCsvFile(event.target.files?.[0] ?? null)}
-                />
-              </label>
-              <label className="flex items-center gap-2 rounded-full border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
-                <input
-                  type="checkbox"
-                  checked={skipExistingIdsOnImport}
-                  onChange={(event) => setSkipExistingIdsOnImport(event.target.checked)}
-                  className="h-3.5 w-3.5 rounded border-[#c5d5e8]"
-                />
-                Skip existing IDs
-              </label>
-              <button
-                type="button"
-                onClick={importCsv}
-                disabled={isImporting || !csvFile}
-                className="rounded-full border border-[#1a4a96] bg-white px-4 py-2 text-sm font-extrabold text-[#1a4a96] disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isImporting ? "Importing..." : "Import CSV"}
-              </button>
-              <button
-                type="button"
-                onClick={generateContent}
-                disabled={isGenerating}
-                className="rounded-full bg-[#1a4a96] px-4 py-2 text-sm font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isGenerating ? "Generating..." : "Generate Content"}
-              </button>
+
+            <div className="grid gap-3 xl:grid-cols-3">
+              <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Templates & Exports</h2>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button type="button" onClick={() => downloadCsvTemplate(true)} className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1.5 text-xs font-semibold text-zinc-800 hover:border-[#2461b8]">Sample CSV</button>
+                  <button type="button" onClick={() => downloadCsvTemplate(false)} className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1.5 text-xs font-semibold text-zinc-800 hover:border-[#2461b8]">Blank CSV</button>
+                  <button type="button" onClick={downloadExistingContentCsv} className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1.5 text-xs font-semibold text-zinc-800 hover:border-[#2461b8]">Export Existing</button>
+                  <button type="button" onClick={downloadNotionRoadmapTemplate} className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1.5 text-xs font-semibold text-zinc-800 hover:border-[#2461b8]">Notion Template</button>
+                </div>
+              </section>
+
+              <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Import Source</h2>
+                <div className="mt-2 space-y-2">
+                  <label className="block cursor-pointer rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-sm font-semibold text-zinc-800 hover:border-[#2461b8]">
+                    {csvFile ? csvFile.name : "Choose CSV file"}
+                    <input
+                      type="file"
+                      accept=".csv,text/csv"
+                      className="hidden"
+                      onChange={(event) => {
+                        const selectedFile = event.target.files?.[0] ?? null;
+                        setCsvFile(selectedFile);
+                        setImportPreviewRows([]);
+                        setImportPreviewFilter("all");
+                        setImportJobStatus("idle");
+                        setImportJobDetail(selectedFile ? "File ready: " + selectedFile.name : "No file selected.");
+                      }}
+                    />
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <label className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                      <span className="block text-[11px] uppercase tracking-[0.08em] text-zinc-500">Format</span>
+                      <select
+                        value={importFormat}
+                        onChange={(event) => {
+                          setImportFormat(event.target.value as ImportFormat);
+                          setImportPreviewRows([]);
+                          setImportPreviewFilter("all");
+                        }}
+                        className="mt-1 w-full rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs font-semibold text-zinc-800"
+                      >
+                        <option value="default">Default CSV</option>
+                        <option value="notion-roadmap">Notion roadmap CSV</option>
+                      </select>
+                    </label>
+                    <label className="flex items-center gap-2 rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                      <input type="checkbox" checked={skipExistingIdsOnImport} onChange={(event) => setSkipExistingIdsOnImport(event.target.checked)} className="h-3.5 w-3.5 rounded border-[#c5d5e8]" />
+                      Skip existing IDs
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Import Actions</h2>
+                <p className="mt-1 text-xs text-[#4e6378]">Preview first, then import. Regenerate content when done.</p>
+                <div className={`mt-2 rounded-lg border px-3 py-2 text-xs ${importJobStatus === "success" ? "border-[#b8d6b5] bg-[#e9f8e7] text-[#1e6b2f]" : importJobStatus === "error" ? "border-[#efb9b9] bg-[#fff0f0] text-[#8a2121]" : importJobStatus === "in-progress" ? "border-[#c8d4e7] bg-[#eef3fb] text-[#315f9c]" : "border-[#d7e4f4] bg-white text-[#4e6378]"}`}>
+                  <p className="font-extrabold uppercase tracking-[0.08em]">Import Status: {importJobStatus === "in-progress" ? "Running" : importJobStatus === "success" ? "Success" : importJobStatus === "error" ? "Failed" : "Idle"}</p>
+                  <p className="mt-1 text-xs">{importJobDetail}</p>
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2">
+                  <button type="button" onClick={previewImport} disabled={isPreviewingImport || !csvFile} className="rounded-lg border border-[#1a4a96] bg-[#e8f2fb] px-4 py-2 text-sm font-extrabold text-[#1a4a96] disabled:cursor-not-allowed disabled:opacity-60">{isPreviewingImport ? "Previewing..." : "Preview Import"}</button>
+                  <button type="button" onClick={importCsv} disabled={isImporting || !csvFile} className="rounded-lg border border-[#1a4a96] bg-white px-4 py-2 text-sm font-extrabold text-[#1a4a96] disabled:cursor-not-allowed disabled:opacity-60">{isImporting ? "Importing..." : importFormat === "notion-roadmap" ? "Import Notion CSV" : "Import CSV"}</button>
+                  <button type="button" onClick={generateContent} disabled={isGenerating} className="rounded-lg bg-[#1a4a96] px-4 py-2 text-sm font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60">{isGenerating ? "Generating..." : "Generate Content"}</button>
+                  <Link href="/" className="rounded-lg border border-[#c5d5e8] bg-white px-4 py-2 text-center text-sm font-extrabold text-zinc-800 hover:border-[#2461b8]">View Site</Link>
+                  <button type="button" onClick={deleteImportedUpdates} disabled={isDeletingImported} className="rounded-lg border border-[#b83232] bg-[#fff5f5] px-4 py-2 text-sm font-extrabold text-[#8f2323] hover:bg-[#ffe8e8] disabled:cursor-not-allowed disabled:opacity-60">{isDeletingImported ? "Deleting imported..." : "Delete Imported"}</button>
+                </div>
+              </section>
             </div>
+
+            {importFormat === "notion-roadmap" ? (
+              <section className="rounded-xl border border-[#c9dbef] bg-[#f4f9ff] p-3">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Notion Filter Rules</h2>
+                <p className="mt-1 text-xs text-[#4e6378]">Adjust filters here without code changes. These rules are sent with preview/import.</p>
+                <div className="mt-2 grid gap-3 lg:grid-cols-2">
+                  <label className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                    <span className="block text-[11px] uppercase tracking-[0.08em] text-zinc-500">Allowed Statuses (comma or newline)</span>
+                    <textarea value={notionStatusFilterText} onChange={(event) => setNotionStatusFilterText(event.target.value)} rows={4} className="mt-1 w-full rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs text-zinc-800" />
+                  </label>
+                  <label className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                    <span className="block text-[11px] uppercase tracking-[0.08em] text-zinc-500">Allowed Teams (comma or newline)</span>
+                    <textarea value={notionTeamFilterText} onChange={(event) => setNotionTeamFilterText(event.target.value)} rows={4} className="mt-1 w-full rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs text-zinc-800" />
+                  </label>
+                </div>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-4">
+                    <label className="flex items-center gap-2 rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700"><input type="checkbox" checked={notionExcludeInternalProject} onChange={(event) => setNotionExcludeInternalProject(event.target.checked)} className="h-3.5 w-3.5 rounded border-[#c5d5e8]" />Exclude internal project rows</label>
+                    <label className="flex items-center gap-2 rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700"><input type="checkbox" checked={notionRequireDates} onChange={(event) => setNotionRequireDates(event.target.checked)} className="h-3.5 w-3.5 rounded border-[#c5d5e8]" />Require Dates value</label>
+                    <label className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                      <span className="block text-[11px] uppercase tracking-[0.08em] text-zinc-500">Date scope</span>
+                      <select value={notionDateScope} onChange={(event) => setNotionDateScope(event.target.value as "future-window" | "all-time")} className="mt-1 w-full rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs text-zinc-800">
+                        <option value="future-window">Within future window</option>
+                        <option value="all-time">Show all time</option>
+                      </select>
+                    </label>
+                    <label className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-semibold text-zinc-700">
+                      <span className="block text-[11px] uppercase tracking-[0.08em] text-zinc-500">Future window (years)</span>
+                      <input type="number" min={0} max={10} value={notionFutureYears} onChange={(event) => setNotionFutureYears(event.target.value)} disabled={notionDateScope === "all-time"} className="mt-1 w-full rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs text-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500" />
+                    </label>
+                  </div>
+                <div className="mt-2 rounded-lg border border-[#d7e4f4] bg-white px-3 py-2">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.08em] text-[#315f9c]">Active Filter Summary</p>
+                  <ul className="mt-1 space-y-1 text-xs text-[#4e6378]">{notionFilterSummaryLines.map((line) => <li key={line}>- {line}</li>)}</ul>
+                  {activeNotionFilters ? <p className="mt-2 text-[11px] text-[#315f9c]">Last preview/import used these rules.</p> : null}
+                </div>
+              </section>
+            ) : null}
           </div>
           {message ? <p className="mt-3 rounded-lg bg-[#dff4e8] px-3 py-2 text-sm text-[#1e5d40]">{message}</p> : null}
           {error ? <p className="mt-3 rounded-lg bg-[#ffe7e7] px-3 py-2 text-sm text-[#8a2121]">{error}</p> : null}
+          {importPreviewRows.length ? (
+            <div className="mt-3 rounded-lg border border-[#c5d5e8] bg-white p-3">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-[#b7cbe3] bg-[#f2f7fd] px-2.5 py-1 text-[11px] font-bold text-[#1a4a96]">
+                    Total {importPreviewRows.length}
+                  </span>
+                  <span className="rounded-full border border-[#b8d6b5] bg-[#e9f8e7] px-2.5 py-1 text-[11px] font-bold text-[#1e6b2f]">
+                    Create {importPreviewCounts.create}
+                  </span>
+                  <span className="rounded-full border border-[#c8d4e7] bg-[#eef3fb] px-2.5 py-1 text-[11px] font-bold text-[#315f9c]">
+                    Update {importPreviewCounts.update}
+                  </span>
+                  <span className="rounded-full border border-[#e7d3a7] bg-[#fff5df] px-2.5 py-1 text-[11px] font-bold text-[#8a6425]">
+                    Skip {importPreviewCounts.skip}
+                  </span>
+                </div>
+                <label className="flex items-center gap-2 text-xs font-semibold text-zinc-700">
+                  <span>Show</span>
+                  <select
+                    value={importPreviewFilter}
+                    onChange={(event) => setImportPreviewFilter(event.target.value as ImportPreviewActionFilter)}
+                    className="rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-xs font-semibold text-zinc-800"
+                  >
+                    <option value="all">All actions</option>
+                    <option value="create">Create only</option>
+                    <option value="update">Update only</option>
+                    <option value="skip">Skip only</option>
+                  </select>
+                </label>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full border-collapse text-left text-xs">
+                  <thead className="bg-[#f2f7fd] text-zinc-700">
+                    <tr>
+                      <th className="px-3 py-2 font-bold">Row</th>
+                      <th className="px-3 py-2 font-bold">Action</th>
+                      <th className="px-3 py-2 font-bold">ID</th>
+                      <th className="px-3 py-2 font-bold">Title</th>
+                      <th className="px-3 py-2 font-bold">Image</th>
+                      <th className="px-3 py-2 font-bold">URL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visibleImportPreviewRows.map((row) => (
+                      <tr key={`${row.rowNumber}-${row.id}`} className="border-t border-[#e5eef8]">
+                        <td className="px-3 py-2">{row.rowNumber}</td>
+                        <td className="px-3 py-2">
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] ${
+                              row.action === "create"
+                                ? "border border-[#8dc79a] bg-[#e9f8e7] text-[#1e6b2f]"
+                                : row.action === "update"
+                                  ? "border border-[#b6c7e3] bg-[#edf3ff] text-[#315f9c]"
+                                  : "border border-[#e0c98f] bg-[#fff5df] text-[#8a6425]"
+                            }`}
+                          >
+                            {row.action}
+                          </span>
+                        </td>
+                        <td className="px-3 py-2">{row.id}</td>
+                        <td className="px-3 py-2">{row.title}</td>
+                        <td className="px-3 py-2">{row.imageSrc}</td>
+                        <td className="px-3 py-2">{row.readMoreUrl}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : null}
         </header>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)]">

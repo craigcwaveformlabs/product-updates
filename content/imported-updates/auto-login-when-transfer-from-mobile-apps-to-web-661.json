@@ -1,0 +1,17 @@
+{
+  "id": "auto-login-when-transfer-from-mobile-apps-to-web-661",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Auto-login when transfer from mobile apps to web roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Auto-login when transfer from mobile apps to web",
+  "summaryBody": "For users who have logged in, we want to persist their login to mobile web so that whenever they follow a link to mobile web from the apps, they don’t need to login again. This will make the connection between the platforms much smoother. Need to investigate what would be involved, estimates etc. Plus likely to need Application Foundations’ help.",
+  "detailBody": [
+    "For users who have logged in, we want to persist their login to mobile web so that whenever they follow a link to mobile web from the apps, they don’t need to login again. This will make the connection between the platforms much smoother. Need to investigate what would be involved, estimates etc. Plus likely to need Application Foundations’ help."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Auto-login%20when%20transfer%20from%20mobile%20apps%20to%20web"
+}

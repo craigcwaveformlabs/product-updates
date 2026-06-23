@@ -34,6 +34,28 @@ CONTENT_STUDIO_PASSWORD=your-strong-password
 
 When those variables are set, visiting `/content-studio` will prompt for the username and password.
 
+## Notion Roadmap CSV Import
+
+The Content Studio importer now supports a dedicated Notion roadmap format.
+
+In `/content-studio`:
+
+- choose `Format = Notion roadmap CSV`
+- click `Download Notion Template` to get the expected schema
+- upload your Notion CSV
+- click `Preview Import` to review how each row maps before writing files
+- click `Import Notion CSV` to create/update content cards
+
+Supported Notion columns (case-insensitive):
+
+`Project name, Status, Impact, Product Story, Dates, End month, ID`
+
+Mapping: `Project name -> title`, `Impact -> summaryBody + detailBody`, `Product Story -> storyTags`, `Dates -> date` (fallback `End month`).
+
+Tag rule: all Notion imports get `roadmap`, and rows where `Status` is not `Done` also get `coming-soon`.
+
+When `Image` or `URL` is empty, defaults are auto-generated during import.
+
 ## Viewer-only Static Build (GitHub Pages)
 
 This repository includes a viewer-only static mode suitable for GitHub Pages.

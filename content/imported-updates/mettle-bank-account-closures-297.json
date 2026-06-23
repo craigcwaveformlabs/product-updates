@@ -1,0 +1,16 @@
+{
+  "id": "mettle-bank-account-closures-297",
+  "imageSrc": "/updates/banking.png",
+  "imageAlt": "Mettle - Bank account closures roadmap item preview image",
+  "date": "2025-07-30",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Mettle - Bank account closures",
+  "summaryBody": "When businesses leave mettle, they should no longer receive a funded (free) FreeAgent account. Instead we should be switching their subscription from funded to direct.",
+  "detailBody": [
+    "When businesses leave mettle, they should no longer receive a funded (free) FreeAgent account. Instead we should be switching their subscription from funded to direct."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Mettle%20-%20Bank%20account%20closures"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "stripe-feed-on-mobile-537",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Stripe Feed on Mobile roadmap item preview image",
+  "date": "2025-04-24",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Stripe Feed on Mobile",
+  "summaryBody": "Mobile should get most stuff for free but will need to update our Stripe Connection journey to include input date. Banking aiming to release C2S2",
+  "detailBody": [
+    "Mobile should get most stuff for free but will need to update our Stripe Connection journey to include input date. Banking aiming to release C2S2"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Stripe%20Feed%20on%20Mobile"
+}

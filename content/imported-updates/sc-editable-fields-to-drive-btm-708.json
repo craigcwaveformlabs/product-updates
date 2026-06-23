@@ -1,0 +1,17 @@
+{
+  "id": "sc-editable-fields-to-drive-btm-708",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "SC: Editable fields to drive BTM roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "SC: Editable fields to drive BTM",
+  "summaryBody": "by allowing users to edit captured smart capture fields, we can drive bank transaction matches (and also allow users to fix bills and expense “at source”)",
+  "detailBody": [
+    "by allowing users to edit captured smart capture fields, we can drive bank transaction matches (and also allow users to fix bills and expense “at source”)"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=SC%3A%20Editable%20fields%20to%20drive%20BTM"
+}

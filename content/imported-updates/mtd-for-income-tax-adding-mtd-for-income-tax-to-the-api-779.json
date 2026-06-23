@@ -1,0 +1,18 @@
+{
+  "id": "mtd-for-income-tax-adding-mtd-for-income-tax-to-the-api-779",
+  "imageSrc": "/updates/tax-engineering.png",
+  "imageAlt": "MTD for Income Tax - Adding MTD for Income Tax to the API roadmap item preview image",
+  "date": "2026-07-02",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-get-mtd-done"
+  ],
+  "storyTags": [],
+  "title": "MTD for Income Tax - Adding MTD for Income Tax to the API",
+  "summaryBody": "Adding MTD for Income Tax to the API. Primarily to enable the Mobile App to consume figures and make submissions.",
+  "detailBody": [
+    "Adding MTD for Income Tax to the API. Primarily to enable the Mobile App to consume figures and make submissions."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=MTD%20for%20Income%20Tax%20-%20Adding%20MTD%20for%20Income%20Tax%20to%20the%20API"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "sc-populate-additional-fields-21",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "SC: Populate additional fields roadmap item preview image",
+  "date": "2026-10-07",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-drive-adoption-of-add-ons",
+    "roadmap-transformative-accounting"
+  ],
+  "storyTags": [],
+  "title": "SC: Populate additional fields",
+  "summaryBody": "Provide our users with more of the SC magic by autofilling in more details, such as VAT or currency or description.",
+  "detailBody": [
+    "Provide our users with more of the SC magic by autofilling in more details, such as VAT or currency or description."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=SC%3A%20Populate%20additional%20fields"
+}

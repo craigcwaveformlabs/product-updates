@@ -1,0 +1,16 @@
+{
+  "id": "account-manager-groups-bulk-payroll-543",
+  "imageSrc": "/updates/practice-experience.png",
+  "imageAlt": "Account Manager Groups | Bulk Payroll roadmap item preview image",
+  "date": "2025-09-24",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "Account Manager Groups | Bulk Payroll",
+  "summaryBody": "Add support for Bulk Payroll, which allows users to to run payroll for other account managers’ clients. Also supports separate dashboard security project.",
+  "detailBody": [
+    "Add support for Bulk Payroll, which allows users to to run payroll for other account managers’ clients. Also supports separate dashboard security project."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Account%20Manager%20Groups%20%7C%20Bulk%20Payroll"
+}

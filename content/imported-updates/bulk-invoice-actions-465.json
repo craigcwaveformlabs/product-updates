@@ -1,0 +1,18 @@
+{
+  "id": "bulk-invoice-actions-465",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Bulk invoice actions roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-built-for-every-business"
+  ],
+  "storyTags": [],
+  "title": "Bulk invoice actions",
+  "summaryBody": "Allow users to perform ‘quick action’ updates to invoices in bulk, making the ‘normal’ flow of invoicing (create, send, chase) more efficient.",
+  "detailBody": [
+    "Allow users to perform ‘quick action’ updates to invoices in bulk, making the ‘normal’ flow of invoicing (create, send, chase) more efficient."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Bulk%20invoice%20actions"
+}

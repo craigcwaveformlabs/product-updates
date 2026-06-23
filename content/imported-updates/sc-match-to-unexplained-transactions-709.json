@@ -1,0 +1,19 @@
+{
+  "id": "sc-match-to-unexplained-transactions-709",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "SC: Match to unexplained transactions roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-drive-adoption-of-add-ons",
+    "roadmap-transformative-accounting"
+  ],
+  "storyTags": [],
+  "title": "SC: Match to unexplained transactions",
+  "summaryBody": "Increase BTM coverage by allowing matches to unexplained transactions - this would mean transactions that weren’t guessed, or couldn’t be guessed, could still be matched to SC uploads",
+  "detailBody": [
+    "Increase BTM coverage by allowing matches to unexplained transactions - this would mean transactions that weren’t guessed, or couldn’t be guessed, could still be matched to SC uploads"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=SC%3A%20Match%20to%20unexplained%20transactions"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "recreate-your-last-invoice-919",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "Recreate your last invoice roadmap item preview image",
+  "date": "2026-06-18",
+  "tags": [
+    "roadmap",
+    "coming-soon",
+    "roadmap-built-for-every-business"
+  ],
+  "storyTags": [],
+  "title": "Recreate your last invoice",
+  "summaryBody": "As an estimated 29% of non-duplicate invoices (https://docs.google.com/presentation/d/1eapTWNBgVusNDJ0klHSCrdbekVj167G_93sVWynsgg8/edit?slide=id.g37cf96d5ff8_0_1#slide=id.g37cf96d5ff8_0_1) have a matching predecessor, we have a significant opportunity to automate the highly repetitive task of creating an invoice by surfacing our invoice duplicator in the create invoice flow.",
+  "detailBody": [
+    "As an estimated 29% of non-duplicate invoices (https://docs.google.com/presentation/d/1eapTWNBgVusNDJ0klHSCrdbekVj167G_93sVWynsgg8/edit?slide=id.g37cf96d5ff8_0_1#slide=id.g37cf96d5ff8_0_1) have a matching predecessor, we have a significant opportunity to automate the highly repetitive task of creating an invoice by surfacing our invoice duplicator in the create invoice flow."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Recreate%20your%20last%20invoice"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "bulk-payroll-improvements-502",
+  "imageSrc": "/updates/practice-experience.png",
+  "imageAlt": "Bulk Payroll improvements roadmap item preview image",
+  "date": "2026-06-23",
+  "tags": [
+    "roadmap",
+    "coming-soon"
+  ],
+  "storyTags": [],
+  "title": "Bulk Payroll improvements",
+  "summaryBody": "Bulk Payroll needs a bigger re-work to make it work in the way the other sections of the dashboard do (mine/groups/all), as it was only really built with the single named Account Manager in mind for running it.",
+  "detailBody": [
+    "Bulk Payroll needs a bigger re-work to make it work in the way the other sections of the dashboard do (mine/groups/all), as it was only really built with the single named Account Manager in mind for running it."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Bulk%20Payroll%20improvements"
+}

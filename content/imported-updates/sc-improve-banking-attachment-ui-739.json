@@ -1,0 +1,16 @@
+{
+  "id": "sc-improve-banking-attachment-ui-739",
+  "imageSrc": "/updates/workflow.png",
+  "imageAlt": "SC: Improve Banking attachment UI roadmap item preview image",
+  "date": "2026-04-30",
+  "tags": [
+    "roadmap"
+  ],
+  "storyTags": [],
+  "title": "SC: Improve Banking attachment UI",
+  "summaryBody": "As part of our improvements to Smart Capture Bank Transaction Matching, we want to improve the attachment UI in banking to better preview attachments",
+  "detailBody": [
+    "As part of our improvements to Smart Capture Bank Transaction Matching, we want to improve the attachment UI in banking to better preview attachments"
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=SC%3A%20Improve%20Banking%20attachment%20UI"
+}

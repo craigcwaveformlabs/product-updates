@@ -1,0 +1,17 @@
+{
+  "id": "share-files-to-smart-capture-via-share-extension-456",
+  "imageSrc": "/updates/mobile.png",
+  "imageAlt": "Share files to Smart Capture via share extension roadmap item preview image",
+  "date": "2025-07-24",
+  "tags": [
+    "roadmap",
+    "roadmap-drive-adoption-of-add-ons"
+  ],
+  "storyTags": [],
+  "title": "Share files to Smart Capture via share extension",
+  "summaryBody": "Share files to SmartCapture via the Share Extension on mobile. We currently have a “share function” but it only shares to General Fiiles. This will give the option to share into SC directly and we believe may help with users who want to email to SC.",
+  "detailBody": [
+    "Share files to SmartCapture via the Share Extension on mobile. We currently have a “share function” but it only shares to General Fiiles. This will give the option to share into SC directly and we believe may help with users who want to email to SC."
+  ],
+  "readMoreUrl": "https://www.freeagent.com/blog/?s=Share%20files%20to%20Smart%20Capture%20via%20share%20extension"
+}
