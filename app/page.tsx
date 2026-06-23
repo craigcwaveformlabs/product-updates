@@ -131,6 +131,7 @@ const roadmapMonthHeaderFormatter = new Intl.DateTimeFormat("en-GB", {
 });
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isViewerOnly = process.env.NEXT_PUBLIC_VIEWER_ONLY === "true";
 
 function withPublicBasePath(src: string): string {
   if (!src.startsWith("/")) {
@@ -147,7 +148,7 @@ function withPublicBasePath(src: string): string {
 export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
-  const [showRoadmapOnly, setShowRoadmapOnly] = useState(false);
+  const [showRoadmapOnly, setShowRoadmapOnly] = useState(isViewerOnly);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUpdate, setSelectedUpdate] = useState<ProductUpdate | null>(null);
