@@ -130,6 +130,11 @@ const roadmapMonthHeaderFormatter = new Intl.DateTimeFormat("en-GB", {
   year: "numeric",
 });
 
+const roadmapMonthRailFormatter = new Intl.DateTimeFormat("en-GB", {
+  month: "short",
+  year: "2-digit",
+});
+
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const isViewerOnly = process.env.NEXT_PUBLIC_VIEWER_ONLY === "true";
 
@@ -183,6 +188,8 @@ export default function Page() {
   const [showRoadmapOnly, setShowRoadmapOnly] = useState(isViewerOnly);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
   const [selectedRoadmapMonth, setSelectedRoadmapMonth] = useState<string | null>(null);
+  const [roadmapTimeScope, setRoadmapTimeScope] = useState<"future" | "past">("future");
+  const [roadmapMonthRailStartIndex, setRoadmapMonthRailStartIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUpdate, setSelectedUpdate] = useState<ProductUpdate | null>(null);
   const [heroImageIndex, setHeroImageIndex] = useState(0);
@@ -250,11 +257,55 @@ export default function Page() {
     [roadmapUpdates],
   );
 
+  const todayIso = useMemo(() => {
+    const today = new Date();
+    return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
+      .toISOString()
+      .slice(0, 10);
+  }, []);
+  const currentRoadmapMonthKey = todayIso.slice(0, 7);
+
+  const scopedRoadmapUpdates = useMemo(
+    () =>
+      visibleRoadmapUpdates.filter((update) => {
+        const parsed = Date.parse(update.date);
+        if (Number.isNaN(parsed)) {
+          return roadmapTimeScope === "future";
+        }
+
+        const updateIso = new Date(parsed).toISOString().slice(0, 10);
+        return roadmapTimeScope === "future" ? updateIso >= todayIso : updateIso < todayIso;
+      }),
+    [roadmapTimeScope, todayIso, visibleRoadmapUpdates],
+  );
+
+  const roadmapScopeCounts = useMemo(() => {
+    let past = 0;
+    let future = 0;
+
+    for (const update of visibleRoadmapUpdates) {
+      const parsed = Date.parse(update.date);
+      if (Number.isNaN(parsed)) {
+        future += 1;
+        continue;
+      }
+
+      const updateIso = new Date(parsed).toISOString().slice(0, 10);
+      if (updateIso < todayIso) {
+        past += 1;
+      } else {
+        future += 1;
+      }
+    }
+
+    return { past, future };
+  }, [todayIso, visibleRoadmapUpdates]);
+
   const roadmapUpdatesByMonth = useMemo(() => {
     const groups: Array<{ key: string; label: string; items: ProductUpdate[] }> = [];
     const byKey = new Map<string, { key: string; label: string; items: ProductUpdate[] }>();
 
-    for (const update of visibleRoadmapUpdates) {
+    for (const update of scopedRoadmapUpdates) {
       const parsed = Date.parse(update.date);
       const dateValue = Number.isNaN(parsed) ? null : new Date(parsed);
       const key = dateValue ? dateValue.toISOString().slice(0, 7) : "unknown";
@@ -270,14 +321,73 @@ export default function Page() {
       group.items.push(update);
     }
 
-    return groups;
-  }, [visibleRoadmapUpdates]);
+    groups.sort((a, b) => {
+      if (a.key === "unknown") return 1;
+      if (b.key === "unknown") return -1;
+      return roadmapTimeScope === "future" ? a.key.localeCompare(b.key) : b.key.localeCompare(a.key);
+    });
 
+    return groups;
+  }, [scopedRoadmapUpdates]);
 
   const roadmapMonthOptions = useMemo(
     () => roadmapUpdatesByMonth.map((group) => ({ key: group.key, label: group.label, count: group.items.length })),
     [roadmapUpdatesByMonth],
   );
+
+  const roadmapMonthRailWindowSize = 6;
+
+  const roadmapMonthRailNodes = useMemo(
+    () => [
+      {
+        key: null as string | null,
+        label: "All months",
+        compactLabel: "All",
+        count: scopedRoadmapUpdates.length,
+        isCurrentMonth: false,
+      },
+      ...roadmapMonthOptions.map((month) => {
+        const parsedMonth =
+          month.key === "unknown" ? Number.NaN : Date.parse(`${month.key}-01T00:00:00.000Z`);
+        const compactLabel = Number.isNaN(parsedMonth)
+          ? month.label
+          : roadmapMonthRailFormatter.format(new Date(parsedMonth));
+
+        return {
+          key: month.key,
+          label: month.label,
+          compactLabel,
+          count: month.count,
+          isCurrentMonth: month.key === currentRoadmapMonthKey,
+        };
+      }),
+    ],
+    [currentRoadmapMonthKey, roadmapMonthOptions, scopedRoadmapUpdates.length],
+  );
+
+  const maxRoadmapMonthRailStart = Math.max(0, roadmapMonthRailNodes.length - roadmapMonthRailWindowSize);
+
+  const visibleRoadmapMonthRailNodes = useMemo(
+    () =>
+      roadmapMonthRailNodes.slice(
+        roadmapMonthRailStartIndex,
+        roadmapMonthRailStartIndex + roadmapMonthRailWindowSize,
+      ),
+    [roadmapMonthRailNodes, roadmapMonthRailStartIndex],
+  );
+
+  const selectedRoadmapMonthRailFocusKey = useMemo(() => {
+    if (selectedRoadmapMonth) {
+      return selectedRoadmapMonth;
+    }
+
+    return roadmapMonthOptions.some((month) => month.key === currentRoadmapMonthKey)
+      ? currentRoadmapMonthKey
+      : null;
+  }, [currentRoadmapMonthKey, roadmapMonthOptions, selectedRoadmapMonth]);
+
+  const canShiftRoadmapMonthRailBack = roadmapMonthRailStartIndex > 0;
+  const canShiftRoadmapMonthRailForward = roadmapMonthRailStartIndex < maxRoadmapMonthRailStart;
 
   const visibleRoadmapUpdatesByMonth = useMemo(
     () =>
@@ -309,9 +419,9 @@ export default function Page() {
       ? "Roadmap items in focus"
       : "Upcoming roadmap work";
   const roadmapPanelBody = selectedRoadmapTag
-    ? `Showing ${visibleRoadmapUpdates.length} roadmap item(s) for ${tagLabel[selectedRoadmapTag]}. Roadmap mode clears story-tag filtering so imported roadmap work stays in its own lane.`
+    ? `Showing ${scopedRoadmapUpdates.length} roadmap item(s) for ${tagLabel[selectedRoadmapTag]}. Roadmap mode clears story-tag filtering so imported roadmap work stays in its own lane.`
     : showRoadmapOnly
-      ? `Showing ${visibleRoadmapUpdates.length} roadmap item(s). Use the roadmap lane in the sidebar to narrow imported roadmap work without mixing it into story-led content.`
+      ? `Showing ${scopedRoadmapUpdates.length} roadmap item(s). Use the roadmap lane in the sidebar to narrow imported roadmap work without mixing it into story-led content.`
       : `Track ${roadmapUpdates.length} roadmap item(s) separately from story content. Imported roadmap cards now use team-based imagery and roadmap-specific topic tags instead of story tags.`;
 
   useEffect(() => {
@@ -326,6 +436,29 @@ export default function Page() {
       setSelectedRoadmapMonth(null);
     }
   }, [roadmapUpdatesByMonth, selectedRoadmapMonth]);
+
+  useEffect(() => {
+    setRoadmapMonthRailStartIndex((current) => Math.min(current, maxRoadmapMonthRailStart));
+  }, [maxRoadmapMonthRailStart]);
+
+  useEffect(() => {
+    const targetIndex = roadmapMonthRailNodes.findIndex((node) => node.key === selectedRoadmapMonthRailFocusKey);
+    if (targetIndex < 0) {
+      return;
+    }
+
+    setRoadmapMonthRailStartIndex((current) => {
+      const windowStart = current;
+      const windowEnd = current + roadmapMonthRailWindowSize - 1;
+      if (targetIndex < windowStart) {
+        return targetIndex;
+      }
+      if (targetIndex > windowEnd) {
+        return Math.max(0, targetIndex - roadmapMonthRailWindowSize + 1);
+      }
+      return current;
+    });
+  }, [roadmapMonthRailNodes, selectedRoadmapMonthRailFocusKey]);
 
   useEffect(() => {
     setHeroImageIndex(0);
@@ -580,7 +713,7 @@ export default function Page() {
                         {roadmapUpdates.length} total roadmap items
                       </span>
                       <span className="rounded-full bg-white/18 px-3 py-1.5 text-xs font-extrabold text-white">
-                        {visibleRoadmapUpdates.length} visible
+                        {scopedRoadmapUpdates.length} visible
                       </span>
                       <span className="rounded-full bg-white/18 px-3 py-1.5 text-xs font-extrabold text-white">
                         {roadmapComingSoonCount} coming soon
@@ -691,33 +824,110 @@ export default function Page() {
           {isRoadmapPanelActive ? (
             <section aria-label="Roadmap updates by month" className="space-y-5">
               <div className="brand-panel rounded-2xl p-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <label htmlFor="roadmap-month-select" className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-600">
-                    Month
-                  </label>
-                  <select
-                    id="roadmap-month-select"
-                    value={selectedRoadmapMonth ?? ""}
-                    onChange={(event) => setSelectedRoadmapMonth(event.target.value || null)}
-                    className="min-w-[220px] rounded-lg border border-[#c5d5e8] bg-white px-3 py-1.5 text-sm text-zinc-800"
-                  >
-                    <option value="">All months ({visibleRoadmapUpdates.length})</option>
-                    {roadmapMonthOptions.map((month) => (
-                      <option key={month.key} value={month.key}>
-                        {month.label} ({month.count})
-                      </option>
-                    ))}
-                  </select>
-                  {selectedRoadmapMonth ? (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedRoadmapMonth(null)}
-                      className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:border-[#2461b8]"
-                    >
-                      Reset
-                    </button>
-                  ) : null}
-                </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex flex-wrap items-center justify-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setRoadmapTimeScope("future")}
+                        className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                          roadmapTimeScope === "future"
+                            ? "border-[#1a4a96] bg-[#1a4a96] text-white"
+                            : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                        }`}
+                        aria-pressed={roadmapTimeScope === "future"}
+                      >
+                        In development ({roadmapScopeCounts.future})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setRoadmapTimeScope("past")}
+                        className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                          roadmapTimeScope === "past"
+                            ? "border-[#1a4a96] bg-[#1a4a96] text-white"
+                            : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                        }`}
+                        aria-pressed={roadmapTimeScope === "past"}
+                      >
+                        Delivered ({roadmapScopeCounts.past})
+                      </button>
+                    </div>
+                    <div className="w-full max-w-5xl">
+                      <p className="mb-2 text-center text-xs font-semibold text-zinc-600">
+                        Showing {roadmapTimeScope === "future" ? "In development" : "Delivered"} roadmap
+                      </p>
+                      <div className="relative mx-auto w-full max-w-4xl">
+                        <div className="pointer-events-none absolute left-8 right-8 top-4 h-px bg-[#c5d5e8]" />
+                        <div className="relative grid grid-cols-[auto_1fr_auto] items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setRoadmapMonthRailStartIndex((current) => Math.max(0, current - 1))
+                            }
+                            disabled={!canShiftRoadmapMonthRailBack}
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#c5d5e8] bg-white text-[#1a4a96] transition hover:border-[#2461b8] disabled:cursor-not-allowed disabled:opacity-35"
+                            aria-label="Show earlier months"
+                          >
+                            <span aria-hidden="true">‹</span>
+                          </button>
+                          <div className="relative flex items-center justify-center gap-2 overflow-hidden px-1 py-1">
+                            {visibleRoadmapMonthRailNodes.map((node) => {
+                              const active = selectedRoadmapMonth === node.key;
+                              const showExpanded = active || node.isCurrentMonth;
+                              const labelText = showExpanded
+                                ? `${node.label} (${node.count})`
+                                : `${node.compactLabel} (${node.count})`;
+
+                              return (
+                                <button
+                                  key={node.key ?? "all-months"}
+                                  type="button"
+                                  onClick={() => setSelectedRoadmapMonth(node.key)}
+                                  className={`inline-flex min-w-0 items-center gap-2 rounded-full border px-2.5 py-1.5 text-xs font-semibold transition ${
+                                    active
+                                      ? "border-[#1a4a96] bg-[#1a4a96] text-white"
+                                      : node.isCurrentMonth
+                                        ? "border-[#2461b8] bg-[#e9f3ff] text-[#1a4a96] shadow-[0_0_0_1px_#79b8f6_inset]"
+                                        : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                                  }`}
+                                  aria-pressed={active}
+                                  title={`${node.label} (${node.count})`}
+                                >
+                                  <span
+                                    className={`h-2 w-2 shrink-0 rounded-full ${
+                                      active ? "bg-white" : node.isCurrentMonth ? "bg-[#2461b8]" : "bg-[#6d84a2]"
+                                    }`}
+                                  />
+                                  <span className="truncate">{labelText}</span>
+                                  {node.isCurrentMonth ? (
+                                    <span
+                                      className={`hidden rounded-full px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] md:inline-flex ${
+                                        active ? "bg-white/20 text-white" : "bg-[#d7e9ff] text-[#1a4a96]"
+                                      }`}
+                                    >
+                                      Current
+                                    </span>
+                                  ) : null}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setRoadmapMonthRailStartIndex((current) => Math.min(maxRoadmapMonthRailStart, current + 1))
+                            }
+                            disabled={!canShiftRoadmapMonthRailForward}
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#c5d5e8] bg-white text-[#1a4a96] transition hover:border-[#2461b8] disabled:cursor-not-allowed disabled:opacity-35"
+                            aria-label="Show later months"
+                          >
+                            <span aria-hidden="true">›</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
               </div>
 
               {visibleRoadmapUpdatesByMonth.map((group) => (
