@@ -4,7 +4,8 @@
   "imageAlt": "Implement granular permissions for Salesforce Sales Cloud roadmap item preview image",
   "date": "2026-04-29",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "Implement granular permissions for Salesforce Sales Cloud",

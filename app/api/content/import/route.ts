@@ -43,6 +43,7 @@ const DEFAULT_NOTION_IMPORT_FILTER_OPTIONS: NotionImportFilterOptions = {
     "Backlog",
     "Define",
     "Build",
+    "Done",
   ],
   allowedTeams: [
     "Connections & Add-ons",
@@ -397,12 +398,8 @@ function rowMatchesNotionFilters(
   }
 
   const rawDate = readRowValue(row, ["dates"]);
-  
-  // When dateScope is "all-time", don't require dates at all
-  // This allows importing both dated and undated historical items
-  const shouldRequireDates = options.dateScope === "all-time" ? false : options.requireDates;
-  
-  if (shouldRequireDates && !rawDate) {
+
+  if (options.requireDates && !rawDate) {
     return false;
   }
 
@@ -411,11 +408,11 @@ function rowMatchesNotionFilters(
     return false;
   }
 
-  if (shouldRequireDates && !parsedDateIso) {
+  if (options.requireDates && !parsedDateIso) {
     return false;
   }
 
-  // Apply date range filtering only for "future-window" mode
+  // Apply date range filtering only for "future-window" mode.
   if (parsedDateIso && options.dateScope === "future-window") {
     const today = new Date();
     const todayUtc = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
@@ -424,40 +421,29 @@ function rowMatchesNotionFilters(
     max.setUTCFullYear(max.getUTCFullYear() + options.futureYears);
     const maxIso = max.toISOString().slice(0, 10);
 
-    // Only show dates from today onwards within the future-years window
     if (parsedDateIso < todayIso || parsedDateIso > maxIso) {
       return false;
     }
   }
-  // When dateScope === "all-time", no date range filtering is applied
-  // All parsed dates (past, present, or future) are allowed
 
-  // Skip status filtering when in all-time mode to allow historical data with any status
-  const shouldFilterStatus = options.dateScope === "all-time" ? false : true;
+  // Status matching is exact on normalized slugs (e.g. "backlog" does not match "proposal-backlog").
   const allowedStatusSlugs = new Set(options.allowedStatuses.map(toKebabCase).filter(Boolean));
   const statusSlug = toKebabCase(readRowValue(row, ["status", "state", "phase"]));
-  if (shouldFilterStatus && allowedStatusSlugs.size > 0 && !allowedStatusSlugs.has(statusSlug)) {
+  if (allowedStatusSlugs.size > 0 && !allowedStatusSlugs.has(statusSlug)) {
     return false;
   }
 
-  // Skip team filtering when in all-time mode to allow historical data with any team
-  const shouldFilterTeam = options.dateScope === "all-time" ? false : true;
   const allowedTeamSlugs = new Set(options.allowedTeams.map(toKebabCase).filter(Boolean));
   const teamSlugs = splitNotionList(readRowValue(row, ["teams"]))
     .map(normalizeNotionTeamValue)
     .map(toKebabCase)
     .filter(Boolean);
 
-  if (shouldFilterTeam && !teamSlugs.length) {
-    return false;
-  }
-  
-  if (shouldFilterTeam && allowedTeamSlugs.size > 0 && !teamSlugs.some((s) => allowedTeamSlugs.has(s))) {
+  if (!teamSlugs.length) {
     return false;
   }
 
-  // Allow if no team filtering is active
-  if (!shouldFilterTeam || allowedTeamSlugs.size === 0) {
+  if (allowedTeamSlugs.size === 0) {
     return true;
   }
 
@@ -513,9 +499,11 @@ function buildNotionRoadmapPayload(row: CsvRow, rowNumber: number): Record<strin
     .filter(Boolean);
 
   const roadmapTags = roadmapStoryValues.map((value) => `roadmap-${value}`);
+  const roadmapStatusTag = normalizedStatus ? `roadmap-status-${normalizedStatus}` : null;
   const tags = unique([
     "roadmap",
     ...(normalizedStatus === "done" ? [] : ["coming-soon"]),
+    ...(roadmapStatusTag ? [roadmapStatusTag] : []),
     ...roadmapTags,
   ]);
   const storyTags: string[] = [];

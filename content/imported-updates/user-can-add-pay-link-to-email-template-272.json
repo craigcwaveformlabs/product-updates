@@ -4,7 +4,8 @@
   "imageAlt": "User can add “Pay” link to email template roadmap item preview image",
   "date": "2023-01-22",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "User can add “Pay” link to email template",

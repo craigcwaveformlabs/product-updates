@@ -4,7 +4,8 @@
   "imageAlt": "Create, view and edit projects roadmap item preview image",
   "date": "2024-07-05",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "Create, view and edit projects",

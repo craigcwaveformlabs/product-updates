@@ -4,7 +4,8 @@
   "imageAlt": "Payment Link on PDF roadmap item preview image",
   "date": "2024-05-05",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "Payment Link on PDF",

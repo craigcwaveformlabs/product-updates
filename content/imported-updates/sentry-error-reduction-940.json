@@ -5,7 +5,8 @@
   "date": "2026-09-07",
   "tags": [
     "roadmap",
-    "coming-soon"
+    "coming-soon",
+    "roadmap-status-build"
   ],
   "storyTags": [],
   "title": "Sentry error reduction",

@@ -4,7 +4,8 @@
   "imageAlt": "Pay an invoice with Tap to Pay roadmap item preview image",
   "date": "2026-02-09",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "Pay an invoice with Tap to Pay",

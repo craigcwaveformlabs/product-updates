@@ -145,6 +145,38 @@ function withPublicBasePath(src: string): string {
   return `${publicBasePath}${src}`;
 }
 
+function tagBadgeClass(tag: UpdateTag): string {
+  if (tag === "coming-soon") {
+    return "bg-[#008cffff] text-white";
+  }
+
+  if (tag.startsWith("roadmap-status-proposal")) {
+    return "bg-[#f8d7ea] text-[#8a2a5a]";
+  }
+
+  if (tag.startsWith("roadmap-status-backlog")) {
+    return "bg-[#d9ecff] text-[#1f5d8f]";
+  }
+
+  if (tag.startsWith("roadmap-status-define")) {
+    return "bg-[#fff3c9] text-[#7a5a00]";
+  }
+
+  if (tag.startsWith("roadmap-status-build")) {
+    return "bg-[#eadcc8] text-[#6e4b2e]";
+  }
+
+  if (tag.startsWith("roadmap-status-done")) {
+    return "bg-[#d8f2de] text-[#1f6a3a]";
+  }
+
+  if (tag === ROADMAP_TAG || tag.startsWith("roadmap-")) {
+    return "bg-[#1a2e44] text-white";
+  }
+
+  return "bg-[#dceeff] text-[#1a4896]";
+}
+
 export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
@@ -341,13 +373,7 @@ export default function Page() {
         {update.tags.map((tag) => (
           <span
             key={`${update.id}-${tag}`}
-            className={`rounded-full px-2.5 py-1 text-xs font-bold ${
-              tag === "coming-soon"
-                ? "bg-[#008cffff] text-white"
-                : tag === ROADMAP_TAG || tag.startsWith("roadmap-")
-                  ? "bg-[#1a2e44] text-white"
-                  : "bg-[#dceeff] text-[#1a4896]"
-            }`}
+            className={`rounded-full px-2.5 py-1 text-xs font-bold ${tagBadgeClass(tag)}`}
           >
             {tagLabel[tag]}
           </span>
@@ -711,13 +737,7 @@ export default function Page() {
                 {previewUpdate.tags.map((tag) => (
                   <span
                     key={`drawer-topic-${previewUpdate.id}-${tag}`}
-                    className={`rounded-full px-2.5 py-1 text-xs font-bold ${
-                      tag === "coming-soon"
-                        ? "bg-[#008cffff] text-white"
-                        : tag === ROADMAP_TAG || tag.startsWith("roadmap-")
-                          ? "bg-[#1a2e44] text-white"
-                          : "bg-[#dceeff] text-[#1a4896]"
-                    }`}
+                    className={`rounded-full px-2.5 py-1 text-xs font-bold ${tagBadgeClass(tag)}`}
                   >
                     {tagLabel[tag]}
                   </span>

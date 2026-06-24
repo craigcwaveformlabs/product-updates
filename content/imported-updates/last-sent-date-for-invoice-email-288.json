@@ -4,7 +4,8 @@
   "imageAlt": "Last-sent date for invoice email roadmap item preview image",
   "date": "2024-08-06",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "Last-sent date for invoice email",

@@ -4,7 +4,8 @@
   "imageAlt": "View recurring invoice profiles roadmap item preview image",
   "date": "2024-10-01",
   "tags": [
-    "roadmap"
+    "roadmap",
+    "roadmap-status-done"
   ],
   "storyTags": [],
   "title": "View recurring invoice profiles",

@@ -59,6 +59,10 @@ function tagToLabel(tag: UpdateTag): string {
     return "Roadmap";
   }
 
+  if (tag.startsWith("roadmap-status-")) {
+    return slugToLabel(tag.slice("roadmap-status-".length));
+  }
+
   if (tag.startsWith("roadmap-")) {
     return slugToLabel(tag.slice("roadmap-".length));
   }

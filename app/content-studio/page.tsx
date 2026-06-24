@@ -158,7 +158,7 @@ export default function ContentStudioPage() {
   const [skipExistingIdsOnImport, setSkipExistingIdsOnImport] = useState(true);
   const [importPreviewRows, setImportPreviewRows] = useState<ImportPreviewRow[]>([]);
   const [importPreviewFilter, setImportPreviewFilter] = useState<ImportPreviewActionFilter>("all");
-  const [notionStatusFilterText, setNotionStatusFilterText] = useState("Proposal - In Progress\nProposal - For Review\nBacklog\nDefine\nBuild");
+  const [notionStatusFilterText, setNotionStatusFilterText] = useState("Proposal - In Progress\nProposal - For Review\nBacklog\nDefine\nBuild\nDone");
   const [notionTeamFilterText, setNotionTeamFilterText] = useState("Connections & Add-ons\nWorkflow\nBanking Integrations\nPractice Experience\nTax Engineering\nMobile\nMarketing Platform\nPractice Growth");
   const [notionDateScope, setNotionDateScope] = useState<"future-window" | "all-time">("future-window");
   const [notionFutureYears, setNotionFutureYears] = useState("4");
