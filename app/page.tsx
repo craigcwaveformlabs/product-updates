@@ -690,36 +690,33 @@ export default function Page() {
           </div>
           {isRoadmapPanelActive ? (
             <section aria-label="Roadmap updates by month" className="space-y-5">
-              <div className="brand-panel rounded-2xl p-4">
-                <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-600">Select month</h2>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRoadmapMonth(null)}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
-                      selectedRoadmapMonth === null
-                        ? "border-[#1a4a96] bg-[#1a4a96] text-white"
-                        : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
-                    }`}
-                    aria-pressed={selectedRoadmapMonth === null}
+              <div className="brand-panel rounded-2xl p-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <label htmlFor="roadmap-month-select" className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-600">
+                    Month
+                  </label>
+                  <select
+                    id="roadmap-month-select"
+                    value={selectedRoadmapMonth ?? ""}
+                    onChange={(event) => setSelectedRoadmapMonth(event.target.value || null)}
+                    className="min-w-[220px] rounded-lg border border-[#c5d5e8] bg-white px-3 py-1.5 text-sm text-zinc-800"
                   >
-                    All months ({visibleRoadmapUpdates.length})
-                  </button>
-                  {roadmapMonthOptions.map((month) => (
+                    <option value="">All months ({visibleRoadmapUpdates.length})</option>
+                    {roadmapMonthOptions.map((month) => (
+                      <option key={month.key} value={month.key}>
+                        {month.label} ({month.count})
+                      </option>
+                    ))}
+                  </select>
+                  {selectedRoadmapMonth ? (
                     <button
-                      key={month.key}
                       type="button"
-                      onClick={() => setSelectedRoadmapMonth(month.key)}
-                      className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
-                        selectedRoadmapMonth === month.key
-                          ? "border-[#1a4a96] bg-[#1a4a96] text-white"
-                          : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
-                      }`}
-                      aria-pressed={selectedRoadmapMonth === month.key}
+                      onClick={() => setSelectedRoadmapMonth(null)}
+                      className="rounded-full border border-[#c5d5e8] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:border-[#2461b8]"
                     >
-                      {month.label} ({month.count})
+                      Reset
                     </button>
-                  ))}
+                  ) : null}
                 </div>
               </div>
 
