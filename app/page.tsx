@@ -268,13 +268,23 @@ export default function Page() {
   const scopedRoadmapUpdates = useMemo(
     () =>
       visibleRoadmapUpdates.filter((update) => {
+        const isDone = update.tags.includes("roadmap-status-done") || update.tags.includes("done");
+
+        if (roadmapTimeScope === "past") {
+          return isDone;
+        }
+
+        if (isDone) {
+          return false;
+        }
+
         const parsed = Date.parse(update.date);
         if (Number.isNaN(parsed)) {
-          return roadmapTimeScope === "future";
+          return true;
         }
 
         const updateIso = new Date(parsed).toISOString().slice(0, 10);
-        return roadmapTimeScope === "future" ? updateIso >= todayIso : updateIso < todayIso;
+        return updateIso >= todayIso;
       }),
     [roadmapTimeScope, todayIso, visibleRoadmapUpdates],
   );
@@ -284,14 +294,8 @@ export default function Page() {
     let future = 0;
 
     for (const update of visibleRoadmapUpdates) {
-      const parsed = Date.parse(update.date);
-      if (Number.isNaN(parsed)) {
-        future += 1;
-        continue;
-      }
-
-      const updateIso = new Date(parsed).toISOString().slice(0, 10);
-      if (updateIso < todayIso) {
+      const isDone = update.tags.includes("roadmap-status-done") || update.tags.includes("done");
+      if (isDone) {
         past += 1;
       } else {
         future += 1;
@@ -299,7 +303,7 @@ export default function Page() {
     }
 
     return { past, future };
-  }, [todayIso, visibleRoadmapUpdates]);
+  }, [visibleRoadmapUpdates]);
 
   const roadmapUpdatesByMonth = useMemo(() => {
     const groups: Array<{ key: string; label: string; items: ProductUpdate[] }> = [];
