@@ -182,6 +182,7 @@ export default function Page() {
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
   const [showRoadmapOnly, setShowRoadmapOnly] = useState(isViewerOnly);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
+  const [selectedRoadmapMonth, setSelectedRoadmapMonth] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUpdate, setSelectedUpdate] = useState<ProductUpdate | null>(null);
   const [heroImageIndex, setHeroImageIndex] = useState(0);
@@ -272,6 +273,20 @@ export default function Page() {
     return groups;
   }, [visibleRoadmapUpdates]);
 
+
+  const roadmapMonthOptions = useMemo(
+    () => roadmapUpdatesByMonth.map((group) => ({ key: group.key, label: group.label, count: group.items.length })),
+    [roadmapUpdatesByMonth],
+  );
+
+  const visibleRoadmapUpdatesByMonth = useMemo(
+    () =>
+      selectedRoadmapMonth
+        ? roadmapUpdatesByMonth.filter((group) => group.key === selectedRoadmapMonth)
+        : roadmapUpdatesByMonth,
+    [roadmapUpdatesByMonth, selectedRoadmapMonth],
+  );
+
   const previewUpdate = selectedUpdate;
   const isRoadmapPanelActive = showRoadmapOnly || selectedRoadmapTag !== null;
   const activeHeroSlides = selectedStoryTag ? (heroSlidesByStory[selectedStoryTag] ?? []) : defaultHeroSlides;
@@ -304,6 +319,13 @@ export default function Page() {
       setSelectedUpdate(null);
     }
   }, [filteredUpdates, selectedUpdate]);
+
+
+  useEffect(() => {
+    if (selectedRoadmapMonth && !roadmapUpdatesByMonth.some((group) => group.key === selectedRoadmapMonth)) {
+      setSelectedRoadmapMonth(null);
+    }
+  }, [roadmapUpdatesByMonth, selectedRoadmapMonth]);
 
   useEffect(() => {
     setHeroImageIndex(0);
@@ -341,6 +363,7 @@ export default function Page() {
     setSelectedStoryTag(null);
     setShowRoadmapOnly(false);
     setSelectedRoadmapTag(null);
+    setSelectedRoadmapMonth(null);
     setSearchQuery("");
   };
 
@@ -667,7 +690,40 @@ export default function Page() {
           </div>
           {isRoadmapPanelActive ? (
             <section aria-label="Roadmap updates by month" className="space-y-5">
-              {roadmapUpdatesByMonth.map((group) => (
+              <div className="brand-panel rounded-2xl p-4">
+                <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-600">Select month</h2>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRoadmapMonth(null)}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
+                      selectedRoadmapMonth === null
+                        ? "border-[#1a4a96] bg-[#1a4a96] text-white"
+                        : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                    }`}
+                    aria-pressed={selectedRoadmapMonth === null}
+                  >
+                    All months ({visibleRoadmapUpdates.length})
+                  </button>
+                  {roadmapMonthOptions.map((month) => (
+                    <button
+                      key={month.key}
+                      type="button"
+                      onClick={() => setSelectedRoadmapMonth(month.key)}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
+                        selectedRoadmapMonth === month.key
+                          ? "border-[#1a4a96] bg-[#1a4a96] text-white"
+                          : "border-[#c5d5e8] bg-white text-zinc-700 hover:border-[#2461b8]"
+                      }`}
+                      aria-pressed={selectedRoadmapMonth === month.key}
+                    >
+                      {month.label} ({month.count})
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {visibleRoadmapUpdatesByMonth.map((group) => (
                 <section key={group.key} aria-label={`${group.label} roadmap updates`}>
                   <h2 className="mb-3 text-sm font-extrabold uppercase tracking-[0.12em] text-[#315f9c]">
                     {group.label}
