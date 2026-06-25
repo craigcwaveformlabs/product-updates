@@ -933,6 +933,16 @@ export default function Page() {
                   </div>
 
               </div>
+              <section aria-label="Roadmap view introduction">
+                <h2 className="title-font text-2xl font-extrabold tracking-tight text-zinc-950">
+                  {roadmapTimeScope === "future" ? "In the works" : "Delivered"}
+                </h2>
+                <p className="mt-2 text-sm leading-7 text-[#4e6378] sm:text-base">
+                  {roadmapTimeScope === "future"
+                    ? "We're busy building the next updates and improvements that will make your life easier in FreeAgent. Here's what's coming next."
+                    : "Explore whats been delivered on our roadmap toward helping every UK small business stay in control of their finances"}
+                </p>
+              </section>
 
               {visibleRoadmapUpdatesByMonth.map((group) => (
                 <section key={group.key} aria-label={`${group.label} roadmap updates`}>
