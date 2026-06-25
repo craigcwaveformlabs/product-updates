@@ -12,9 +12,12 @@
     "prebuild": "npm run content:generate",
     "content:new": "node scripts/new-update-content.mjs",
     "prebuild:static": "npm run content:generate",
-    "build:static": "node scripts/build-static-viewer.mjs"
+    "build:static": "node scripts/build-static-viewer.mjs",
+    "content:sync:notion": "node scripts/sync-notion-roadmap.mjs",
+    "build:static:sync": "npm run content:sync:notion && npm run build:static"
   },
   "dependencies": {
+    "@notionhq/client": "^5.22.0",
     "next": "16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4"

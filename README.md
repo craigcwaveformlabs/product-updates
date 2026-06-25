@@ -87,6 +87,33 @@ A workflow is provided at `.github/workflows/deploy-static-viewer.yml`.
 1. In GitHub repo settings, enable Pages and set source to GitHub Actions.
 2. Push to `main` (or run the workflow manually) to publish the static viewer.
 
+### Scheduled Notion API sync before deploy
+
+The deploy workflow can also pull roadmap content directly from Notion on a schedule and commit it back to `content/imported-updates` before building Pages output.
+
+Required repository secrets:
+
+- `NOTION_TOKEN`: Integration token for the Notion workspace
+- `NOTION_DATABASE_ID`: Database ID for your roadmap table
+
+Default schedule in `.github/workflows/deploy-static-viewer.yml`:
+
+- `0 6 * * 1-5` (06:00 UTC, Monday-Friday)
+
+The sync step is conditional. If either secret is missing, the workflow still builds/deploys using existing content files.
+
+Run the sync locally:
+
+```bash
+npm run content:sync:notion
+```
+
+Run sync and static build together:
+
+```bash
+npm run build:static:sync
+```
+
 ## Editing Content
 
 You can start editing the main experience by modifying `app/page.tsx`. The page auto-updates as you edit the file.
