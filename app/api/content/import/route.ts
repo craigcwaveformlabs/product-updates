@@ -19,6 +19,7 @@ type ImportPreviewRow = {
   readMoreUrl: string;
   tags: string[];
   storyTags: string[];
+  editionIds?: string[];
   exists: boolean;
   action: "create" | "update" | "skip";
 };
@@ -278,6 +279,10 @@ function buildUpdatePayload(row: CsvRow): Record<string, unknown> {
     payload.detailBody = splitList(row.detailBody);
   }
 
+  if (row.editionIds?.trim()) {
+    payload.editionIds = splitList(row.editionIds);
+  }
+
   if (row.pinnedForStories?.trim()) {
     payload.pinnedForStories = splitList(row.pinnedForStories);
   }
@@ -532,6 +537,11 @@ function buildNotionRoadmapPayload(row: CsvRow, rowNumber: number): Record<strin
     readMoreUrl,
   };
 
+  const editionIds = splitNotionList(readRowValue(row, ["edition ids", "edition id", "edition", "release", "quarter"])).map(toKebabCase).filter(Boolean);
+  if (editionIds.length) {
+    payload.editionIds = unique(editionIds);
+  }
+
   if (impact) {
     payload.detailBody = [impact];
   }
@@ -622,6 +632,7 @@ export async function POST(request: Request) {
             readMoreUrl: validated.readMoreUrl,
             tags: validated.tags,
             storyTags: validated.storyTags,
+            editionIds: validated.editionIds,
             exists,
             action: shouldSkip ? "skip" : exists ? "update" : "create",
           });

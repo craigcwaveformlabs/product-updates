@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { storyTagLabel, storyTags as sharedStoryTags } from "../content/updates";
+import { editions as sharedEditions, storyTagLabel, storyTags as sharedStoryTags } from "../content/updates";
 
 type DetailBlockType = "body" | "heading-lg" | "heading-sm";
 
@@ -29,6 +29,7 @@ type ContentUpdate = {
   readMoreUrl: string;
   pinnedForStories?: string[];
   pinInDefaultView?: boolean;
+  editionIds?: string[];
 };
 
 type ImportPreviewRow = {
@@ -39,6 +40,7 @@ type ImportPreviewRow = {
   readMoreUrl: string;
   tags: string[];
   storyTags: string[];
+  editionIds?: string[];
   exists: boolean;
   action: "create" | "update" | "skip";
 };
@@ -52,6 +54,13 @@ type NotionImportFilterOptions = {
   allowedTeams: string[];
 };
 
+type TagLabelOverrides = {
+  tags: Record<string, string>;
+  storyTags: Record<string, string>;
+  editionIds: Record<string, string>;
+  editionThemes: Record<string, string>;
+};
+
 const createEmptyDraft = (): ContentUpdate => ({
   id: "",
   imageSrc: "/updates/update-image.svg",
@@ -59,6 +68,7 @@ const createEmptyDraft = (): ContentUpdate => ({
   date: new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
   tags: [],
   storyTags: [],
+  editionIds: [],
   title: "",
   summaryBody: "",
   detailBody: [""],
@@ -140,6 +150,7 @@ export default function ContentStudioPage() {
   const [detailBlocks, setDetailBlocks] = useState<DetailBlock[]>(createEmptyDraft().detailBlocks ?? []);
   const [newTagInput, setNewTagInput] = useState("");
   const [newStoryTagInput, setNewStoryTagInput] = useState("");
+  const [newEditionIdInput, setNewEditionIdInput] = useState("");
   const [pinnedForStories, setPinnedForStories] = useState<string[]>([]);
   const [pinInDefaultView, setPinInDefaultView] = useState(false);
   const [sidebarStoryTagFilter, setSidebarStoryTagFilter] = useState<string | null>(null);
@@ -165,6 +176,8 @@ export default function ContentStudioPage() {
   const [notionExcludeInternalProject, setNotionExcludeInternalProject] = useState(true);
   const [notionRequireDates, setNotionRequireDates] = useState(true);
   const [activeNotionFilters, setActiveNotionFilters] = useState<NotionImportFilterOptions | null>(null);
+  const [tagLabelOverrides, setTagLabelOverrides] = useState<TagLabelOverrides>({ tags: {}, storyTags: {}, editionIds: {}, editionThemes: {} });
+  const [isSavingTagTitles, setIsSavingTagTitles] = useState(false);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const isViewerOnly = process.env.NEXT_PUBLIC_VIEWER_ONLY === "true";
@@ -194,6 +207,22 @@ export default function ContentStudioPage() {
     ];
   }, [draft.storyTags, pinnedForStories, updates]);
 
+  const editionIdOptions = useMemo(() => {
+    const discoveredEditionIds = Array.from(
+      new Set([
+        ...sharedEditions.map((edition) => edition.id),
+        ...updates.flatMap((update) => update.editionIds ?? []),
+        ...(draft.editionIds ?? []),
+      ]),
+    );
+
+    const preferredOrder = sharedEditions.map((edition) => edition.id);
+    return [
+      ...preferredOrder.filter((id) => discoveredEditionIds.includes(id)),
+      ...discoveredEditionIds.filter((id) => !preferredOrder.includes(id)).sort(),
+    ];
+  }, [draft.editionIds, updates]);
+
   const sidebarStoryTagOptions = useMemo(() => {
     const discoveredStoryTags = Array.from(new Set(updates.flatMap((update) => update.storyTags)));
 
@@ -203,6 +232,72 @@ export default function ContentStudioPage() {
     ];
   }, [updates]);
 
+  const knownTagKeys = useMemo(
+    () => Array.from(new Set([...tagOptions, ...Object.keys(tagLabelOverrides.tags)])).sort(),
+    [tagLabelOverrides.tags, tagOptions],
+  );
+
+  const editionStoryTagKeys = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          sharedEditions.flatMap((edition) => [
+            ...(edition.storyTagConfig?.order ?? []),
+            ...(edition.storyTagConfig?.hidden ?? []),
+            ...Object.keys(edition.storyTagConfig?.labelOverrides ?? {}),
+          ]),
+        ),
+      ).sort(),
+    [],
+  );
+
+  const knownStoryTagKeys = useMemo(
+    () =>
+      Array.from(
+        new Set([
+          ...storyTagOptions,
+          ...editionStoryTagKeys,
+          ...Object.keys(tagLabelOverrides.storyTags),
+        ]),
+      ).sort(),
+    [editionStoryTagKeys, storyTagOptions, tagLabelOverrides.storyTags],
+  );
+
+  const knownEditionIdKeys = useMemo(
+    () =>
+      Array.from(
+        new Set([
+          ...editionIdOptions,
+          ...Object.keys(tagLabelOverrides.editionIds),
+          ...Object.keys(tagLabelOverrides.editionThemes),
+        ]),
+      ).sort(),
+    [editionIdOptions, tagLabelOverrides.editionIds, tagLabelOverrides.editionThemes],
+  );
+
+  const editionStoryTagContext = useMemo(() => {
+    const contextByTag: Record<string, string[]> = {};
+
+    sharedEditions.forEach((edition) => {
+      const descriptor = [edition.id, edition.label].filter(Boolean).join(" - ");
+      const editionTags = Array.from(
+        new Set([
+          ...(edition.storyTagConfig?.order ?? []),
+          ...(edition.storyTagConfig?.hidden ?? []),
+          ...Object.keys(edition.storyTagConfig?.labelOverrides ?? {}),
+        ]),
+      );
+
+      editionTags.forEach((tag) => {
+        const existing = contextByTag[tag] ?? [];
+        if (!existing.includes(descriptor)) {
+          contextByTag[tag] = [...existing, descriptor];
+        }
+      });
+    });
+
+    return contextByTag;
+  }, []);
   const filteredUpdates = useMemo(() => {
     const normalizedSearch = sidebarIdSearch.trim().toLowerCase();
 
@@ -275,6 +370,24 @@ export default function ContentStudioPage() {
     ];
   }, [notionFilterOptions]);
 
+  const loadTagLabelOverrides = async () => {
+    try {
+      const response = await fetch("/api/content/tag-label-overrides", { cache: "no-store" });
+      const payload = (await response.json()) as {
+        overrides?: TagLabelOverrides;
+        error?: string;
+      };
+
+      if (!response.ok || !payload.overrides) {
+        throw new Error(payload.error ?? "Failed to load tag title overrides.");
+      }
+
+      setTagLabelOverrides(payload.overrides);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : "Failed to load tag title overrides.");
+    }
+  };
+
   const loadUpdates = async () => {
     setIsLoading(true);
     setError("");
@@ -309,6 +422,7 @@ export default function ContentStudioPage() {
     }
 
     void loadUpdates();
+    void loadTagLabelOverrides();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isViewerOnly]);
 
@@ -329,6 +443,50 @@ export default function ContentStudioPage() {
     }
   }, [sidebarStoryTagFilter, sidebarStoryTagOptions]);
 
+  const setTagOverrideValue = (kind: "tags" | "storyTags" | "editionIds" | "editionThemes", key: string, rawValue: string) => {
+    const normalizedKey = key.trim();
+    const value = rawValue.trim();
+
+    setTagLabelOverrides((current) => {
+      const nextMap = { ...(current[kind] ?? {}) };
+      if (!value) {
+        delete nextMap[normalizedKey];
+      } else {
+        nextMap[normalizedKey] = value;
+      }
+      return {
+        ...current,
+        [kind]: nextMap,
+      };
+    });
+  };
+
+  const saveTagTitles = async () => {
+    setIsSavingTagTitles(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/content/tag-label-overrides", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(tagLabelOverrides),
+      });
+
+      const payload = (await response.json()) as { ok?: boolean; overrides?: TagLabelOverrides; error?: string };
+      if (!response.ok || !payload.ok || !payload.overrides) {
+        throw new Error(payload.error ?? "Failed to save tag titles.");
+      }
+
+      setTagLabelOverrides(payload.overrides);
+      setMessage("Saved tag title overrides. Run Generate Content to apply in the viewer.");
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : "Failed to save tag titles.");
+    } finally {
+      setIsSavingTagTitles(false);
+    }
+  };
+
   const startCreate = () => {
     setIsCreating(true);
     setSelectedId(null);
@@ -338,6 +496,7 @@ export default function ContentStudioPage() {
     setDetailBlocks(normalizeDetailBlocks(fresh));
     setNewTagInput("");
     setNewStoryTagInput("");
+    setNewEditionIdInput("");
     setPinnedForStories([]);
     setPinInDefaultView(false);
     setMessage("");
@@ -358,9 +517,9 @@ export default function ContentStudioPage() {
     setError("");
   };
 
-  const toggleArrayValue = (field: "tags" | "storyTags", value: string) => {
+  const toggleArrayValue = (field: "tags" | "storyTags" | "editionIds", value: string) => {
     setDraft((current) => {
-      const activeValues = current[field];
+      const activeValues = current[field] ?? [];
       const nextValues = activeValues.includes(value)
         ? activeValues.filter((entry) => entry !== value)
         : [...activeValues, value];
@@ -368,7 +527,7 @@ export default function ContentStudioPage() {
     });
   };
 
-  const addTagValue = (field: "tags" | "storyTags", rawValue: string) => {
+  const addTagValue = (field: "tags" | "storyTags" | "editionIds", rawValue: string) => {
     const normalized = normalizeTagInput(rawValue);
     if (!normalized) {
       setError("Tag value cannot be empty.");
@@ -381,7 +540,7 @@ export default function ContentStudioPage() {
 
     setError("");
     setDraft((current) => {
-      const values = current[field];
+      const values = current[field] ?? [];
       if (values.includes(normalized)) {
         return current;
       }
@@ -453,6 +612,7 @@ export default function ContentStudioPage() {
       detailBlocks: cleanedBlocks.length ? cleanedBlocks : undefined,
       pinnedForStories: pinnedForStories.length ? pinnedForStories : undefined,
       pinInDefaultView: pinInDefaultView || undefined,
+      editionIds: draft.editionIds?.length ? draft.editionIds : undefined,
     };
 
     if (!payload.id) {
@@ -705,6 +865,7 @@ export default function ContentStudioPage() {
       "date",
       "tags",
       "storyTags",
+      "editionIds",
       "title",
       "summaryBody",
       "readMoreUrl",
@@ -721,6 +882,7 @@ export default function ContentStudioPage() {
       "12 Jun 2026",
       "coming-soon|automation",
       "built-for-every-business",
+      "2026-q3",
       "Sample feature update",
       "A short summary for the card preview.",
       "https://www.freeagent.com/blog/",
@@ -811,6 +973,7 @@ export default function ContentStudioPage() {
       "date",
       "tags",
       "storyTags",
+      "editionIds",
       "title",
       "summaryBody",
       "readMoreUrl",
@@ -834,6 +997,7 @@ export default function ContentStudioPage() {
       update.date,
       update.tags.join("|"),
       update.storyTags.join("|"),
+      (update.editionIds ?? []).join("|"),
       update.title,
       update.summaryBody,
       update.readMoreUrl,
@@ -888,12 +1052,12 @@ export default function ContentStudioPage() {
                 Create and edit product update cards, import updates from CSV, then regenerate app content.
               </p>
               <p className="mt-2 text-xs text-[#4e6378]">
-                Default CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories,pinInDefaultView).
+                Default CSV columns: id,imageSrc,imageAlt,date,tags,storyTags,editionIds,title,summaryBody,readMoreUrl (+ optional detailBody,detailBlocks,pinnedForStories,pinInDefaultView).
                 Notion roadmap schema: Project name, Status, Impact, Product Story, Dates, End month, ID.
               </p>
             </div>
 
-            <div className="grid gap-3 xl:grid-cols-3">
+            <div className="grid gap-3 xl:grid-cols-4">
               <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
                 <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Templates & Exports</h2>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -945,6 +1109,94 @@ export default function ContentStudioPage() {
                     </label>
                   </div>
                 </div>
+              </section>
+
+              <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
+                <h2 className="text-xs font-extrabold uppercase tracking-[0.1em] text-[#315f9c]">Tag Titles</h2>
+                <p className="mt-1 text-xs text-[#4e6378]">Edit display titles for existing tags, story tags, and edition IDs, including edition subtitles.</p>
+                <div className="mt-2 max-h-[220px] space-y-2 overflow-auto pr-1">
+                  <div>
+                    <p className="text-[11px] font-extrabold uppercase tracking-[0.08em] text-zinc-500">Tags</p>
+                    <div className="mt-1 space-y-1">
+                      {knownTagKeys.map((tag) => (
+                        <label key={`tag-title-${tag}`} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-2 text-[11px]">
+                          <span className="truncate font-semibold text-zinc-700" title={tag}>{tag}</span>
+                          <input
+                            value={tagLabelOverrides.tags[tag] ?? ""}
+                            onChange={(event) => setTagOverrideValue("tags", tag, event.target.value)}
+                            placeholder="Auto"
+                            className="rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-[11px] text-zinc-800"
+                          />
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-extrabold uppercase tracking-[0.08em] text-zinc-500">Story Tags</p>
+                    <div className="mt-1 space-y-1">
+                      {knownStoryTagKeys.map((tag) => (
+                        <label key={`story-tag-title-${tag}`} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-2 text-[11px]">
+                          <div className="min-w-0">
+                            <span className="block truncate font-semibold text-zinc-700" title={tag}>{tag}</span>
+                            {editionStoryTagContext[tag]?.length ? (
+                              <span className="block truncate text-[10px] text-zinc-500" title={editionStoryTagContext[tag].join(", ")}>
+                                {editionStoryTagContext[tag].join(", ")}
+                              </span>
+                            ) : null}
+                          </div>
+                          <input
+                            value={tagLabelOverrides.storyTags[tag] ?? ""}
+                            onChange={(event) => setTagOverrideValue("storyTags", tag, event.target.value)}
+                            placeholder={storyTagLabel[tag] ?? "Auto"}
+                            className="rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-[11px] text-zinc-800"
+                          />
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-extrabold uppercase tracking-[0.08em] text-zinc-500">Edition IDs</p>
+                    <div className="mt-1 space-y-1">
+                      {knownEditionIdKeys.map((editionId) => {
+                        const editionDefinition = sharedEditions.find((edition) => edition.id === editionId);
+                        return (
+                          <div key={`edition-id-title-${editionId}`} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-2 text-[11px]">
+                            <div className="min-w-0 pt-1">
+                              <span className="block truncate font-semibold text-zinc-700" title={editionId}>{editionId}</span>
+                              {editionDefinition ? (
+                                <span className="block truncate text-[10px] text-zinc-500" title={editionDefinition.label}>
+                                  {editionDefinition.label}
+                                </span>
+                              ) : null}
+                            </div>
+                            <div className="space-y-1">
+                              <input
+                                value={tagLabelOverrides.editionIds[editionId] ?? ""}
+                                onChange={(event) => setTagOverrideValue("editionIds", editionId, event.target.value)}
+                                placeholder={editionDefinition?.label ?? "Edition name"}
+                                className="rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-[11px] text-zinc-800"
+                              />
+                              <input
+                                value={tagLabelOverrides.editionThemes[editionId] ?? ""}
+                                onChange={(event) => setTagOverrideValue("editionThemes", editionId, event.target.value)}
+                                placeholder={editionDefinition?.theme ?? "Edition subtitle"}
+                                className="rounded-md border border-[#c5d5e8] bg-white px-2 py-1 text-[11px] text-zinc-800"
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={saveTagTitles}
+                  disabled={isSavingTagTitles}
+                  className="mt-2 rounded-lg border border-[#1a4a96] bg-white px-3 py-1.5 text-xs font-extrabold text-[#1a4a96] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSavingTagTitles ? "Saving titles..." : "Save Tag Titles"}
+                </button>
               </section>
 
               <section className="rounded-xl border border-[#d2e0f1] bg-[#f8fbff] p-3">
@@ -1043,6 +1295,7 @@ export default function ContentStudioPage() {
                       <th className="px-3 py-2 font-bold">ID</th>
                       <th className="px-3 py-2 font-bold">Title</th>
                       <th className="px-3 py-2 font-bold">Image</th>
+                      <th className="px-3 py-2 font-bold">Editions</th>
                       <th className="px-3 py-2 font-bold">URL</th>
                     </tr>
                   </thead>
@@ -1066,6 +1319,7 @@ export default function ContentStudioPage() {
                         <td className="px-3 py-2">{row.id}</td>
                         <td className="px-3 py-2">{row.title}</td>
                         <td className="px-3 py-2">{row.imageSrc}</td>
+                        <td className="px-3 py-2">{(row.editionIds ?? []).join("|") || "-"}</td>
                         <td className="px-3 py-2">{row.readMoreUrl}</td>
                       </tr>
                     ))}
@@ -1423,6 +1677,62 @@ export default function ContentStudioPage() {
                         }`}
                       >
                         {tag}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm font-semibold text-zinc-800">Edition IDs</p>
+                <p className="mt-1 text-xs text-[#4e6378]">Assign card visibility to one or more editions (for example 2026-q3).</p>
+                <div className="mt-2 flex gap-2">
+                  <input
+                    value={newEditionIdInput}
+                    onChange={(event) => setNewEditionIdInput(event.target.value)}
+                    placeholder="2026-q3"
+                    className="w-full rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (addTagValue("editionIds", newEditionIdInput)) {
+                        setNewEditionIdInput("");
+                      }
+                    }}
+                    className="rounded-lg border border-[#c5d5e8] bg-white px-3 py-2 text-xs font-bold text-zinc-700 hover:border-[#2461b8]"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {editionIdOptions.map((editionId) => {
+                    const active = (draft.editionIds ?? []).includes(editionId);
+                    const editionDefinition = sharedEditions.find((edition) => edition.id === editionId);
+                    const editionDisplayLabel = tagLabelOverrides.editionIds[editionId] ?? editionDefinition?.label ?? "";
+                    const editionDisplayTheme = tagLabelOverrides.editionThemes[editionId] ?? editionDefinition?.theme ?? "";
+                    return (
+                      <button
+                        key={editionId}
+                        type="button"
+                        onClick={() => toggleArrayValue("editionIds", editionId)}
+                        className={
+                          active
+                            ? "rounded-full border border-[#2461b8] bg-[#2461b8] px-3 py-1 text-left text-xs font-bold text-white"
+                            : "rounded-full border border-[#c5d5e8] bg-white px-3 py-1 text-left text-xs font-bold text-zinc-700"
+                        }
+                      >
+                        {editionId}
+                        {editionDisplayLabel ? (
+                          <span className={active ? "text-[10px] font-medium text-white/85" : "text-[10px] font-medium text-zinc-500"}>
+                            {editionDisplayLabel}
+                          </span>
+                        ) : null}
+                        {editionDisplayTheme ? (
+                          <span className={active ? "text-[10px] text-white/75" : "text-[10px] text-zinc-500"}>
+                            {editionDisplayTheme}
+                          </span>
+                        ) : null}
                       </button>
                     );
                   })}

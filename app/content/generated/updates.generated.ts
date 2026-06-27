@@ -1788,3 +1788,44 @@ export const updates = [
     "readMoreUrl": "https://www.freeagent.com/blog/"
   }
 ];
+
+export const editions = [
+  {
+    "id": "2026-q3",
+    "label": "Q3 2026",
+    "theme": "momentum-and-confidence",
+    "status": "live",
+    "active": true,
+    "startDate": "1 Jul 2026",
+    "endDate": "30 Sep 2026",
+    "branding": {
+      "palette": "freeagent-sky",
+      "accentColor": "#008cff",
+      "heroStyle": "clean-bold",
+      "fontFamily": "brand-default"
+    },
+    "storyTagConfig": {
+      "order": [
+        "be-tax-confident",
+        "built-for-every-business",
+        "transformative-accounting",
+        "the-freeagent-story"
+      ],
+      "hidden": [],
+      "labelOverrides": {
+        "the-freeagent-story": "The FreeAgent Story"
+      }
+    }
+  }
+];
+
+export const activeEditionId = "2026-q3";
+
+export const tagLabelOverrides = {
+  "tags": {},
+  "storyTags": {
+    "the-freeagent-story": "The FreeAgent Story"
+  },
+  "editionIds": {},
+  "editionThemes": {}
+};

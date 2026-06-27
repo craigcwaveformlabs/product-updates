@@ -22,6 +22,7 @@ export type ContentUpdate = {
   readMoreUrl: string;
   pinnedForStories?: string[];
   pinInDefaultView?: boolean;
+  editionIds?: string[];
 };
 
 export type ContentUpdateSource = "manual" | "imported";
@@ -185,6 +186,13 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
     pinInDefaultView = assertBoolean(pinInDefaultViewRaw, "pinInDefaultView");
   }
 
+  const editionIdsRaw = payload.editionIds;
+  let editionIds: string[] | undefined;
+  if (editionIdsRaw !== undefined) {
+    const parsed = assertKebabCaseArray(editionIdsRaw, "editionIds");
+    editionIds = parsed.length ? parsed : undefined;
+  }
+
   return {
     id,
     imageSrc,
@@ -199,6 +207,7 @@ export function parseAndValidateUpdate(payload: unknown): ContentUpdate {
     readMoreUrl,
     pinnedForStories,
     pinInDefaultView,
+    editionIds,
   };
 }
 

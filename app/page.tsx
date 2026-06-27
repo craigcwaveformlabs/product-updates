@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import {
+  activeEditionId,
   allTags,
   defaultHeroSlides,
+  editions,
   heroColorByStory,
   heroSlidesByStory,
   tagLabel,
@@ -183,7 +186,11 @@ function tagBadgeClass(tag: UpdateTag): string {
 }
 
 export default function Page() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
+  const [selectedEditionId, setSelectedEditionId] = useState<string | null>(activeEditionId);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
   const [showRoadmapOnly, setShowRoadmapOnly] = useState(isViewerOnly);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
@@ -193,6 +200,13 @@ export default function Page() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUpdate, setSelectedUpdate] = useState<ProductUpdate | null>(null);
   const [heroImageIndex, setHeroImageIndex] = useState(0);
+
+  const editionOptions = useMemo(() => editions, []);
+
+  const selectedEdition = useMemo(
+    () => editionOptions.find((edition) => edition.id === selectedEditionId) ?? null,
+    [editionOptions, selectedEditionId],
+  );
 
   const roadmapTagOptions = useMemo(
     () => allTags.filter((tag) => tag.startsWith("roadmap-")).sort(),
@@ -205,8 +219,13 @@ export default function Page() {
   );
 
   const roadmapUpdates = useMemo(
-    () => updates.filter((update) => update.tags.includes(ROADMAP_TAG)),
-    [],
+    () =>
+      updates.filter(
+        (update) =>
+          update.tags.includes(ROADMAP_TAG) &&
+          (selectedEditionId ? (update.editionIds?.includes(selectedEditionId) ?? false) : true),
+      ),
+    [selectedEditionId],
   );
 
   const filteredUpdates = useMemo(() => {
@@ -214,6 +233,7 @@ export default function Page() {
 
     const filtered = updates.filter((update) => {
       const hasStory = selectedStoryTag ? update.storyTags.includes(selectedStoryTag) : true;
+      const hasEdition = selectedEditionId ? (update.editionIds?.includes(selectedEditionId) ?? false) : true;
       const hasTopicTags = selectedTags.length ? selectedTags.every((tag) => update.tags.includes(tag)) : true;
       const matchesRoadmapOnly = showRoadmapOnly ? update.tags.includes(ROADMAP_TAG) : true;
       const matchesRoadmapTag = selectedRoadmapTag ? update.tags.includes(selectedRoadmapTag) : true;
@@ -230,7 +250,7 @@ export default function Page() {
         .join(" ")
         .toLowerCase();
       const matchesSearch = normalizedSearch ? searchableText.includes(normalizedSearch) : true;
-      return hasStory && hasTopicTags && matchesRoadmapOnly && matchesRoadmapTag && matchesSearch;
+      return hasStory && hasEdition && hasTopicTags && matchesRoadmapOnly && matchesRoadmapTag && matchesSearch;
     });
 
     return filtered.sort((a, b) => {
@@ -245,7 +265,7 @@ export default function Page() {
       }
       return Date.parse(b.date) - Date.parse(a.date);
     });
-  }, [searchQuery, selectedRoadmapTag, selectedStoryTag, selectedTags, showRoadmapOnly]);
+  }, [searchQuery, selectedEditionId, selectedRoadmapTag, selectedStoryTag, selectedTags, showRoadmapOnly]);
 
   const visibleRoadmapUpdates = useMemo(
     () => filteredUpdates.filter((update) => update.tags.includes(ROADMAP_TAG)),
@@ -411,9 +431,10 @@ export default function Page() {
   const activeHero = activeHeroSlide || defaultHeroSlides[0];
   const hasHeroCarousel = activeHeroSlides.length > 1;
   const activeHeroBackgroundColor = selectedStoryTag
-    ? (heroColorByStory[selectedStoryTag] ?? "#008cff")
-    : "#008cff";
+    ? (heroColorByStory[selectedStoryTag] ?? selectedEdition?.branding?.accentColor ?? "#008cff")
+    : (selectedEdition?.branding?.accentColor ?? "#008cff");
   const isDefaultHero = !selectedStoryTag;
+  const editionAccentColor = selectedEdition?.branding?.accentColor ?? "#2461b8";
   const roadmapPanelImageSrc = "/updates/hero-roadmap.png";
   const roadmapPanelImageAlt = "Roadmap overview panel image";
   const roadmapPanelEyebrow = selectedRoadmapTag ? tagLabel[selectedRoadmapTag] : showRoadmapOnly ? "Roadmap mode" : "Roadmap overview";
@@ -495,6 +516,24 @@ export default function Page() {
     setSelectedRoadmapTag((current) => (current === tag ? null : tag));
   };
 
+  const applyEditionQueryParam = (editionId: string | null) => {
+    const params = new URLSearchParams(window.location.search);
+    if (editionId) {
+      params.set("edition", editionId);
+    } else {
+      params.delete("edition");
+    }
+
+    const query = params.toString();
+    const nextPath = query ? pathname + "?" + query : pathname;
+    router.replace(nextPath, { scroll: false });
+  };
+
+  const selectEdition = (editionId: string | null) => {
+    setSelectedEditionId(editionId);
+    applyEditionQueryParam(editionId);
+  };
+
   const clearFilters = () => {
     setSelectedTags([]);
     setSelectedStoryTag(null);
@@ -502,7 +541,20 @@ export default function Page() {
     setSelectedRoadmapTag(null);
     setSelectedRoadmapMonth(null);
     setSearchQuery("");
+    setSelectedEditionId(activeEditionId);
+    applyEditionQueryParam(activeEditionId);
   };
+
+  useEffect(() => {
+    const requestedEdition = new URLSearchParams(window.location.search).get("edition");
+    if (!requestedEdition) {
+      setSelectedEditionId(activeEditionId);
+      return;
+    }
+
+    const exists = editionOptions.some((edition) => edition.id === requestedEdition);
+    setSelectedEditionId(exists ? requestedEdition : activeEditionId);
+  }, [editionOptions]);
 
   const renderUpdateCard = (update: ProductUpdate, showImage = true) => (
     <article key={update.id} className="brand-panel flex w-full flex-col overflow-hidden rounded-2xl p-4 sm:w-[360px]">
@@ -552,12 +604,53 @@ export default function Page() {
   );
 
   return (
-    <div className="brand-shell min-h-screen pb-12">
+    <div className="brand-shell min-h-screen pb-12" style={{ borderTop: "4px solid " + editionAccentColor }}>
       <div className="mt-6 flex w-full flex-col gap-6 px-3 sm:px-4 lg:px-6 lg:flex-row lg:items-start">
         <div className="top-6 w-full lg:sticky lg:max-h-[calc(100vh-3rem)] lg:w-[305px] lg:shrink-0 lg:overflow-y-auto lg:pr-1">
           <aside className="brand-panel rounded-2xl p-5">
             <h2 className="text-base font-extrabold text-zinc-900">Filter updates</h2>
-            <p className="mt-1 text-sm text-[#4e6378]">Refine by story content and topic tags.</p>
+            <p className="mt-1 text-sm text-[#4e6378]">Refine by edition, story content and topic tags.</p>
+            <section className="mt-5">
+              <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">Edition</h3>
+              <div role="radiogroup" aria-label="Edition filter" className="mt-2 flex flex-col gap-2">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={selectedEditionId === null}
+                  onClick={() => selectEdition(null)}
+                  className={`w-full rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+                    selectedEditionId === null
+                      ? "text-white"
+                      : "border-[#c5d5e8] bg-white text-zinc-800 hover:border-[#2461b8]"
+                  }`}
+                  style={selectedEditionId === null ? { borderColor: editionAccentColor, backgroundColor: editionAccentColor } : undefined}
+                >
+                  All editions
+                </button>
+                {editionOptions.map((edition) => {
+                  const selected = selectedEditionId === edition.id;
+                  return (
+                    <button
+                      key={edition.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={selected}
+                      onClick={() => selectEdition(edition.id)}
+                      className={`w-full rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+                        selected
+                          ? "text-white"
+                          : "border-[#c5d5e8] bg-white text-zinc-800 hover:border-[#2461b8]"
+                      }`}
+                      style={selected ? { borderColor: editionAccentColor, backgroundColor: editionAccentColor } : undefined}
+                    >
+                      <span className="block">{edition.label}</span>
+                      <span className={`block text-xs ${selected ? "text-white/80" : "text-[#4e6378]"}`}>{edition.theme}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+
             <section className="mt-5">
               <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">Story tags</h3>
               <div role="radiogroup" aria-label="Story tag filter" className="mt-2 flex flex-col gap-2">
@@ -701,7 +794,7 @@ export default function Page() {
             {isRoadmapPanelActive ? (
               <section
                 className="brand-hero relative overflow-hidden rounded-2xl p-5 sm:p-7"
-                style={{ background: "linear-gradient(135deg, #0d3f7a 0%, #1a5dae 52%, #79b8f6 100%)" }}
+                style={{ background: "linear-gradient(135deg, #0d3f7a 0%, " + editionAccentColor + " 52%, #79b8f6 100%)" }}
               >
                 <div className="relative z-10 grid h-full grid-cols-1 items-center gap-5 md:grid-cols-[1.15fr_0.85fr] md:gap-6">
                   <div className="max-w-2xl">

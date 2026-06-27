@@ -1,4 +1,9 @@
-import { updates as generatedUpdates } from "./generated/updates.generated";
+import {
+  activeEditionId as generatedActiveEditionId,
+  editions as generatedEditions,
+  tagLabelOverrides as generatedTagLabelOverrides,
+  updates as generatedUpdates,
+} from "./generated/updates.generated";
 
 // Content editing checklist:
 // 1) Product card content: manual files live in content/updates/*.json and imported files live in content/imported-updates/*.json.
@@ -30,6 +35,7 @@ export type ProductUpdate = {
   readMoreUrl: string;
   pinnedForStories?: string[];
   pinInDefaultView?: boolean;
+  editionIds?: string[];
 };
 
 export type HeroSlide = {
@@ -39,6 +45,33 @@ export type HeroSlide = {
   title: string;
   body: string;
   readMoreUrl?: string;
+};
+
+export type EditionStatus = "draft" | "live" | "archived";
+
+export type EditionBranding = {
+  palette?: string;
+  accentColor?: string;
+  heroStyle?: string;
+  fontFamily?: string;
+};
+
+export type EditionStoryTagConfig = {
+  order?: StoryTag[];
+  hidden?: StoryTag[];
+  labelOverrides?: Record<StoryTag, string>;
+};
+
+export type Edition = {
+  id: string;
+  label: string;
+  theme: string;
+  status: EditionStatus;
+  active?: boolean;
+  startDate: string;
+  endDate: string;
+  branding?: EditionBranding;
+  storyTagConfig?: EditionStoryTagConfig;
 };
 
 function slugToLabel(slug: string): string {
@@ -52,7 +85,46 @@ function slugToLabel(slug: string): string {
 // Product updates are generated from content/updates/*.json.
 export const updates: ProductUpdate[] = generatedUpdates as ProductUpdate[];
 
+// Editions are generated from content/editions/*.json.
+export const editions: Edition[] = (generatedEditions as Edition[]).map((edition) => ({
+  ...edition,
+  label:
+    ((generatedTagLabelOverrides as { editionIds?: Record<string, string> } | undefined)?.editionIds?.[edition.id] ??
+      edition.label),
+  theme:
+    ((generatedTagLabelOverrides as { editionThemes?: Record<string, string> } | undefined)?.editionThemes?.[edition.id] ??
+      edition.theme),
+}));
+
+export const activeEditionId: string | null =
+  typeof generatedActiveEditionId === "string" ? generatedActiveEditionId : null;
+
+export const activeEdition: Edition | null =
+  activeEditionId ? editions.find((edition) => edition.id === activeEditionId) ?? null : null;
+
+export function getEditionById(id: string): Edition | undefined {
+  return editions.find((edition) => edition.id === id);
+}
+
+export function getUpdatesForEdition(editionId: string): ProductUpdate[] {
+  return updates.filter((update) => update.editionIds?.includes(editionId));
+}
+
+export function getActiveEditionUpdates(): ProductUpdate[] {
+  return activeEditionId ? getUpdatesForEdition(activeEditionId) : updates;
+}
+
 export const allTags = Array.from(new Set(updates.flatMap((update) => update.tags))).sort();
+
+export type GeneratedTagLabelOverrides = {
+  tags?: Record<string, string>;
+  storyTags?: Record<string, string>;
+  editionIds?: Record<string, string>;
+  editionThemes?: Record<string, string>;
+};
+
+export const tagLabelOverrides: GeneratedTagLabelOverrides =
+  (generatedTagLabelOverrides as GeneratedTagLabelOverrides) ?? { tags: {}, storyTags: {}, editionIds: {}, editionThemes: {} };
 
 function tagToLabel(tag: UpdateTag): string {
   if (tag === "roadmap") {
@@ -71,7 +143,7 @@ function tagToLabel(tag: UpdateTag): string {
 }
 
 export const tagLabel: Record<UpdateTag, string> = Object.fromEntries(
-  allTags.map((tag) => [tag, tagToLabel(tag)]),
+  allTags.map((tag) => [tag, tagLabelOverrides.tags?.[tag] ?? tagToLabel(tag)]),
 );
 
 // Hero carousel content per story tag.
@@ -143,12 +215,8 @@ export const storyTags = [
   ...discoveredStoryTags.filter((tag) => !preferredStoryTagOrder.includes(tag)).sort(),
 ];
 
-const storyTagLabelOverrides: Partial<Record<StoryTag, string>> = {
-  "the-freeagent-story": "The FreeAgent Story",
-};
-
 export const storyTagLabel: Record<StoryTag, string> = Object.fromEntries(
-  storyTags.map((tag) => [tag, storyTagLabelOverrides[tag] ?? slugToLabel(tag)]),
+  storyTags.map((tag) => [tag, tagLabelOverrides.storyTags?.[tag] ?? slugToLabel(tag)]),
 );
 
 // Default hero shown when no story tag is selected.
