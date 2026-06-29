@@ -190,7 +190,6 @@ export default function Page() {
   const pathname = usePathname();
 
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
-  const [selectedEditionId, setSelectedEditionId] = useState<string | null>(activeEditionId);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
   const [showRoadmapOnly, setShowRoadmapOnly] = useState(false);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
@@ -202,6 +201,21 @@ export default function Page() {
   const [heroImageIndex, setHeroImageIndex] = useState(0);
 
   const editionOptions = useMemo(() => editions, []);
+
+  const defaultEditionId = useMemo(() => {
+    const activeEditionKey = activeEditionId;
+    const activeEditionHasContent = activeEditionKey
+      ? updates.some((update) => update.editionIds?.includes(activeEditionKey))
+      : false;
+
+    if (activeEditionHasContent) {
+      return activeEditionKey;
+    }
+
+    return editions.find((edition) => updates.some((update) => update.editionIds?.includes(edition.id)))?.id ?? null;
+  }, []);
+
+  const [selectedEditionId, setSelectedEditionId] = useState<string | null>(defaultEditionId);
 
   const selectedEdition = useMemo(
     () => editionOptions.find((edition) => edition.id === selectedEditionId) ?? null,
@@ -541,20 +555,20 @@ export default function Page() {
     setSelectedRoadmapTag(null);
     setSelectedRoadmapMonth(null);
     setSearchQuery("");
-    setSelectedEditionId(activeEditionId);
-    applyEditionQueryParam(activeEditionId);
+    setSelectedEditionId(defaultEditionId);
+    applyEditionQueryParam(defaultEditionId);
   };
 
   useEffect(() => {
     const requestedEdition = new URLSearchParams(window.location.search).get("edition");
     if (!requestedEdition) {
-      setSelectedEditionId(activeEditionId);
+      setSelectedEditionId(defaultEditionId);
       return;
     }
 
     const exists = editionOptions.some((edition) => edition.id === requestedEdition);
     setSelectedEditionId(exists ? requestedEdition : activeEditionId);
-  }, [editionOptions]);
+  }, [defaultEditionId, editionOptions]);
 
   const renderUpdateCard = (update: ProductUpdate, showImage = true) => (
     <article key={update.id} className="brand-panel flex w-full flex-col overflow-hidden rounded-2xl p-4 sm:w-[360px]">
