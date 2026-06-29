@@ -202,20 +202,7 @@ export default function Page() {
 
   const editionOptions = useMemo(() => editions, []);
 
-  const defaultEditionId = useMemo(() => {
-    const activeEditionKey = activeEditionId;
-    const activeEditionHasContent = activeEditionKey
-      ? updates.some((update) => update.editionIds?.includes(activeEditionKey))
-      : false;
-
-    if (activeEditionHasContent) {
-      return activeEditionKey;
-    }
-
-    return editions.find((edition) => updates.some((update) => update.editionIds?.includes(edition.id)))?.id ?? null;
-  }, []);
-
-  const [selectedEditionId, setSelectedEditionId] = useState<string | null>(defaultEditionId);
+  const [selectedEditionId, setSelectedEditionId] = useState<string | null>(null);
 
   const selectedEdition = useMemo(
     () => editionOptions.find((edition) => edition.id === selectedEditionId) ?? null,
@@ -556,20 +543,20 @@ export default function Page() {
     setSelectedRoadmapTag(null);
     setSelectedRoadmapMonth(null);
     setSearchQuery("");
-    setSelectedEditionId(defaultEditionId);
-    applyEditionQueryParam(defaultEditionId);
+    setSelectedEditionId(null);
+    applyEditionQueryParam(null);
   };
 
   useEffect(() => {
     const requestedEdition = new URLSearchParams(window.location.search).get("edition");
     if (!requestedEdition) {
-      setSelectedEditionId(defaultEditionId);
+      setSelectedEditionId(null);
       return;
     }
 
     const exists = editionOptions.some((edition) => edition.id === requestedEdition);
-    setSelectedEditionId(exists ? requestedEdition : activeEditionId);
-  }, [defaultEditionId, editionOptions]);
+    setSelectedEditionId(exists ? requestedEdition : null);
+  }, [editionOptions]);
 
   const renderUpdateCard = (update: ProductUpdate, showImage = true) => (
     <article key={update.id} className="brand-panel flex w-full flex-col overflow-hidden rounded-2xl p-4 sm:w-[360px]">
