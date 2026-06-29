@@ -544,8 +544,9 @@ export default function Page() {
   };
 
   const selectEdition = (editionId: string | null) => {
-    setSelectedEditionId(editionId);
-    applyEditionQueryParam(editionId);
+    const nextEditionId = editionId === selectedEditionId ? null : editionId;
+    setSelectedEditionId(nextEditionId);
+    applyEditionQueryParam(nextEditionId);
   };
 
   const clearFilters = () => {
