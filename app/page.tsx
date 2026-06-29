@@ -192,7 +192,7 @@ export default function Page() {
   const [selectedTags, setSelectedTags] = useState<UpdateTag[]>([]);
   const [selectedEditionId, setSelectedEditionId] = useState<string | null>(activeEditionId);
   const [selectedStoryTag, setSelectedStoryTag] = useState<StoryTag | null>(null);
-  const [showRoadmapOnly, setShowRoadmapOnly] = useState(isViewerOnly);
+  const [showRoadmapOnly, setShowRoadmapOnly] = useState(false);
   const [selectedRoadmapTag, setSelectedRoadmapTag] = useState<UpdateTag | null>(null);
   const [selectedRoadmapMonth, setSelectedRoadmapMonth] = useState<string | null>(null);
   const [roadmapTimeScope, setRoadmapTimeScope] = useState<"future" | "past">("future");
@@ -613,20 +613,6 @@ export default function Page() {
             <section className="mt-5">
               <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">Edition</h3>
               <div role="radiogroup" aria-label="Edition filter" className="mt-2 flex flex-col gap-2">
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked={selectedEditionId === null}
-                  onClick={() => selectEdition(null)}
-                  className={`w-full rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
-                    selectedEditionId === null
-                      ? "text-white"
-                      : "border-[#c5d5e8] bg-white text-zinc-800 hover:border-[#2461b8]"
-                  }`}
-                  style={selectedEditionId === null ? { borderColor: editionAccentColor, backgroundColor: editionAccentColor } : undefined}
-                >
-                  All editions
-                </button>
                 {editionOptions.map((edition) => {
                   const selected = selectedEditionId === edition.id;
                   return (
